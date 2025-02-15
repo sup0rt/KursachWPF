@@ -90,6 +90,9 @@
     <Compile Include="Orders.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="pages\AuthLog.xaml.cs">
+      <DependentUpon>AuthLog.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Parts.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
@@ -117,6 +120,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="pages\AuthLog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Model.Context.cs">
