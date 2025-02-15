@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="bd687d782cb843408785e699398f2e2b" Name="Diagram1">
+        <EntityTypeShape EntityType="kartashev_kursachModel.Categories" Width="1.5" PointX="0.75" PointY="1.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="kartashev_kursachModel.Customers" Width="1.5" PointX="2.75" PointY="6" IsExpanded="true" />
+        <EntityTypeShape EntityType="kartashev_kursachModel.Departments" Width="1.5" PointX="7.75" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="kartashev_kursachModel.Employees" Width="1.5" PointX="10" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="kartashev_kursachModel.Manufacturers" Width="1.5" PointX="0.75" PointY="5.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="kartashev_kursachModel.OrderDetails" Width="1.5" PointX="7.25" PointY="6.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="kartashev_kursachModel.Orders" Width="1.5" PointX="5" PointY="6" IsExpanded="true" />
+        <EntityTypeShape EntityType="kartashev_kursachModel.Parts" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="kartashev_kursachModel.Positions" Width="1.5" PointX="7.75" PointY="9.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="kartashev_kursachModel.Statuses" Width="1.5" PointX="2.75" PointY="11.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="kartashev_kursachModel.Suppliers" Width="1.5" PointX="0.75" PointY="8.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="kartashev_kursachModel.WarehouseTransactions" Width="1.5" PointX="5.25" PointY="1.5" IsExpanded="true" />
+        <AssociationConnector Association="kartashev_kursachModel.FK__Parts__CategoryI__46E78A0C" ManuallyRouted="false" />
+        <AssociationConnector Association="kartashev_kursachModel.FK__Orders__Customer__3B75D760" ManuallyRouted="false" />
+        <AssociationConnector Association="kartashev_kursachModel.FK__Employees__Depar__5535A963" ManuallyRouted="false" />
+        <AssociationConnector Association="kartashev_kursachModel.FK__Employees__Posit__5629CD9C" ManuallyRouted="false" />
+        <AssociationConnector Association="kartashev_kursachModel.FK__Parts__Manufactu__48CFD27E" ManuallyRouted="false" />
+        <AssociationConnector Association="kartashev_kursachModel.FK__OrderDeta__Order__59063A47" ManuallyRouted="false" />
+        <AssociationConnector Association="kartashev_kursachModel.FK__Orders__StatusID__3C69FB99" ManuallyRouted="false" />
+        <AssociationConnector Association="kartashev_kursachModel.FK__Parts__SupplierI__47DBAE45" ManuallyRouted="false" />
+        <AssociationConnector Association="kartashev_kursachModel.FK__Warehouse__PartI__52593CB8" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
