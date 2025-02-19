@@ -1,0 +1,27 @@
+﻿<Page x:Class="WpfApp1.pages.AuthPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:WpfApp1.pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="AuthPage" Background="LightGray">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <Button x:Name="btnOrders" Grid.Row="1" Content="Посмотреть заказы" VerticalAlignment="Center" HorizontalAlignment="Center" Click="btnOrders_Click" />
+        <Button x:Name="btnCatalog" Grid.Row="2" Content="Посмотреть каталог" VerticalAlignment="Center" HorizontalAlignment="Center" Click="btnCatalog_Click" />
+        <Button x:Name="btnDealers" Grid.Row="3" Content="Посмотреть поставщиков" VerticalAlignment="Center" HorizontalAlignment="Center" Click="btnDealers_Click" />
+        <Button x:Name="btnSuppliers" Grid.Row="4" Content="Посмотреть производителей" VerticalAlignment="Center" HorizontalAlignment="Center" Click="btnSuppliers_Click" />
+    </Grid>
+</Page>

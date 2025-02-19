@@ -16,13 +16,14 @@ using System.Windows.Shapes;
 namespace WpfApp1.pages
 {
     /// <summary>
-    /// Логика взаимодействия для AuthLog.xaml
+    /// Логика взаимодействия для Orders.xaml
     /// </summary>
-    public partial class AuthLog : Page
+    public partial class Orders : Page
     {
-        public AuthLog()
+        public Orders()
         {
             InitializeComponent();
+            dgOrders.ItemsSource=Entities.GetContext().Orders.ToList();
         }
     }
 }

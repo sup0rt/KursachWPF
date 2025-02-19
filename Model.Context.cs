@@ -19,6 +19,16 @@ namespace WpfApp1
             : base("name=Entities")
         {
         }
+
+        private static Entities _context;
+        public static Entities GetContext()
+        {
+            if(_context == null)
+            {
+                _context = new Entities();
+            }
+            return _context;
+        }
     
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -37,5 +47,7 @@ namespace WpfApp1
         public virtual DbSet<Statuses> Statuses { get; set; }
         public virtual DbSet<Suppliers> Suppliers { get; set; }
         public virtual DbSet<WarehouseTransactions> WarehouseTransactions { get; set; }
+
+
     }
 }
