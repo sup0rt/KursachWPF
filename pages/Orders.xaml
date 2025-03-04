@@ -17,8 +17,8 @@
 
         <DataGrid Grid.Row="1" x:Name="dgOrders" AutoGenerateColumns="False" IsReadOnly="True" HorizontalAlignment="Center" >
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Номер" Binding="{Binding Order.IDorder}" />
-                <DataGridTextColumn Header="Статус" Binding="{Binding OrderStatus.name}" />
+                <DataGridTextColumn Header="Номер" Binding="{Binding IDorder}" />
+                <DataGridTextColumn Header="Статус" Binding="{Binding name}" />
             </DataGrid.Columns>
         </DataGrid>
     </Grid>

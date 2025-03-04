@@ -17,10 +17,10 @@
 
         <DataGrid Grid.Row="1" x:Name="dgManufacturers" AutoGenerateColumns="False" IsReadOnly="True" HorizontalAlignment="Center" >
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Название" Binding="{Binding Manufacturer.organizationName}" />
-                <DataGridTextColumn Header="Адрес" Binding="{Binding Manufacturer.physicalAdress}" />
-                <DataGridTextColumn Header="Email" Binding="{Binding Manufacturer.email}" />
-                <DataGridTextColumn Header="Номер телефона" Binding="{Binding Manufacturer.phone}" />
+                <DataGridTextColumn Header="Название" Binding="{Binding organizationName}" />
+                <DataGridTextColumn Header="Адрес" Binding="{Binding physicalAdress}" />
+                <DataGridTextColumn Header="Email" Binding="{Binding email}" />
+                <DataGridTextColumn Header="Номер телефона" Binding="{Binding phone}" />
             </DataGrid.Columns>
         </DataGrid>
     </Grid>
