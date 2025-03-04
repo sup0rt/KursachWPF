@@ -12,22 +12,26 @@ namespace WpfApp1
     using System;
     using System.Collections.Generic;
     
-    public partial class Orders
+    public partial class Customer
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Orders()
+        public Customer()
         {
-            this.OrderDetails = new HashSet<OrderDetails>();
+            this.CustomerAccount = new HashSet<CustomerAccount>();
+            this.Order = new HashSet<Order>();
         }
     
-        public int ID { get; set; }
-        public int CustomerID { get; set; }
-        public System.DateTime CreationDate { get; set; }
-        public int StatusID { get; set; }
+        public int IDcustomer { get; set; }
+        public string lastName { get; set; }
+        public string firstName { get; set; }
+        public string middleName { get; set; }
+        public string email { get; set; }
+        public string phone { get; set; }
+        public string deliveryAddress { get; set; }
     
-        public virtual Customers Customers { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<OrderDetails> OrderDetails { get; set; }
-        public virtual Statuses Statuses { get; set; }
+        public virtual ICollection<CustomerAccount> CustomerAccount { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Order> Order { get; set; }
     }
 }

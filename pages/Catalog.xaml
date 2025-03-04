@@ -15,13 +15,13 @@
             <RowDefinition/>
         </Grid.RowDefinitions>
 
-        <DataGrid Grid.Row="1" x:Name="dgParts" AutoGenerateColumns="False" IsReadOnly="True"  >
+        <DataGrid Grid.Row="1" x:Name="dgParts" AutoGenerateColumns="False" IsReadOnly="True"  HorizontalAlignment="Center">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Категория" Binding="{Binding Catgories.Description}" />
-                <DataGridTextColumn Header="Название" Binding="{Binding Parts.Name}" />
-                <DataGridTextColumn Header="Производитель" Binding="{Binding Manufacturers.Name}" />
-                <DataGridTextColumn Header="Остаток" Binding="{Binding Parts.Quantity}" />
-                <DataGridTextColumn Header="Цена" Binding="{Binding Parts.Price}" />
+                <DataGridTextColumn Header="Категория" Binding="{Binding Category.name}" />
+                <DataGridTextColumn Header="Название" Binding="{Binding name}" />
+                <DataGridTextColumn Header="Производитель" Binding="{Binding Manufacturer.organizationName}" />
+                <DataGridTextColumn Header="Остаток" Binding="{Binding Warehouse.stockQuantity}" />
+                <DataGridTextColumn Header="Цена" Binding="{Binding price}" />
             </DataGrid.Columns>
         </DataGrid>
     </Grid>

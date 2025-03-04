@@ -12,18 +12,25 @@ namespace WpfApp1
     using System;
     using System.Collections.Generic;
     
-    public partial class Categories
+    public partial class Employee
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Categories()
+        public Employee()
         {
-            this.Parts = new HashSet<Parts>();
+            this.EmployeeAccount = new HashSet<EmployeeAccount>();
         }
     
-        public int ID { get; set; }
-        public string Description { get; set; }
+        public int IDemployee { get; set; }
+        public string lastName { get; set; }
+        public string firstName { get; set; }
+        public string middleName { get; set; }
+        public int positionID { get; set; }
+        public int departmentID { get; set; }
+        public decimal salary { get; set; }
     
+        public virtual Department Department { get; set; }
+        public virtual Position Position { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Parts> Parts { get; set; }
+        public virtual ICollection<EmployeeAccount> EmployeeAccount { get; set; }
     }
 }

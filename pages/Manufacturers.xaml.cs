@@ -23,7 +23,7 @@ namespace WpfApp1.pages
         public Manufacturers()
         {
             InitializeComponent();
-            dgManufacturers.ItemsSource = Entities.GetContext().Manufacturers.ToList();
+            dgManufacturers.ItemsSource = Entities.GetContext().Manufacturer.ToList();
         }
     }
 }

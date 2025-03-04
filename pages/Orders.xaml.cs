@@ -23,7 +23,7 @@ namespace WpfApp1.pages
         public Orders()
         {
             InitializeComponent();
-            dgOrders.ItemsSource=Entities.GetContext().Orders.ToList();
+            dgOrders.ItemsSource=Entities.GetContext().Order.ToList();
         }
     }
 }

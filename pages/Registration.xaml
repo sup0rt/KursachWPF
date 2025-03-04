@@ -11,7 +11,7 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition />
-
+            
             <RowDefinition />
             <RowDefinition />
             <RowDefinition />
@@ -32,11 +32,11 @@
             <Label x:Name="lblmiddlename" Content="Введите отчество"/>
             <TextBox x:Name="middlenameTB" />
             <Label x:Name="lblsurname" Content="Введите фамилию"/>
-            <TextBox x:Name="surnameTB" />
+            <TextBox x:Name="lastNameTB" />
             <Label x:Name="lbllogin" Content="Придумайте логин"/>
             <TextBox x:Name="loginTB" />
             <Label x:Name="lblpassword" Content="Придумайте пароль"/>
-            <TextBox x:Name="passwordTB" MaxLength="20"/>
+            <PasswordBox x:Name="passwordTB" MaxLength="20"/>
             <Label x:Name="emaillbl" Content="Введите email"/>
             <TextBox x:Name="emailTB" />
             <Label x:Name="lblphone" Content="Введите номер телефона"/>

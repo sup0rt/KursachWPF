@@ -12,26 +12,18 @@ namespace WpfApp1
     using System;
     using System.Collections.Generic;
     
-    public partial class Parts
+    public partial class OrderStatus
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Parts()
+        public OrderStatus()
         {
-            this.WarehouseTransactions = new HashSet<WarehouseTransactions>();
+            this.Order = new HashSet<Order>();
         }
     
-        public int ID { get; set; }
-        public string Name { get; set; }
-        public int CategoryID { get; set; }
-        public int SupplierID { get; set; }
-        public int ManufacturerID { get; set; }
-        public int Quantity { get; set; }
-        public decimal Price { get; set; }
+        public int IDstatus { get; set; }
+        public string name { get; set; }
     
-        public virtual Categories Categories { get; set; }
-        public virtual Manufacturers Manufacturers { get; set; }
-        public virtual Suppliers Suppliers { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<WarehouseTransactions> WarehouseTransactions { get; set; }
+        public virtual ICollection<Order> Order { get; set; }
     }
 }

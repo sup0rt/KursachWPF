@@ -64,19 +64,25 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Categories.cs">
+    <Compile Include="Category.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
-    <Compile Include="Customers.cs">
+    <Compile Include="Customer.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
-    <Compile Include="Departments.cs">
+    <Compile Include="CustomerAccount.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
-    <Compile Include="Employees.cs">
+    <Compile Include="Department.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
-    <Compile Include="Manufacturers.cs">
+    <Compile Include="Employee.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EmployeeAccount.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Manufacturer.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Model.cs">
@@ -84,10 +90,13 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
-    <Compile Include="OrderDetails.cs">
+    <Compile Include="Order.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
-    <Compile Include="Orders.cs">
+    <Compile Include="OrderComposition.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="OrderStatus.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="pages\AuthPage.xaml.cs">
@@ -108,19 +117,23 @@
     <Compile Include="pages\Registration.xaml.cs">
       <DependentUpon>Registration.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Parts.cs">
+    <Compile Include="PasswordHasher.cs" />
+    <Compile Include="Position.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
-    <Compile Include="Positions.cs">
+    <Compile Include="SparePart.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
-    <Compile Include="Statuses.cs">
+    <Compile Include="Supplier.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
-    <Compile Include="Suppliers.cs">
+    <Compile Include="sysdiagrams.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
-    <Compile Include="WarehouseTransactions.cs">
+    <Compile Include="Warehouse.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="WarehouseTransaction.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Page Include="MainWindow.xaml">

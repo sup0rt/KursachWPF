@@ -15,10 +15,10 @@
             <RowDefinition/>
         </Grid.RowDefinitions>
 
-        <DataGrid Grid.Row="1" x:Name="dgOrders" AutoGenerateColumns="False" IsReadOnly="True"  >
+        <DataGrid Grid.Row="1" x:Name="dgOrders" AutoGenerateColumns="False" IsReadOnly="True" HorizontalAlignment="Center" >
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Номер" Binding="{Binding Orders.ID}" />
-                <DataGridTextColumn Header="Статус" Binding="{Binding Statuses.Description}" />
+                <DataGridTextColumn Header="Номер" Binding="{Binding Order.IDorder}" />
+                <DataGridTextColumn Header="Статус" Binding="{Binding OrderStatus.name}" />
             </DataGrid.Columns>
         </DataGrid>
     </Grid>

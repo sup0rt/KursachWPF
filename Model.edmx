@@ -5,695 +5,958 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="Хранилище kartashev_kursachModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <EntityType Name="Categories">
+        <EntityType Name="Category">
           <Key>
-            <PropertyRef Name="ID" />
+            <PropertyRef Name="IDcategory" />
           </Key>
-          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Description" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="IDcategory" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="255" Nullable="false" />
         </EntityType>
-        <EntityType Name="Customers">
+        <EntityType Name="Customer">
           <Key>
-            <PropertyRef Name="ID" />
+            <PropertyRef Name="IDcustomer" />
           </Key>
-          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="FirstName" Type="varchar" MaxLength="100" Nullable="false" />
-          <Property Name="MiddleName" Type="varchar" MaxLength="100" Nullable="false" />
-          <Property Name="LastName" Type="varchar" MaxLength="100" Nullable="false" />
-          <Property Name="Phone" Type="varchar" MaxLength="15" Nullable="false" />
-          <Property Name="Email" Type="varchar" MaxLength="100" Nullable="false" />
-          <Property Name="Address" Type="varchar" MaxLength="255" Nullable="false" />
-          <Property Name="login" Type="varchar" MaxLength="40" Nullable="false" />
-          <Property Name="password" Type="varchar" MaxLength="50" />
+          <Property Name="IDcustomer" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="lastName" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="firstName" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="middleName" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="email" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="phone" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="deliveryAddress" Type="varchar" MaxLength="255" />
         </EntityType>
-        <EntityType Name="Departments">
+        <EntityType Name="CustomerAccount">
           <Key>
-            <PropertyRef Name="ID" />
+            <PropertyRef Name="IDcustomerAccount" />
           </Key>
-          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Name" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="IDcustomerAccount" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="customerID" Type="int" Nullable="false" />
+          <Property Name="login" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="passwordHash" Type="varchar" MaxLength="512" />
+          <Property Name="salt" Type="varchar" MaxLength="512" />
         </EntityType>
-        <EntityType Name="Employees">
+        <EntityType Name="Department">
           <Key>
-            <PropertyRef Name="ID" />
+            <PropertyRef Name="IDdepartment" />
           </Key>
-          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="FullName" Type="varchar" MaxLength="255" Nullable="false" />
-          <Property Name="DepartmentID" Type="int" Nullable="false" />
-          <Property Name="PositionID" Type="int" Nullable="false" />
-          <Property Name="Salary" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="IDdepartment" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="255" Nullable="false" />
         </EntityType>
-        <EntityType Name="Manufacturers">
+        <EntityType Name="Employee">
           <Key>
-            <PropertyRef Name="ID" />
+            <PropertyRef Name="IDemployee" />
           </Key>
-          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Name" Type="varchar" MaxLength="100" Nullable="false" />
-          <Property Name="Phone" Type="varchar" MaxLength="15" Nullable="false" />
-          <Property Name="Email" Type="varchar" MaxLength="100" Nullable="false" />
-          <Property Name="Address" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="IDemployee" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="lastName" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="firstName" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="middleName" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="positionID" Type="int" Nullable="false" />
+          <Property Name="departmentID" Type="int" Nullable="false" />
+          <Property Name="salary" Type="decimal" Precision="10" Scale="2" Nullable="false" />
         </EntityType>
-        <EntityType Name="OrderDetails">
+        <EntityType Name="EmployeeAccount">
           <Key>
-            <PropertyRef Name="ID" />
+            <PropertyRef Name="IDemployeeAccount" />
           </Key>
-          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="OrderID" Type="int" Nullable="false" />
-          <Property Name="PartID" Type="int" Nullable="false" />
-          <Property Name="Quantity" Type="int" Nullable="false" />
-          <Property Name="Price" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="IDemployeeAccount" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="employeeID" Type="int" Nullable="false" />
+          <Property Name="login" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="passwordHash" Type="varchar" MaxLength="512" />
+          <Property Name="salt" Type="varchar" MaxLength="512" />
         </EntityType>
-        <EntityType Name="Orders">
+        <EntityType Name="Manufacturer">
           <Key>
-            <PropertyRef Name="ID" />
+            <PropertyRef Name="IDmanufacturer" />
           </Key>
-          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="CustomerID" Type="int" Nullable="false" />
-          <Property Name="CreationDate" Type="datetime" Nullable="false" />
-          <Property Name="StatusID" Type="int" Nullable="false" />
+          <Property Name="IDmanufacturer" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="organizationName" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="physicalAddress" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="email" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="phone" Type="varchar" MaxLength="20" Nullable="false" />
         </EntityType>
-        <EntityType Name="Parts">
+        <EntityType Name="Order">
           <Key>
-            <PropertyRef Name="ID" />
+            <PropertyRef Name="IDorder" />
           </Key>
-          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Name" Type="varchar" MaxLength="100" Nullable="false" />
-          <Property Name="CategoryID" Type="int" Nullable="false" />
-          <Property Name="SupplierID" Type="int" Nullable="false" />
-          <Property Name="ManufacturerID" Type="int" Nullable="false" />
-          <Property Name="Quantity" Type="int" Nullable="false" />
-          <Property Name="Price" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="IDorder" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="customerID" Type="int" Nullable="false" />
+          <Property Name="creationDate" Type="datetime" Nullable="false" />
+          <Property Name="statusID" Type="int" Nullable="false" />
         </EntityType>
-        <EntityType Name="Positions">
+        <EntityType Name="OrderComposition">
           <Key>
-            <PropertyRef Name="ID" />
+            <PropertyRef Name="IDorderComposition" />
           </Key>
-          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Description" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="IDorderComposition" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="orderID" Type="int" Nullable="false" />
+          <Property Name="sparePartID" Type="int" Nullable="false" />
+          <Property Name="quantity" Type="int" Nullable="false" />
+          <Property Name="price" Type="decimal" Precision="10" Scale="2" Nullable="false" />
         </EntityType>
-        <EntityType Name="Statuses">
+        <EntityType Name="OrderStatus">
           <Key>
-            <PropertyRef Name="ID" />
+            <PropertyRef Name="IDstatus" />
           </Key>
-          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Description" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="IDstatus" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="50" Nullable="false" />
         </EntityType>
-        <EntityType Name="Suppliers">
+        <EntityType Name="Position">
           <Key>
-            <PropertyRef Name="ID" />
+            <PropertyRef Name="IDposition" />
           </Key>
-          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Name" Type="varchar" MaxLength="100" Nullable="false" />
-          <Property Name="Phone" Type="varchar" MaxLength="15" Nullable="false" />
-          <Property Name="Email" Type="varchar" MaxLength="100" Nullable="false" />
-          <Property Name="Address" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="IDposition" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="255" Nullable="false" />
         </EntityType>
-        <EntityType Name="WarehouseTransactions">
+        <EntityType Name="SparePart">
           <Key>
-            <PropertyRef Name="ID" />
+            <PropertyRef Name="IDsparePart" />
           </Key>
-          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Date" Type="datetime" Nullable="false" />
-          <Property Name="PartID" Type="int" Nullable="false" />
-          <Property Name="Quantity" Type="int" Nullable="false" />
+          <Property Name="IDsparePart" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="categoryID" Type="int" Nullable="false" />
+          <Property Name="manufacturerID" Type="int" Nullable="false" />
+          <Property Name="supplierID" Type="int" Nullable="false" />
+          <Property Name="price" Type="decimal" Precision="10" Scale="2" Nullable="false" />
         </EntityType>
-        <Association Name="FK__Employees__Depar__5535A963">
-          <End Role="Departments" Type="Self.Departments" Multiplicity="1" />
-          <End Role="Employees" Type="Self.Employees" Multiplicity="*" />
+        <EntityType Name="Supplier">
+          <Key>
+            <PropertyRef Name="IDsupplier" />
+          </Key>
+          <Property Name="IDsupplier" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="organizationName" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="physicalAddress" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="email" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="phone" Type="varchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="Warehouse">
+          <Key>
+            <PropertyRef Name="sparePartID" />
+          </Key>
+          <Property Name="sparePartID" Type="int" Nullable="false" />
+          <Property Name="stockQuantity" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="WarehouseTransaction">
+          <Key>
+            <PropertyRef Name="IDtransaction" />
+          </Key>
+          <Property Name="IDtransaction" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="sparePartID" Type="int" Nullable="false" />
+          <Property Name="quantity" Type="int" Nullable="false" />
+          <Property Name="operationType" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="transactionDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__CustomerA__custo__0F624AF8">
+          <End Role="Customer" Type="Self.Customer" Multiplicity="1" />
+          <End Role="CustomerAccount" Type="Self.CustomerAccount" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Departments">
-              <PropertyRef Name="ID" />
+            <Principal Role="Customer">
+              <PropertyRef Name="IDcustomer" />
             </Principal>
-            <Dependent Role="Employees">
-              <PropertyRef Name="DepartmentID" />
+            <Dependent Role="CustomerAccount">
+              <PropertyRef Name="customerID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Employees__Posit__5629CD9C">
-          <End Role="Positions" Type="Self.Positions" Multiplicity="1" />
-          <End Role="Employees" Type="Self.Employees" Multiplicity="*" />
+        <Association Name="FK__Employee__depart__02FC7413">
+          <End Role="Department" Type="Self.Department" Multiplicity="1" />
+          <End Role="Employee" Type="Self.Employee" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Positions">
-              <PropertyRef Name="ID" />
+            <Principal Role="Department">
+              <PropertyRef Name="IDdepartment" />
             </Principal>
-            <Dependent Role="Employees">
-              <PropertyRef Name="PositionID" />
+            <Dependent Role="Employee">
+              <PropertyRef Name="departmentID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__OrderDeta__Order__59063A47">
-          <End Role="Orders" Type="Self.Orders" Multiplicity="1" />
-          <End Role="OrderDetails" Type="Self.OrderDetails" Multiplicity="*" />
+        <Association Name="FK__Employee__positi__02084FDA">
+          <End Role="Position" Type="Self.Position" Multiplicity="1" />
+          <End Role="Employee" Type="Self.Employee" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Orders">
-              <PropertyRef Name="ID" />
+            <Principal Role="Position">
+              <PropertyRef Name="IDposition" />
             </Principal>
-            <Dependent Role="OrderDetails">
-              <PropertyRef Name="OrderID" />
+            <Dependent Role="Employee">
+              <PropertyRef Name="positionID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Orders__Customer__3B75D760">
-          <End Role="Customers" Type="Self.Customers" Multiplicity="1" />
-          <End Role="Orders" Type="Self.Orders" Multiplicity="*" />
+        <Association Name="FK__EmployeeA__emplo__07C12930">
+          <End Role="Employee" Type="Self.Employee" Multiplicity="1" />
+          <End Role="EmployeeAccount" Type="Self.EmployeeAccount" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Customers">
-              <PropertyRef Name="ID" />
+            <Principal Role="Employee">
+              <PropertyRef Name="IDemployee" />
             </Principal>
-            <Dependent Role="Orders">
-              <PropertyRef Name="CustomerID" />
+            <Dependent Role="EmployeeAccount">
+              <PropertyRef Name="employeeID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Orders__StatusID__3C69FB99">
-          <End Role="Statuses" Type="Self.Statuses" Multiplicity="1" />
-          <End Role="Orders" Type="Self.Orders" Multiplicity="*" />
+        <Association Name="FK__Order__customerI__151B244E">
+          <End Role="Customer" Type="Self.Customer" Multiplicity="1" />
+          <End Role="Order" Type="Self.Order" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Statuses">
-              <PropertyRef Name="ID" />
+            <Principal Role="Customer">
+              <PropertyRef Name="IDcustomer" />
             </Principal>
-            <Dependent Role="Orders">
-              <PropertyRef Name="StatusID" />
+            <Dependent Role="Order">
+              <PropertyRef Name="customerID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Parts__CategoryI__46E78A0C">
-          <End Role="Categories" Type="Self.Categories" Multiplicity="1" />
-          <End Role="Parts" Type="Self.Parts" Multiplicity="*" />
+        <Association Name="FK__Order__statusID__160F4887">
+          <End Role="OrderStatus" Type="Self.OrderStatus" Multiplicity="1" />
+          <End Role="Order" Type="Self.Order" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Categories">
-              <PropertyRef Name="ID" />
+            <Principal Role="OrderStatus">
+              <PropertyRef Name="IDstatus" />
             </Principal>
-            <Dependent Role="Parts">
-              <PropertyRef Name="CategoryID" />
+            <Dependent Role="Order">
+              <PropertyRef Name="statusID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Parts__Manufactu__48CFD27E">
-          <End Role="Manufacturers" Type="Self.Manufacturers" Multiplicity="1" />
-          <End Role="Parts" Type="Self.Parts" Multiplicity="*" />
+        <Association Name="FK__OrderComp__order__18EBB532">
+          <End Role="Order" Type="Self.Order" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="OrderComposition" Type="Self.OrderComposition" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Manufacturers">
-              <PropertyRef Name="ID" />
+            <Principal Role="Order">
+              <PropertyRef Name="IDorder" />
             </Principal>
-            <Dependent Role="Parts">
-              <PropertyRef Name="ManufacturerID" />
+            <Dependent Role="OrderComposition">
+              <PropertyRef Name="orderID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Parts__SupplierI__47DBAE45">
-          <End Role="Suppliers" Type="Self.Suppliers" Multiplicity="1" />
-          <End Role="Parts" Type="Self.Parts" Multiplicity="*" />
+        <Association Name="FK__OrderComp__spare__19DFD96B">
+          <End Role="SparePart" Type="Self.SparePart" Multiplicity="1" />
+          <End Role="OrderComposition" Type="Self.OrderComposition" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Suppliers">
-              <PropertyRef Name="ID" />
+            <Principal Role="SparePart">
+              <PropertyRef Name="IDsparePart" />
             </Principal>
-            <Dependent Role="Parts">
-              <PropertyRef Name="SupplierID" />
+            <Dependent Role="OrderComposition">
+              <PropertyRef Name="sparePartID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Warehouse__PartI__52593CB8">
-          <End Role="Parts" Type="Self.Parts" Multiplicity="1" />
-          <End Role="WarehouseTransactions" Type="Self.WarehouseTransactions" Multiplicity="*" />
+        <Association Name="FK__SparePart__categ__75A278F5">
+          <End Role="Category" Type="Self.Category" Multiplicity="1" />
+          <End Role="SparePart" Type="Self.SparePart" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Parts">
-              <PropertyRef Name="ID" />
+            <Principal Role="Category">
+              <PropertyRef Name="IDcategory" />
             </Principal>
-            <Dependent Role="WarehouseTransactions">
-              <PropertyRef Name="PartID" />
+            <Dependent Role="SparePart">
+              <PropertyRef Name="categoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__SparePart__manuf__76969D2E">
+          <End Role="Manufacturer" Type="Self.Manufacturer" Multiplicity="1" />
+          <End Role="SparePart" Type="Self.SparePart" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Manufacturer">
+              <PropertyRef Name="IDmanufacturer" />
+            </Principal>
+            <Dependent Role="SparePart">
+              <PropertyRef Name="manufacturerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__SparePart__suppl__778AC167">
+          <End Role="Supplier" Type="Self.Supplier" Multiplicity="1" />
+          <End Role="SparePart" Type="Self.SparePart" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Supplier">
+              <PropertyRef Name="IDsupplier" />
+            </Principal>
+            <Dependent Role="SparePart">
+              <PropertyRef Name="supplierID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Warehouse__spare__1EA48E88">
+          <End Role="SparePart" Type="Self.SparePart" Multiplicity="1" />
+          <End Role="WarehouseTransaction" Type="Self.WarehouseTransaction" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SparePart">
+              <PropertyRef Name="IDsparePart" />
+            </Principal>
+            <Dependent Role="WarehouseTransaction">
+              <PropertyRef Name="sparePartID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Warehouse__spare__7B5B524B">
+          <End Role="SparePart" Type="Self.SparePart" Multiplicity="1" />
+          <End Role="Warehouse" Type="Self.Warehouse" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="SparePart">
+              <PropertyRef Name="IDsparePart" />
+            </Principal>
+            <Dependent Role="Warehouse">
+              <PropertyRef Name="sparePartID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="Хранилище kartashev_kursachModelContainer">
-          <EntitySet Name="Categories" EntityType="Self.Categories" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Customers" EntityType="Self.Customers" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Departments" EntityType="Self.Departments" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Employees" EntityType="Self.Employees" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Manufacturers" EntityType="Self.Manufacturers" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="OrderDetails" EntityType="Self.OrderDetails" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Orders" EntityType="Self.Orders" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Parts" EntityType="Self.Parts" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Positions" EntityType="Self.Positions" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Statuses" EntityType="Self.Statuses" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Suppliers" EntityType="Self.Suppliers" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="WarehouseTransactions" EntityType="Self.WarehouseTransactions" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK__Employees__Depar__5535A963" Association="Self.FK__Employees__Depar__5535A963">
-            <End Role="Departments" EntitySet="Departments" />
-            <End Role="Employees" EntitySet="Employees" />
+          <EntitySet Name="Category" EntityType="Self.Category" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Customer" EntityType="Self.Customer" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CustomerAccount" EntityType="Self.CustomerAccount" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Department" EntityType="Self.Department" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Employee" EntityType="Self.Employee" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EmployeeAccount" EntityType="Self.EmployeeAccount" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Manufacturer" EntityType="Self.Manufacturer" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Order" EntityType="Self.Order" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OrderComposition" EntityType="Self.OrderComposition" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OrderStatus" EntityType="Self.OrderStatus" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Position" EntityType="Self.Position" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SparePart" EntityType="Self.SparePart" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Supplier" EntityType="Self.Supplier" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Warehouse" EntityType="Self.Warehouse" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="WarehouseTransaction" EntityType="Self.WarehouseTransaction" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__CustomerA__custo__0F624AF8" Association="Self.FK__CustomerA__custo__0F624AF8">
+            <End Role="Customer" EntitySet="Customer" />
+            <End Role="CustomerAccount" EntitySet="CustomerAccount" />
           </AssociationSet>
-          <AssociationSet Name="FK__Employees__Posit__5629CD9C" Association="Self.FK__Employees__Posit__5629CD9C">
-            <End Role="Positions" EntitySet="Positions" />
-            <End Role="Employees" EntitySet="Employees" />
+          <AssociationSet Name="FK__Employee__depart__02FC7413" Association="Self.FK__Employee__depart__02FC7413">
+            <End Role="Department" EntitySet="Department" />
+            <End Role="Employee" EntitySet="Employee" />
           </AssociationSet>
-          <AssociationSet Name="FK__OrderDeta__Order__59063A47" Association="Self.FK__OrderDeta__Order__59063A47">
-            <End Role="Orders" EntitySet="Orders" />
-            <End Role="OrderDetails" EntitySet="OrderDetails" />
+          <AssociationSet Name="FK__Employee__positi__02084FDA" Association="Self.FK__Employee__positi__02084FDA">
+            <End Role="Position" EntitySet="Position" />
+            <End Role="Employee" EntitySet="Employee" />
           </AssociationSet>
-          <AssociationSet Name="FK__Orders__Customer__3B75D760" Association="Self.FK__Orders__Customer__3B75D760">
-            <End Role="Customers" EntitySet="Customers" />
-            <End Role="Orders" EntitySet="Orders" />
+          <AssociationSet Name="FK__EmployeeA__emplo__07C12930" Association="Self.FK__EmployeeA__emplo__07C12930">
+            <End Role="Employee" EntitySet="Employee" />
+            <End Role="EmployeeAccount" EntitySet="EmployeeAccount" />
           </AssociationSet>
-          <AssociationSet Name="FK__Orders__StatusID__3C69FB99" Association="Self.FK__Orders__StatusID__3C69FB99">
-            <End Role="Statuses" EntitySet="Statuses" />
-            <End Role="Orders" EntitySet="Orders" />
+          <AssociationSet Name="FK__Order__customerI__151B244E" Association="Self.FK__Order__customerI__151B244E">
+            <End Role="Customer" EntitySet="Customer" />
+            <End Role="Order" EntitySet="Order" />
           </AssociationSet>
-          <AssociationSet Name="FK__Parts__CategoryI__46E78A0C" Association="Self.FK__Parts__CategoryI__46E78A0C">
-            <End Role="Categories" EntitySet="Categories" />
-            <End Role="Parts" EntitySet="Parts" />
+          <AssociationSet Name="FK__Order__statusID__160F4887" Association="Self.FK__Order__statusID__160F4887">
+            <End Role="OrderStatus" EntitySet="OrderStatus" />
+            <End Role="Order" EntitySet="Order" />
           </AssociationSet>
-          <AssociationSet Name="FK__Parts__Manufactu__48CFD27E" Association="Self.FK__Parts__Manufactu__48CFD27E">
-            <End Role="Manufacturers" EntitySet="Manufacturers" />
-            <End Role="Parts" EntitySet="Parts" />
+          <AssociationSet Name="FK__OrderComp__order__18EBB532" Association="Self.FK__OrderComp__order__18EBB532">
+            <End Role="Order" EntitySet="Order" />
+            <End Role="OrderComposition" EntitySet="OrderComposition" />
           </AssociationSet>
-          <AssociationSet Name="FK__Parts__SupplierI__47DBAE45" Association="Self.FK__Parts__SupplierI__47DBAE45">
-            <End Role="Suppliers" EntitySet="Suppliers" />
-            <End Role="Parts" EntitySet="Parts" />
+          <AssociationSet Name="FK__OrderComp__spare__19DFD96B" Association="Self.FK__OrderComp__spare__19DFD96B">
+            <End Role="SparePart" EntitySet="SparePart" />
+            <End Role="OrderComposition" EntitySet="OrderComposition" />
           </AssociationSet>
-          <AssociationSet Name="FK__Warehouse__PartI__52593CB8" Association="Self.FK__Warehouse__PartI__52593CB8">
-            <End Role="Parts" EntitySet="Parts" />
-            <End Role="WarehouseTransactions" EntitySet="WarehouseTransactions" />
+          <AssociationSet Name="FK__SparePart__categ__75A278F5" Association="Self.FK__SparePart__categ__75A278F5">
+            <End Role="Category" EntitySet="Category" />
+            <End Role="SparePart" EntitySet="SparePart" />
+          </AssociationSet>
+          <AssociationSet Name="FK__SparePart__manuf__76969D2E" Association="Self.FK__SparePart__manuf__76969D2E">
+            <End Role="Manufacturer" EntitySet="Manufacturer" />
+            <End Role="SparePart" EntitySet="SparePart" />
+          </AssociationSet>
+          <AssociationSet Name="FK__SparePart__suppl__778AC167" Association="Self.FK__SparePart__suppl__778AC167">
+            <End Role="Supplier" EntitySet="Supplier" />
+            <End Role="SparePart" EntitySet="SparePart" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Warehouse__spare__1EA48E88" Association="Self.FK__Warehouse__spare__1EA48E88">
+            <End Role="SparePart" EntitySet="SparePart" />
+            <End Role="WarehouseTransaction" EntitySet="WarehouseTransaction" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Warehouse__spare__7B5B524B" Association="Self.FK__Warehouse__spare__7B5B524B">
+            <End Role="SparePart" EntitySet="SparePart" />
+            <End Role="Warehouse" EntitySet="Warehouse" />
           </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="kartashev_kursachModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityType Name="Categories">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Description" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="Parts" Relationship="Self.FK__Parts__CategoryI__46E78A0C" FromRole="Categories" ToRole="Parts" />
-        </EntityType>
-        <EntityType Name="Customers">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="FirstName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="MiddleName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="LastName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Phone" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Address" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="Orders" Relationship="Self.FK__Orders__Customer__3B75D760" FromRole="Customers" ToRole="Orders" />
-          <Property Name="login" Type="String" Nullable="false" MaxLength="40" FixedLength="false" Unicode="false" />
-          <Property Name="password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-        </EntityType>
-        <EntityType Name="Departments">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="Employees" Relationship="Self.FK__Employees__Depar__5535A963" FromRole="Departments" ToRole="Employees" />
-        </EntityType>
-        <EntityType Name="Employees">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="FullName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="DepartmentID" Type="Int32" Nullable="false" />
-          <Property Name="PositionID" Type="Int32" Nullable="false" />
-          <Property Name="Salary" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
-          <NavigationProperty Name="Departments" Relationship="Self.FK__Employees__Depar__5535A963" FromRole="Employees" ToRole="Departments" />
-          <NavigationProperty Name="Positions" Relationship="Self.FK__Employees__Posit__5629CD9C" FromRole="Employees" ToRole="Positions" />
-        </EntityType>
-        <EntityType Name="Manufacturers">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Phone" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Address" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="Parts" Relationship="Self.FK__Parts__Manufactu__48CFD27E" FromRole="Manufacturers" ToRole="Parts" />
-        </EntityType>
-        <EntityType Name="OrderDetails">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="OrderID" Type="Int32" Nullable="false" />
-          <Property Name="PartID" Type="Int32" Nullable="false" />
-          <Property Name="Quantity" Type="Int32" Nullable="false" />
-          <Property Name="Price" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
-          <NavigationProperty Name="Orders" Relationship="Self.FK__OrderDeta__Order__59063A47" FromRole="OrderDetails" ToRole="Orders" />
-        </EntityType>
-        <EntityType Name="Orders">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="CustomerID" Type="Int32" Nullable="false" />
-          <Property Name="CreationDate" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="StatusID" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Customers" Relationship="Self.FK__Orders__Customer__3B75D760" FromRole="Orders" ToRole="Customers" />
-          <NavigationProperty Name="OrderDetails" Relationship="Self.FK__OrderDeta__Order__59063A47" FromRole="Orders" ToRole="OrderDetails" />
-          <NavigationProperty Name="Statuses" Relationship="Self.FK__Orders__StatusID__3C69FB99" FromRole="Orders" ToRole="Statuses" />
-        </EntityType>
-        <EntityType Name="Parts">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="CategoryID" Type="Int32" Nullable="false" />
-          <Property Name="SupplierID" Type="Int32" Nullable="false" />
-          <Property Name="ManufacturerID" Type="Int32" Nullable="false" />
-          <Property Name="Quantity" Type="Int32" Nullable="false" />
-          <Property Name="Price" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
-          <NavigationProperty Name="Categories" Relationship="Self.FK__Parts__CategoryI__46E78A0C" FromRole="Parts" ToRole="Categories" />
-          <NavigationProperty Name="Manufacturers" Relationship="Self.FK__Parts__Manufactu__48CFD27E" FromRole="Parts" ToRole="Manufacturers" />
-          <NavigationProperty Name="Suppliers" Relationship="Self.FK__Parts__SupplierI__47DBAE45" FromRole="Parts" ToRole="Suppliers" />
-          <NavigationProperty Name="WarehouseTransactions" Relationship="Self.FK__Warehouse__PartI__52593CB8" FromRole="Parts" ToRole="WarehouseTransactions" />
-        </EntityType>
-        <EntityType Name="Positions">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Description" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="Employees" Relationship="Self.FK__Employees__Posit__5629CD9C" FromRole="Positions" ToRole="Employees" />
-        </EntityType>
-        <EntityType Name="Statuses">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Description" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="Orders" Relationship="Self.FK__Orders__StatusID__3C69FB99" FromRole="Statuses" ToRole="Orders" />
-        </EntityType>
-        <EntityType Name="Suppliers">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Phone" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Address" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="Parts" Relationship="Self.FK__Parts__SupplierI__47DBAE45" FromRole="Suppliers" ToRole="Parts" />
-        </EntityType>
-        <EntityType Name="WarehouseTransactions">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Date" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="PartID" Type="Int32" Nullable="false" />
-          <Property Name="Quantity" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Parts" Relationship="Self.FK__Warehouse__PartI__52593CB8" FromRole="WarehouseTransactions" ToRole="Parts" />
-        </EntityType>
-        <Association Name="FK__Parts__CategoryI__46E78A0C">
-          <End Role="Categories" Type="Self.Categories" Multiplicity="1" />
-          <End Role="Parts" Type="Self.Parts" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Categories">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="Parts">
-              <PropertyRef Name="CategoryID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__Orders__Customer__3B75D760">
-          <End Role="Customers" Type="Self.Customers" Multiplicity="1" />
-          <End Role="Orders" Type="Self.Orders" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Customers">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="Orders">
-              <PropertyRef Name="CustomerID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__Employees__Depar__5535A963">
-          <End Role="Departments" Type="Self.Departments" Multiplicity="1" />
-          <End Role="Employees" Type="Self.Employees" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Departments">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="Employees">
-              <PropertyRef Name="DepartmentID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__Employees__Posit__5629CD9C">
-          <End Role="Positions" Type="Self.Positions" Multiplicity="1" />
-          <End Role="Employees" Type="Self.Employees" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Positions">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="Employees">
-              <PropertyRef Name="PositionID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__Parts__Manufactu__48CFD27E">
-          <End Role="Manufacturers" Type="Self.Manufacturers" Multiplicity="1" />
-          <End Role="Parts" Type="Self.Parts" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Manufacturers">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="Parts">
-              <PropertyRef Name="ManufacturerID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__OrderDeta__Order__59063A47">
-          <End Role="Orders" Type="Self.Orders" Multiplicity="1" />
-          <End Role="OrderDetails" Type="Self.OrderDetails" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Orders">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="OrderDetails">
-              <PropertyRef Name="OrderID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__Orders__StatusID__3C69FB99">
-          <End Role="Statuses" Type="Self.Statuses" Multiplicity="1" />
-          <End Role="Orders" Type="Self.Orders" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Statuses">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="Orders">
-              <PropertyRef Name="StatusID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__Parts__SupplierI__47DBAE45">
-          <End Role="Suppliers" Type="Self.Suppliers" Multiplicity="1" />
-          <End Role="Parts" Type="Self.Parts" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Suppliers">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="Parts">
-              <PropertyRef Name="SupplierID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__Warehouse__PartI__52593CB8">
-          <End Role="Parts" Type="Self.Parts" Multiplicity="1" />
-          <End Role="WarehouseTransactions" Type="Self.WarehouseTransactions" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Parts">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="WarehouseTransactions">
-              <PropertyRef Name="PartID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Categories" EntityType="Self.Categories" />
-          <EntitySet Name="Customers" EntityType="Self.Customers" />
-          <EntitySet Name="Departments" EntityType="Self.Departments" />
-          <EntitySet Name="Employees" EntityType="Self.Employees" />
-          <EntitySet Name="Manufacturers" EntityType="Self.Manufacturers" />
-          <EntitySet Name="OrderDetails" EntityType="Self.OrderDetails" />
-          <EntitySet Name="Orders" EntityType="Self.Orders" />
-          <EntitySet Name="Parts" EntityType="Self.Parts" />
-          <EntitySet Name="Positions" EntityType="Self.Positions" />
-          <EntitySet Name="Statuses" EntityType="Self.Statuses" />
-          <EntitySet Name="Suppliers" EntityType="Self.Suppliers" />
-          <EntitySet Name="WarehouseTransactions" EntityType="Self.WarehouseTransactions" />
-          <AssociationSet Name="FK__Parts__CategoryI__46E78A0C" Association="Self.FK__Parts__CategoryI__46E78A0C">
-            <End Role="Categories" EntitySet="Categories" />
-            <End Role="Parts" EntitySet="Parts" />
+          <EntitySet Name="Category" EntityType="kartashev_kursachModel.Category" />
+          <EntitySet Name="Customer" EntityType="kartashev_kursachModel.Customer" />
+          <EntitySet Name="CustomerAccount" EntityType="kartashev_kursachModel.CustomerAccount" />
+          <EntitySet Name="Department" EntityType="kartashev_kursachModel.Department" />
+          <EntitySet Name="Employee" EntityType="kartashev_kursachModel.Employee" />
+          <EntitySet Name="EmployeeAccount" EntityType="kartashev_kursachModel.EmployeeAccount" />
+          <EntitySet Name="Manufacturer" EntityType="kartashev_kursachModel.Manufacturer" />
+          <EntitySet Name="Order" EntityType="kartashev_kursachModel.Order" />
+          <EntitySet Name="OrderComposition" EntityType="kartashev_kursachModel.OrderComposition" />
+          <EntitySet Name="OrderStatus" EntityType="kartashev_kursachModel.OrderStatus" />
+          <EntitySet Name="Position" EntityType="kartashev_kursachModel.Position" />
+          <EntitySet Name="SparePart" EntityType="kartashev_kursachModel.SparePart" />
+          <EntitySet Name="Supplier" EntityType="kartashev_kursachModel.Supplier" />
+          <EntitySet Name="sysdiagrams" EntityType="kartashev_kursachModel.sysdiagrams" />
+          <EntitySet Name="Warehouse" EntityType="kartashev_kursachModel.Warehouse" />
+          <EntitySet Name="WarehouseTransaction" EntityType="kartashev_kursachModel.WarehouseTransaction" />
+          <AssociationSet Name="FK__SparePart__categ__75A278F5" Association="kartashev_kursachModel.FK__SparePart__categ__75A278F5">
+            <End Role="Category" EntitySet="Category" />
+            <End Role="SparePart" EntitySet="SparePart" />
           </AssociationSet>
-          <AssociationSet Name="FK__Orders__Customer__3B75D760" Association="Self.FK__Orders__Customer__3B75D760">
-            <End Role="Customers" EntitySet="Customers" />
-            <End Role="Orders" EntitySet="Orders" />
+          <AssociationSet Name="FK__CustomerA__custo__0F624AF8" Association="kartashev_kursachModel.FK__CustomerA__custo__0F624AF8">
+            <End Role="Customer" EntitySet="Customer" />
+            <End Role="CustomerAccount" EntitySet="CustomerAccount" />
           </AssociationSet>
-          <AssociationSet Name="FK__Employees__Depar__5535A963" Association="Self.FK__Employees__Depar__5535A963">
-            <End Role="Departments" EntitySet="Departments" />
-            <End Role="Employees" EntitySet="Employees" />
+          <AssociationSet Name="FK__Order__customerI__151B244E" Association="kartashev_kursachModel.FK__Order__customerI__151B244E">
+            <End Role="Customer" EntitySet="Customer" />
+            <End Role="Order" EntitySet="Order" />
           </AssociationSet>
-          <AssociationSet Name="FK__Employees__Posit__5629CD9C" Association="Self.FK__Employees__Posit__5629CD9C">
-            <End Role="Positions" EntitySet="Positions" />
-            <End Role="Employees" EntitySet="Employees" />
+          <AssociationSet Name="FK__Employee__depart__02FC7413" Association="kartashev_kursachModel.FK__Employee__depart__02FC7413">
+            <End Role="Department" EntitySet="Department" />
+            <End Role="Employee" EntitySet="Employee" />
           </AssociationSet>
-          <AssociationSet Name="FK__Parts__Manufactu__48CFD27E" Association="Self.FK__Parts__Manufactu__48CFD27E">
-            <End Role="Manufacturers" EntitySet="Manufacturers" />
-            <End Role="Parts" EntitySet="Parts" />
+          <AssociationSet Name="FK__Employee__positi__02084FDA" Association="kartashev_kursachModel.FK__Employee__positi__02084FDA">
+            <End Role="Position" EntitySet="Position" />
+            <End Role="Employee" EntitySet="Employee" />
           </AssociationSet>
-          <AssociationSet Name="FK__OrderDeta__Order__59063A47" Association="Self.FK__OrderDeta__Order__59063A47">
-            <End Role="Orders" EntitySet="Orders" />
-            <End Role="OrderDetails" EntitySet="OrderDetails" />
+          <AssociationSet Name="FK__EmployeeA__emplo__07C12930" Association="kartashev_kursachModel.FK__EmployeeA__emplo__07C12930">
+            <End Role="Employee" EntitySet="Employee" />
+            <End Role="EmployeeAccount" EntitySet="EmployeeAccount" />
           </AssociationSet>
-          <AssociationSet Name="FK__Orders__StatusID__3C69FB99" Association="Self.FK__Orders__StatusID__3C69FB99">
-            <End Role="Statuses" EntitySet="Statuses" />
-            <End Role="Orders" EntitySet="Orders" />
+          <AssociationSet Name="FK__SparePart__manuf__76969D2E" Association="kartashev_kursachModel.FK__SparePart__manuf__76969D2E">
+            <End Role="Manufacturer" EntitySet="Manufacturer" />
+            <End Role="SparePart" EntitySet="SparePart" />
           </AssociationSet>
-          <AssociationSet Name="FK__Parts__SupplierI__47DBAE45" Association="Self.FK__Parts__SupplierI__47DBAE45">
-            <End Role="Suppliers" EntitySet="Suppliers" />
-            <End Role="Parts" EntitySet="Parts" />
+          <AssociationSet Name="FK__Order__statusID__160F4887" Association="kartashev_kursachModel.FK__Order__statusID__160F4887">
+            <End Role="OrderStatus" EntitySet="OrderStatus" />
+            <End Role="Order" EntitySet="Order" />
           </AssociationSet>
-          <AssociationSet Name="FK__Warehouse__PartI__52593CB8" Association="Self.FK__Warehouse__PartI__52593CB8">
-            <End Role="Parts" EntitySet="Parts" />
-            <End Role="WarehouseTransactions" EntitySet="WarehouseTransactions" />
+          <AssociationSet Name="FK__OrderComp__order__18EBB532" Association="kartashev_kursachModel.FK__OrderComp__order__18EBB532">
+            <End Role="Order" EntitySet="Order" />
+            <End Role="OrderComposition" EntitySet="OrderComposition" />
           </AssociationSet>
-        </EntityContainer>
-      </Schema>
+          <AssociationSet Name="FK__OrderComp__spare__19DFD96B" Association="kartashev_kursachModel.FK__OrderComp__spare__19DFD96B">
+            <End Role="SparePart" EntitySet="SparePart" />
+            <End Role="OrderComposition" EntitySet="OrderComposition" />
+          </AssociationSet>
+          <AssociationSet Name="FK__SparePart__suppl__778AC167" Association="kartashev_kursachModel.FK__SparePart__suppl__778AC167">
+            <End Role="Supplier" EntitySet="Supplier" />
+            <End Role="SparePart" EntitySet="SparePart" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Warehouse__spare__1EA48E88" Association="kartashev_kursachModel.FK__Warehouse__spare__1EA48E88">
+            <End Role="SparePart" EntitySet="SparePart" />
+            <End Role="WarehouseTransaction" EntitySet="WarehouseTransaction" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Warehouse__spare__7B5B524B" Association="kartashev_kursachModel.FK__Warehouse__spare__7B5B524B">
+            <End Role="SparePart" EntitySet="SparePart" />
+            <End Role="Warehouse" EntitySet="Warehouse" />
+          </AssociationSet>
+          </EntityContainer>
+        <EntityType Name="Category">
+          <Key>
+            <PropertyRef Name="IDcategory" />
+          </Key>
+          <Property Name="IDcategory" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="SparePart" Relationship="kartashev_kursachModel.FK__SparePart__categ__75A278F5" FromRole="Category" ToRole="SparePart" />
+        </EntityType>
+        <EntityType Name="Customer">
+          <Key>
+            <PropertyRef Name="IDcustomer" />
+          </Key>
+          <Property Name="IDcustomer" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="lastName" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="firstName" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="middleName" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="email" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="phone" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="deliveryAddress" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="CustomerAccount" Relationship="kartashev_kursachModel.FK__CustomerA__custo__0F624AF8" FromRole="Customer" ToRole="CustomerAccount" />
+          <NavigationProperty Name="Order" Relationship="kartashev_kursachModel.FK__Order__customerI__151B244E" FromRole="Customer" ToRole="Order" />
+        </EntityType>
+        <EntityType Name="CustomerAccount">
+          <Key>
+            <PropertyRef Name="IDcustomerAccount" />
+          </Key>
+          <Property Name="IDcustomerAccount" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="customerID" Type="Int32" Nullable="false" />
+          <Property Name="login" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="passwordHash" Type="String" MaxLength="512" FixedLength="false" Unicode="false" />
+          <Property Name="salt" Type="String" MaxLength="512" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Customer" Relationship="kartashev_kursachModel.FK__CustomerA__custo__0F624AF8" FromRole="CustomerAccount" ToRole="Customer" />
+        </EntityType>
+        <EntityType Name="Department">
+          <Key>
+            <PropertyRef Name="IDdepartment" />
+          </Key>
+          <Property Name="IDdepartment" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Employee" Relationship="kartashev_kursachModel.FK__Employee__depart__02FC7413" FromRole="Department" ToRole="Employee" />
+        </EntityType>
+        <EntityType Name="Employee">
+          <Key>
+            <PropertyRef Name="IDemployee" />
+          </Key>
+          <Property Name="IDemployee" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="lastName" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="firstName" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="middleName" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="positionID" Type="Int32" Nullable="false" />
+          <Property Name="departmentID" Type="Int32" Nullable="false" />
+          <Property Name="salary" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
+          <NavigationProperty Name="Department" Relationship="kartashev_kursachModel.FK__Employee__depart__02FC7413" FromRole="Employee" ToRole="Department" />
+          <NavigationProperty Name="Position" Relationship="kartashev_kursachModel.FK__Employee__positi__02084FDA" FromRole="Employee" ToRole="Position" />
+          <NavigationProperty Name="EmployeeAccount" Relationship="kartashev_kursachModel.FK__EmployeeA__emplo__07C12930" FromRole="Employee" ToRole="EmployeeAccount" />
+        </EntityType>
+        <EntityType Name="EmployeeAccount">
+          <Key>
+            <PropertyRef Name="IDemployeeAccount" />
+          </Key>
+          <Property Name="IDemployeeAccount" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="employeeID" Type="Int32" Nullable="false" />
+          <Property Name="login" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="passwordHash" Type="String" MaxLength="512" FixedLength="false" Unicode="false" />
+          <Property Name="salt" Type="String" MaxLength="512" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Employee" Relationship="kartashev_kursachModel.FK__EmployeeA__emplo__07C12930" FromRole="EmployeeAccount" ToRole="Employee" />
+        </EntityType>
+        <EntityType Name="Manufacturer">
+          <Key>
+            <PropertyRef Name="IDmanufacturer" />
+          </Key>
+          <Property Name="IDmanufacturer" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="organizationName" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="physicalAddress" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="email" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="phone" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="SparePart" Relationship="kartashev_kursachModel.FK__SparePart__manuf__76969D2E" FromRole="Manufacturer" ToRole="SparePart" />
+        </EntityType>
+        <EntityType Name="Order">
+          <Key>
+            <PropertyRef Name="IDorder" />
+          </Key>
+          <Property Name="IDorder" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="customerID" Type="Int32" Nullable="false" />
+          <Property Name="creationDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="statusID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Customer" Relationship="kartashev_kursachModel.FK__Order__customerI__151B244E" FromRole="Order" ToRole="Customer" />
+          <NavigationProperty Name="OrderStatus" Relationship="kartashev_kursachModel.FK__Order__statusID__160F4887" FromRole="Order" ToRole="OrderStatus" />
+          <NavigationProperty Name="OrderComposition" Relationship="kartashev_kursachModel.FK__OrderComp__order__18EBB532" FromRole="Order" ToRole="OrderComposition" />
+        </EntityType>
+        <EntityType Name="OrderComposition">
+          <Key>
+            <PropertyRef Name="IDorderComposition" />
+          </Key>
+          <Property Name="IDorderComposition" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="orderID" Type="Int32" Nullable="false" />
+          <Property Name="sparePartID" Type="Int32" Nullable="false" />
+          <Property Name="quantity" Type="Int32" Nullable="false" />
+          <Property Name="price" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
+          <NavigationProperty Name="Order" Relationship="kartashev_kursachModel.FK__OrderComp__order__18EBB532" FromRole="OrderComposition" ToRole="Order" />
+          <NavigationProperty Name="SparePart" Relationship="kartashev_kursachModel.FK__OrderComp__spare__19DFD96B" FromRole="OrderComposition" ToRole="SparePart" />
+        </EntityType>
+        <EntityType Name="OrderStatus">
+          <Key>
+            <PropertyRef Name="IDstatus" />
+          </Key>
+          <Property Name="IDstatus" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Order" Relationship="kartashev_kursachModel.FK__Order__statusID__160F4887" FromRole="OrderStatus" ToRole="Order" />
+        </EntityType>
+        <EntityType Name="Position">
+          <Key>
+            <PropertyRef Name="IDposition" />
+          </Key>
+          <Property Name="IDposition" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Employee" Relationship="kartashev_kursachModel.FK__Employee__positi__02084FDA" FromRole="Position" ToRole="Employee" />
+        </EntityType>
+        <EntityType Name="SparePart">
+          <Key>
+            <PropertyRef Name="IDsparePart" />
+          </Key>
+          <Property Name="IDsparePart" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="categoryID" Type="Int32" Nullable="false" />
+          <Property Name="manufacturerID" Type="Int32" Nullable="false" />
+          <Property Name="supplierID" Type="Int32" Nullable="false" />
+          <Property Name="price" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
+          <NavigationProperty Name="Category" Relationship="kartashev_kursachModel.FK__SparePart__categ__75A278F5" FromRole="SparePart" ToRole="Category" />
+          <NavigationProperty Name="Manufacturer" Relationship="kartashev_kursachModel.FK__SparePart__manuf__76969D2E" FromRole="SparePart" ToRole="Manufacturer" />
+          <NavigationProperty Name="OrderComposition" Relationship="kartashev_kursachModel.FK__OrderComp__spare__19DFD96B" FromRole="SparePart" ToRole="OrderComposition" />
+          <NavigationProperty Name="Supplier" Relationship="kartashev_kursachModel.FK__SparePart__suppl__778AC167" FromRole="SparePart" ToRole="Supplier" />
+          <NavigationProperty Name="WarehouseTransaction" Relationship="kartashev_kursachModel.FK__Warehouse__spare__1EA48E88" FromRole="SparePart" ToRole="WarehouseTransaction" />
+          <NavigationProperty Name="Warehouse" Relationship="kartashev_kursachModel.FK__Warehouse__spare__7B5B524B" FromRole="SparePart" ToRole="Warehouse" />
+        </EntityType>
+        <EntityType Name="Supplier">
+          <Key>
+            <PropertyRef Name="IDsupplier" />
+          </Key>
+          <Property Name="IDsupplier" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="organizationName" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="physicalAddress" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="email" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="phone" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="SparePart" Relationship="kartashev_kursachModel.FK__SparePart__suppl__778AC167" FromRole="Supplier" ToRole="SparePart" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="Warehouse">
+          <Key>
+            <PropertyRef Name="sparePartID" />
+          </Key>
+          <Property Name="sparePartID" Type="Int32" Nullable="false" />
+          <Property Name="stockQuantity" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="SparePart" Relationship="kartashev_kursachModel.FK__Warehouse__spare__7B5B524B" FromRole="Warehouse" ToRole="SparePart" />
+        </EntityType>
+        <EntityType Name="WarehouseTransaction">
+          <Key>
+            <PropertyRef Name="IDtransaction" />
+          </Key>
+          <Property Name="IDtransaction" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="sparePartID" Type="Int32" Nullable="false" />
+          <Property Name="quantity" Type="Int32" Nullable="false" />
+          <Property Name="operationType" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="transactionDate" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="SparePart" Relationship="kartashev_kursachModel.FK__Warehouse__spare__1EA48E88" FromRole="WarehouseTransaction" ToRole="SparePart" />
+        </EntityType>
+        <Association Name="FK__SparePart__categ__75A278F5">
+          <End Type="kartashev_kursachModel.Category" Role="Category" Multiplicity="1" />
+          <End Type="kartashev_kursachModel.SparePart" Role="SparePart" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="IDcategory" />
+            </Principal>
+            <Dependent Role="SparePart">
+              <PropertyRef Name="categoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__CustomerA__custo__0F624AF8">
+          <End Type="kartashev_kursachModel.Customer" Role="Customer" Multiplicity="1" />
+          <End Type="kartashev_kursachModel.CustomerAccount" Role="CustomerAccount" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customer">
+              <PropertyRef Name="IDcustomer" />
+            </Principal>
+            <Dependent Role="CustomerAccount">
+              <PropertyRef Name="customerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Order__customerI__151B244E">
+          <End Type="kartashev_kursachModel.Customer" Role="Customer" Multiplicity="1" />
+          <End Type="kartashev_kursachModel.Order" Role="Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customer">
+              <PropertyRef Name="IDcustomer" />
+            </Principal>
+            <Dependent Role="Order">
+              <PropertyRef Name="customerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Employee__depart__02FC7413">
+          <End Type="kartashev_kursachModel.Department" Role="Department" Multiplicity="1" />
+          <End Type="kartashev_kursachModel.Employee" Role="Employee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Department">
+              <PropertyRef Name="IDdepartment" />
+            </Principal>
+            <Dependent Role="Employee">
+              <PropertyRef Name="departmentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Employee__positi__02084FDA">
+          <End Type="kartashev_kursachModel.Position" Role="Position" Multiplicity="1" />
+          <End Type="kartashev_kursachModel.Employee" Role="Employee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Position">
+              <PropertyRef Name="IDposition" />
+            </Principal>
+            <Dependent Role="Employee">
+              <PropertyRef Name="positionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__EmployeeA__emplo__07C12930">
+          <End Type="kartashev_kursachModel.Employee" Role="Employee" Multiplicity="1" />
+          <End Type="kartashev_kursachModel.EmployeeAccount" Role="EmployeeAccount" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="IDemployee" />
+            </Principal>
+            <Dependent Role="EmployeeAccount">
+              <PropertyRef Name="employeeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__SparePart__manuf__76969D2E">
+          <End Type="kartashev_kursachModel.Manufacturer" Role="Manufacturer" Multiplicity="1" />
+          <End Type="kartashev_kursachModel.SparePart" Role="SparePart" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Manufacturer">
+              <PropertyRef Name="IDmanufacturer" />
+            </Principal>
+            <Dependent Role="SparePart">
+              <PropertyRef Name="manufacturerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Order__statusID__160F4887">
+          <End Type="kartashev_kursachModel.OrderStatus" Role="OrderStatus" Multiplicity="1" />
+          <End Type="kartashev_kursachModel.Order" Role="Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OrderStatus">
+              <PropertyRef Name="IDstatus" />
+            </Principal>
+            <Dependent Role="Order">
+              <PropertyRef Name="statusID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__OrderComp__order__18EBB532">
+          <End Type="kartashev_kursachModel.Order" Role="Order" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="kartashev_kursachModel.OrderComposition" Role="OrderComposition" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Order">
+              <PropertyRef Name="IDorder" />
+            </Principal>
+            <Dependent Role="OrderComposition">
+              <PropertyRef Name="orderID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__OrderComp__spare__19DFD96B">
+          <End Type="kartashev_kursachModel.SparePart" Role="SparePart" Multiplicity="1" />
+          <End Type="kartashev_kursachModel.OrderComposition" Role="OrderComposition" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SparePart">
+              <PropertyRef Name="IDsparePart" />
+            </Principal>
+            <Dependent Role="OrderComposition">
+              <PropertyRef Name="sparePartID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__SparePart__suppl__778AC167">
+          <End Type="kartashev_kursachModel.Supplier" Role="Supplier" Multiplicity="1" />
+          <End Type="kartashev_kursachModel.SparePart" Role="SparePart" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Supplier">
+              <PropertyRef Name="IDsupplier" />
+            </Principal>
+            <Dependent Role="SparePart">
+              <PropertyRef Name="supplierID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Warehouse__spare__1EA48E88">
+          <End Type="kartashev_kursachModel.SparePart" Role="SparePart" Multiplicity="1" />
+          <End Type="kartashev_kursachModel.WarehouseTransaction" Role="WarehouseTransaction" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SparePart">
+              <PropertyRef Name="IDsparePart" />
+            </Principal>
+            <Dependent Role="WarehouseTransaction">
+              <PropertyRef Name="sparePartID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Warehouse__spare__7B5B524B">
+          <End Type="kartashev_kursachModel.SparePart" Role="SparePart" Multiplicity="1" />
+          <End Type="kartashev_kursachModel.Warehouse" Role="Warehouse" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="SparePart">
+              <PropertyRef Name="IDsparePart" />
+            </Principal>
+            <Dependent Role="Warehouse">
+              <PropertyRef Name="sparePartID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="Хранилище kartashev_kursachModelContainer" CdmEntityContainer="Entities">
-          <EntitySetMapping Name="Categories">
-            <EntityTypeMapping TypeName="kartashev_kursachModel.Categories">
-              <MappingFragment StoreEntitySet="Categories">
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="Description" ColumnName="Description" />
+          <EntitySetMapping Name="Category">
+            <EntityTypeMapping TypeName="kartashev_kursachModel.Category">
+              <MappingFragment StoreEntitySet="Category">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="IDcategory" ColumnName="IDcategory" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Customers">
-            <EntityTypeMapping TypeName="kartashev_kursachModel.Customers">
-              <MappingFragment StoreEntitySet="Customers">
-                <ScalarProperty Name="password" ColumnName="password" />
+          <EntitySetMapping Name="Customer">
+            <EntityTypeMapping TypeName="kartashev_kursachModel.Customer">
+              <MappingFragment StoreEntitySet="Customer">
+                <ScalarProperty Name="deliveryAddress" ColumnName="deliveryAddress" />
+                <ScalarProperty Name="phone" ColumnName="phone" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="middleName" ColumnName="middleName" />
+                <ScalarProperty Name="firstName" ColumnName="firstName" />
+                <ScalarProperty Name="lastName" ColumnName="lastName" />
+                <ScalarProperty Name="IDcustomer" ColumnName="IDcustomer" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CustomerAccount">
+            <EntityTypeMapping TypeName="kartashev_kursachModel.CustomerAccount">
+              <MappingFragment StoreEntitySet="CustomerAccount">
+                <ScalarProperty Name="salt" ColumnName="salt" />
+                <ScalarProperty Name="passwordHash" ColumnName="passwordHash" />
                 <ScalarProperty Name="login" ColumnName="login" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
-                <ScalarProperty Name="MiddleName" ColumnName="MiddleName" />
-                <ScalarProperty Name="LastName" ColumnName="LastName" />
-                <ScalarProperty Name="Phone" ColumnName="Phone" />
-                <ScalarProperty Name="Email" ColumnName="Email" />
-                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="customerID" ColumnName="customerID" />
+                <ScalarProperty Name="IDcustomerAccount" ColumnName="IDcustomerAccount" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Departments">
-            <EntityTypeMapping TypeName="kartashev_kursachModel.Departments">
-              <MappingFragment StoreEntitySet="Departments">
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
+          <EntitySetMapping Name="Department">
+            <EntityTypeMapping TypeName="kartashev_kursachModel.Department">
+              <MappingFragment StoreEntitySet="Department">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="IDdepartment" ColumnName="IDdepartment" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Employees">
-            <EntityTypeMapping TypeName="kartashev_kursachModel.Employees">
-              <MappingFragment StoreEntitySet="Employees">
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="FullName" ColumnName="FullName" />
-                <ScalarProperty Name="DepartmentID" ColumnName="DepartmentID" />
-                <ScalarProperty Name="PositionID" ColumnName="PositionID" />
-                <ScalarProperty Name="Salary" ColumnName="Salary" />
+          <EntitySetMapping Name="Employee">
+            <EntityTypeMapping TypeName="kartashev_kursachModel.Employee">
+              <MappingFragment StoreEntitySet="Employee">
+                <ScalarProperty Name="salary" ColumnName="salary" />
+                <ScalarProperty Name="departmentID" ColumnName="departmentID" />
+                <ScalarProperty Name="positionID" ColumnName="positionID" />
+                <ScalarProperty Name="middleName" ColumnName="middleName" />
+                <ScalarProperty Name="firstName" ColumnName="firstName" />
+                <ScalarProperty Name="lastName" ColumnName="lastName" />
+                <ScalarProperty Name="IDemployee" ColumnName="IDemployee" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Manufacturers">
-            <EntityTypeMapping TypeName="kartashev_kursachModel.Manufacturers">
-              <MappingFragment StoreEntitySet="Manufacturers">
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="Phone" ColumnName="Phone" />
-                <ScalarProperty Name="Email" ColumnName="Email" />
-                <ScalarProperty Name="Address" ColumnName="Address" />
+          <EntitySetMapping Name="EmployeeAccount">
+            <EntityTypeMapping TypeName="kartashev_kursachModel.EmployeeAccount">
+              <MappingFragment StoreEntitySet="EmployeeAccount">
+                <ScalarProperty Name="salt" ColumnName="salt" />
+                <ScalarProperty Name="passwordHash" ColumnName="passwordHash" />
+                <ScalarProperty Name="login" ColumnName="login" />
+                <ScalarProperty Name="employeeID" ColumnName="employeeID" />
+                <ScalarProperty Name="IDemployeeAccount" ColumnName="IDemployeeAccount" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="OrderDetails">
-            <EntityTypeMapping TypeName="kartashev_kursachModel.OrderDetails">
-              <MappingFragment StoreEntitySet="OrderDetails">
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="OrderID" ColumnName="OrderID" />
-                <ScalarProperty Name="PartID" ColumnName="PartID" />
-                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
-                <ScalarProperty Name="Price" ColumnName="Price" />
+          <EntitySetMapping Name="Manufacturer">
+            <EntityTypeMapping TypeName="kartashev_kursachModel.Manufacturer">
+              <MappingFragment StoreEntitySet="Manufacturer">
+                <ScalarProperty Name="phone" ColumnName="phone" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="physicalAddress" ColumnName="physicalAddress" />
+                <ScalarProperty Name="organizationName" ColumnName="organizationName" />
+                <ScalarProperty Name="IDmanufacturer" ColumnName="IDmanufacturer" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Orders">
-            <EntityTypeMapping TypeName="kartashev_kursachModel.Orders">
-              <MappingFragment StoreEntitySet="Orders">
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
-                <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
-                <ScalarProperty Name="StatusID" ColumnName="StatusID" />
+          <EntitySetMapping Name="Order">
+            <EntityTypeMapping TypeName="kartashev_kursachModel.Order">
+              <MappingFragment StoreEntitySet="Order">
+                <ScalarProperty Name="statusID" ColumnName="statusID" />
+                <ScalarProperty Name="creationDate" ColumnName="creationDate" />
+                <ScalarProperty Name="customerID" ColumnName="customerID" />
+                <ScalarProperty Name="IDorder" ColumnName="IDorder" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Parts">
-            <EntityTypeMapping TypeName="kartashev_kursachModel.Parts">
-              <MappingFragment StoreEntitySet="Parts">
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="CategoryID" ColumnName="CategoryID" />
-                <ScalarProperty Name="SupplierID" ColumnName="SupplierID" />
-                <ScalarProperty Name="ManufacturerID" ColumnName="ManufacturerID" />
-                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
-                <ScalarProperty Name="Price" ColumnName="Price" />
+          <EntitySetMapping Name="OrderComposition">
+            <EntityTypeMapping TypeName="kartashev_kursachModel.OrderComposition">
+              <MappingFragment StoreEntitySet="OrderComposition">
+                <ScalarProperty Name="price" ColumnName="price" />
+                <ScalarProperty Name="quantity" ColumnName="quantity" />
+                <ScalarProperty Name="sparePartID" ColumnName="sparePartID" />
+                <ScalarProperty Name="orderID" ColumnName="orderID" />
+                <ScalarProperty Name="IDorderComposition" ColumnName="IDorderComposition" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Positions">
-            <EntityTypeMapping TypeName="kartashev_kursachModel.Positions">
-              <MappingFragment StoreEntitySet="Positions">
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="Description" ColumnName="Description" />
+          <EntitySetMapping Name="OrderStatus">
+            <EntityTypeMapping TypeName="kartashev_kursachModel.OrderStatus">
+              <MappingFragment StoreEntitySet="OrderStatus">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="IDstatus" ColumnName="IDstatus" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Statuses">
-            <EntityTypeMapping TypeName="kartashev_kursachModel.Statuses">
-              <MappingFragment StoreEntitySet="Statuses">
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="Description" ColumnName="Description" />
+          <EntitySetMapping Name="Position">
+            <EntityTypeMapping TypeName="kartashev_kursachModel.Position">
+              <MappingFragment StoreEntitySet="Position">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="IDposition" ColumnName="IDposition" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Suppliers">
-            <EntityTypeMapping TypeName="kartashev_kursachModel.Suppliers">
-              <MappingFragment StoreEntitySet="Suppliers">
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="Phone" ColumnName="Phone" />
-                <ScalarProperty Name="Email" ColumnName="Email" />
-                <ScalarProperty Name="Address" ColumnName="Address" />
+          <EntitySetMapping Name="SparePart">
+            <EntityTypeMapping TypeName="kartashev_kursachModel.SparePart">
+              <MappingFragment StoreEntitySet="SparePart">
+                <ScalarProperty Name="price" ColumnName="price" />
+                <ScalarProperty Name="supplierID" ColumnName="supplierID" />
+                <ScalarProperty Name="manufacturerID" ColumnName="manufacturerID" />
+                <ScalarProperty Name="categoryID" ColumnName="categoryID" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="IDsparePart" ColumnName="IDsparePart" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="WarehouseTransactions">
-            <EntityTypeMapping TypeName="kartashev_kursachModel.WarehouseTransactions">
-              <MappingFragment StoreEntitySet="WarehouseTransactions">
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="Date" ColumnName="Date" />
-                <ScalarProperty Name="PartID" ColumnName="PartID" />
-                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+          <EntitySetMapping Name="Supplier">
+            <EntityTypeMapping TypeName="kartashev_kursachModel.Supplier">
+              <MappingFragment StoreEntitySet="Supplier">
+                <ScalarProperty Name="phone" ColumnName="phone" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="physicalAddress" ColumnName="physicalAddress" />
+                <ScalarProperty Name="organizationName" ColumnName="organizationName" />
+                <ScalarProperty Name="IDsupplier" ColumnName="IDsupplier" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="kartashev_kursachModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="definition" ColumnName="definition" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Warehouse">
+            <EntityTypeMapping TypeName="kartashev_kursachModel.Warehouse">
+              <MappingFragment StoreEntitySet="Warehouse">
+                <ScalarProperty Name="stockQuantity" ColumnName="stockQuantity" />
+                <ScalarProperty Name="sparePartID" ColumnName="sparePartID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="WarehouseTransaction">
+            <EntityTypeMapping TypeName="kartashev_kursachModel.WarehouseTransaction">
+              <MappingFragment StoreEntitySet="WarehouseTransaction">
+                <ScalarProperty Name="transactionDate" ColumnName="transactionDate" />
+                <ScalarProperty Name="operationType" ColumnName="operationType" />
+                <ScalarProperty Name="quantity" ColumnName="quantity" />
+                <ScalarProperty Name="sparePartID" ColumnName="sparePartID" />
+                <ScalarProperty Name="IDtransaction" ColumnName="IDtransaction" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

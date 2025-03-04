@@ -15,12 +15,12 @@
             <RowDefinition/>
         </Grid.RowDefinitions>
 
-        <DataGrid Grid.Row="1" x:Name="dgManufacturers" AutoGenerateColumns="False" IsReadOnly="True"  >
+        <DataGrid Grid.Row="1" x:Name="dgManufacturers" AutoGenerateColumns="False" IsReadOnly="True" HorizontalAlignment="Center" >
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Название" Binding="{Binding Manufacturers.Name}" />
-                <DataGridTextColumn Header="Адрес" Binding="{Binding Manufacturers.Adress}" />
-                <DataGridTextColumn Header="Email" Binding="{Binding Manufacturers.Email}" />
-                <DataGridTextColumn Header="Номер телефона" Binding="{Binding Manufacturers.Phone}" />
+                <DataGridTextColumn Header="Название" Binding="{Binding Manufacturer.organizationName}" />
+                <DataGridTextColumn Header="Адрес" Binding="{Binding Manufacturer.physicalAdress}" />
+                <DataGridTextColumn Header="Email" Binding="{Binding Manufacturer.email}" />
+                <DataGridTextColumn Header="Номер телефона" Binding="{Binding Manufacturer.phone}" />
             </DataGrid.Columns>
         </DataGrid>
     </Grid>

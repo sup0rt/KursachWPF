@@ -12,13 +12,14 @@ namespace WpfApp1
     using System;
     using System.Collections.Generic;
     
-    public partial class WarehouseTransactions
+    public partial class WarehouseTransaction
     {
-        public int ID { get; set; }
-        public System.DateTime Date { get; set; }
-        public int PartID { get; set; }
-        public int Quantity { get; set; }
+        public int IDtransaction { get; set; }
+        public int sparePartID { get; set; }
+        public int quantity { get; set; }
+        public string operationType { get; set; }
+        public System.DateTime transactionDate { get; set; }
     
-        public virtual Parts Parts { get; set; }
+        public virtual SparePart SparePart { get; set; }
     }
 }

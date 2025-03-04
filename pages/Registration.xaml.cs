@@ -46,13 +46,7 @@ namespace WpfApp1.pages
                 return false;
             }
         }
-        public static string GetHash(string password)
-        {
-            using (var hash = SHA1.Create())
-            {
-                return string.Concat(hash.ComputeHash(Encoding.UTF8.GetBytes(password)).Select(x => x.ToString("X2")));
-            }
-        }
+        
 
         private void signUpButton_Click(object sender, RoutedEventArgs e)
         {
@@ -60,21 +54,21 @@ namespace WpfApp1.pages
             {
                 using (var db = new Entities())
                 {
-                    var customer = db.Customers.AsNoTracking().FirstOrDefault(c => c.login == loginTB.Text);
+                    var customer = db.CustomerAccount.AsNoTracking().FirstOrDefault(c => c.login == loginTB.Text);
                     if (customer != null) { MessageBox.Show("Пользователь с такими данными уже существует"); return; }
                 }
                 bool en = true;
                 bool number = false;
-                for (int i = 0; i < passwordTB.Text.Length; i++)
+                for (int i = 0; i < passwordTB.Password.Length; i++)
                 {
-                    if (passwordTB.Text[i] >= 'А' && passwordTB.Text[i] <= 'Я') en = false;
-                    if (passwordTB.Text[i] >= '0' && passwordTB.Text[i] <= '9') number = true;
+                    if (passwordTB.Password[i] >= 'А' && passwordTB.Password[i] <= 'Я') en = false;
+                    if (passwordTB.Password[i] >= '0' && passwordTB.Password[i] <= '9') number = true;
                 }
                 var regex = new Regex(@"^((\+7))\d{10}$");
 
                 StringBuilder errors = new StringBuilder();
 
-                if (passwordTB.Text.Length < 6) errors.AppendLine("Пароль дольжен быть больше 6 символов");
+                if (passwordTB.Password.Length < 6) errors.AppendLine("Пароль дольжен быть больше 6 символов");
                 if (!regex.IsMatch(phoneTB.Text)) errors.AppendLine("Укажите номер телефона в формате +7хххххххххх");
                 if (!en) errors.AppendLine("Пароль должен быть на английском языке");
                 if (!number) errors.AppendLine("В пароле должна быть минимум 1 цифра");
@@ -90,22 +84,28 @@ namespace WpfApp1.pages
                     try
                     {
                         Entities db = new Entities();
-                        Customers customer = new Customers
+                        Customer customer = new Customer
                         {
-                            FirstName = nameTB.Text,
-                            MiddleName = middlenameTB.Text,
-                            LastName = surnameTB.Text,
-                            login = loginTB.Text,
-                            password = GetHash(passwordTB.Text),
-                            Email = emailTB.Text,
-                            Phone = phoneTB.Text,
-                            Address = adressTB.Text,
+                            lastName = lastNameTB.Text,
+                            firstName = nameTB.Text,
+                            middleName = middlenameTB.Text,
+                            email= emailTB.Text,  
+                            phone = phoneTB.Text,   
+                            deliveryAddress = adressTB.Text,
                         };
-                        db.Customers.Add(customer);
+                        CustomerAccount customerAccount = new CustomerAccount
+                        {
+                           
+                            login = loginTB.Text,
+                            passwordHash = PasswordHasher.CreateHash(passwordTB.Password, out string salt),
+                            salt = salt,
+                        };
+                        db.Customer.Add(customer);
+                        db.CustomerAccount.Add(customerAccount);
                         db.SaveChanges();
                         nameTB.Clear();
                         middlenameTB.Clear();
-                        surnameTB.Clear();
+                        lastNameTB.Clear();
                         loginTB.Clear();
                         passwordTB.Clear();
                         emailTB.Clear();
@@ -126,7 +126,6 @@ namespace WpfApp1.pages
                             }
                         }
                         MessageBox.Show($"Ошибка валидации:\n{validationErrors}", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
-                        MessageBox.Show("хэш: ", GetHash(passwordTB.Text));
                     }
                     catch (Exception ex)
                     {
@@ -147,21 +146,19 @@ namespace WpfApp1.pages
                 MessageBox.Show("Введите логин и пароль");
                 return;
             }
-
-            string _password = GetHash(passwordInTB.Password);
-            using (var db = new Entities())
+            var customerAccount = Entities.GetContext().CustomerAccount.AsNoTracking().FirstOrDefault(ca => ca.login == loginInTB.Text);
+            bool isValid = PasswordHasher.VerifyPassword(passwordInTB.Password, customerAccount.passwordHash, customerAccount.salt);
+            if (!isValid)
             {
-                var customer = db.Customers.AsNoTracking().FirstOrDefault(c => c.login == loginInTB.Text && c.password == passwordInTB.Password);
-                if (customer != null)
-                {
-                    MessageBox.Show("Клиент с такими данными не найден");
-                    return;
-                }
+                MessageBox.Show("Неверный логин или пароль");
+                return;
+            }
+            else
+            {
                 loginInTB.Clear();
                 passwordInTB.Clear();
-                MessageBox.Show("Типо успешный вход");
                 NavigationService.Navigate(new AuthPage());
-            }
+            }  
         }
     }
 }

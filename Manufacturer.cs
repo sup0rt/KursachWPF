@@ -12,14 +12,21 @@ namespace WpfApp1
     using System;
     using System.Collections.Generic;
     
-    public partial class OrderDetails
+    public partial class Manufacturer
     {
-        public int ID { get; set; }
-        public int OrderID { get; set; }
-        public int PartID { get; set; }
-        public int Quantity { get; set; }
-        public decimal Price { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Manufacturer()
+        {
+            this.SparePart = new HashSet<SparePart>();
+        }
     
-        public virtual Orders Orders { get; set; }
+        public int IDmanufacturer { get; set; }
+        public string organizationName { get; set; }
+        public string physicalAddress { get; set; }
+        public string email { get; set; }
+        public string phone { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<SparePart> SparePart { get; set; }
     }
 }

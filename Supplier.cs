@@ -12,18 +12,21 @@ namespace WpfApp1
     using System;
     using System.Collections.Generic;
     
-    public partial class Positions
+    public partial class Supplier
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Positions()
+        public Supplier()
         {
-            this.Employees = new HashSet<Employees>();
+            this.SparePart = new HashSet<SparePart>();
         }
     
-        public int ID { get; set; }
-        public string Description { get; set; }
+        public int IDsupplier { get; set; }
+        public string organizationName { get; set; }
+        public string physicalAddress { get; set; }
+        public string email { get; set; }
+        public string phone { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Employees> Employees { get; set; }
+        public virtual ICollection<SparePart> SparePart { get; set; }
     }
 }

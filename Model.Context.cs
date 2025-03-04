@@ -23,31 +23,33 @@ namespace WpfApp1
         private static Entities _context;
         public static Entities GetContext()
         {
-            if(_context == null)
+            if (_context == null)
             {
                 _context = new Entities();
             }
             return _context;
         }
-    
+
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<Categories> Categories { get; set; }
-        public virtual DbSet<Customers> Customers { get; set; }
-        public virtual DbSet<Departments> Departments { get; set; }
-        public virtual DbSet<Employees> Employees { get; set; }
-        public virtual DbSet<Manufacturers> Manufacturers { get; set; }
-        public virtual DbSet<OrderDetails> OrderDetails { get; set; }
-        public virtual DbSet<Orders> Orders { get; set; }
-        public virtual DbSet<Parts> Parts { get; set; }
-        public virtual DbSet<Positions> Positions { get; set; }
-        public virtual DbSet<Statuses> Statuses { get; set; }
-        public virtual DbSet<Suppliers> Suppliers { get; set; }
-        public virtual DbSet<WarehouseTransactions> WarehouseTransactions { get; set; }
-
-
+        public virtual DbSet<Category> Category { get; set; }
+        public virtual DbSet<Customer> Customer { get; set; }
+        public virtual DbSet<CustomerAccount> CustomerAccount { get; set; }
+        public virtual DbSet<Department> Department { get; set; }
+        public virtual DbSet<Employee> Employee { get; set; }
+        public virtual DbSet<EmployeeAccount> EmployeeAccount { get; set; }
+        public virtual DbSet<Manufacturer> Manufacturer { get; set; }
+        public virtual DbSet<Order> Order { get; set; }
+        public virtual DbSet<OrderComposition> OrderComposition { get; set; }
+        public virtual DbSet<OrderStatus> OrderStatus { get; set; }
+        public virtual DbSet<Position> Position { get; set; }
+        public virtual DbSet<SparePart> SparePart { get; set; }
+        public virtual DbSet<Supplier> Supplier { get; set; }
+        public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
+        public virtual DbSet<Warehouse> Warehouse { get; set; }
+        public virtual DbSet<WarehouseTransaction> WarehouseTransaction { get; set; }
     }
 }
