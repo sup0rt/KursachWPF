@@ -48,7 +48,6 @@ namespace WpfApp1
         public virtual DbSet<Position> Position { get; set; }
         public virtual DbSet<SparePart> SparePart { get; set; }
         public virtual DbSet<Supplier> Supplier { get; set; }
-        public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
         public virtual DbSet<Warehouse> Warehouse { get; set; }
         public virtual DbSet<WarehouseTransaction> WarehouseTransaction { get; set; }
     }
