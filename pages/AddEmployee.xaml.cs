@@ -26,7 +26,7 @@ namespace WpfApp1.pages
         {
             InitializeComponent();
             departmentsCmB.ItemsSource = Entities.GetContext().Department.ToList();
-            positionCmB.ItemsSource=Entities.GetContext().Position.ToList();
+            positionCmB.ItemsSource = Entities.GetContext().Position.ToList();
         }
 
         private void addEmployee_Click(object sender, RoutedEventArgs e)
@@ -62,8 +62,9 @@ namespace WpfApp1.pages
                     try
                     {
                         Entities db = new Entities();
-                        var department = db.Department.AsNoTracking().FirstOrDefault(d => d.name == departmentsCmB.SelectedItem.ToString());
-                        var position = db.Position.AsNoTracking().FirstOrDefault(p => p.name == positionCmB.SelectedItem.ToString());
+                        
+                        var position = db.Position.AsNoTracking().FirstOrDefault(p => p.name == positionCmB.SelectedValue.ToString());
+                        var department = db.Department.AsNoTracking().FirstOrDefault(d => d.name == departmentsCmB.SelectedValue.ToString());
                         Employee employee = new Employee
                         {
                             lastName = lastNameTB.Text,

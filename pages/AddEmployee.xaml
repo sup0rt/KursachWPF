@@ -29,12 +29,12 @@
             <TextBox x:Name="lastNameTB" />
             <Label x:Name="lbllogin" Content="Введите логин"/>
             <TextBox x:Name="loginTB" />
-            <Label x:Name="lblpassword" Content="Введите пароль"/>
+            <Label x:Name="lblpassword" Content="Ведите пароль"/>
             <PasswordBox x:Name="passwordTB" MaxLength="20"/>
             <Label x:Name="lblposition" Content="Выберите должность"/>
-            <ComboBox x:Name="positionCmB"  />
+            <ComboBox x:Name="positionCmB" DisplayMemberPath="name" SelectedValuePath="name"  />
             <Label x:Name="lblDept" Content="Выберите отдел"/>
-            <ComboBox x:Name="departmentsCmB" />
+            <ComboBox x:Name="departmentsCmB" DisplayMemberPath="name" SelectedValuePath="name" />
             <Label x:Name="lblSalary" Content="Введите заработную плату"/>
             <TextBox x:Name="salaryTB" />
         </StackPanel>
