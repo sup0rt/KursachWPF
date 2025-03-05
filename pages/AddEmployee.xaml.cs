@@ -62,7 +62,6 @@ namespace WpfApp1.pages
                     try
                     {
                         Entities db = new Entities();
-                        
                         var position = db.Position.AsNoTracking().FirstOrDefault(p => p.name == positionCmB.SelectedValue.ToString());
                         var department = db.Department.AsNoTracking().FirstOrDefault(d => d.name == departmentsCmB.SelectedValue.ToString());
                         Employee employee = new Employee
