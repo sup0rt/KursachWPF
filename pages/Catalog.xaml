@@ -16,6 +16,7 @@
         </Grid.RowDefinitions>
 
 <<<<<<< HEAD
+<<<<<<< HEAD
         <DataGrid Grid.Row="1" x:Name="dgParts"  Style="{StaticResource DGrStyle}" AutoGenerateColumns="False" IsReadOnly="True"  HorizontalAlignment="Center">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Категория" Binding="{Binding Category.name}" />
@@ -26,6 +27,8 @@
             </DataGrid.Columns>
         </DataGrid>
 =======
+=======
+>>>>>>> e21f78e5adc016e9fe9bfa90735b8393c8197e1c
         <ListView x:Name="lvParts" ScrollViewer.HorizontalScrollBarVisibility="Disabled" HorizontalContentAlignment="Center" >
             <ListView.ItemTemplate>
                 <DataTemplate>
@@ -66,6 +69,9 @@
         
         
         
+<<<<<<< HEAD
+>>>>>>> e21f78e5adc016e9fe9bfa90735b8393c8197e1c
+=======
 >>>>>>> e21f78e5adc016e9fe9bfa90735b8393c8197e1c
     </Grid>
 </Page>

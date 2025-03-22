@@ -24,7 +24,12 @@ namespace WpfApp1.pages
         {
             InitializeComponent();
 <<<<<<< HEAD
+<<<<<<< HEAD
             dgParts.ItemsSource = Entities.GetContext().Part.ToList();
+=======
+            var currentPart = Entities.GetContext().SparePart.ToList();
+            lvParts.ItemsSource = currentPart;
+>>>>>>> e21f78e5adc016e9fe9bfa90735b8393c8197e1c
 =======
             var currentPart = Entities.GetContext().SparePart.ToList();
             lvParts.ItemsSource = currentPart;
