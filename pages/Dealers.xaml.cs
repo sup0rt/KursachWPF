@@ -23,7 +23,7 @@ namespace WpfApp1.pages
         public Dealers()
         {
             InitializeComponent();
-            dgSuppliers.ItemsSource=Entities.GetContext().Supplier.ToList();
+            dgSuppliers.ItemsSource= Entities.GetContext().Supplier.ToList();
         }
     }
 }

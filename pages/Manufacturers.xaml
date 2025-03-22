@@ -6,7 +6,7 @@
       xmlns:local="clr-namespace:WpfApp1.pages"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="Manufacturers" Background="LightGray">
+      Title="Manufacturers" Style="{StaticResource PageStyle}">
 
     <Grid>
         <Grid.RowDefinitions>
@@ -15,7 +15,7 @@
             <RowDefinition/>
         </Grid.RowDefinitions>
 
-        <DataGrid Grid.Row="1" x:Name="dgManufacturers" AutoGenerateColumns="False" IsReadOnly="True" HorizontalAlignment="Center" >
+        <DataGrid Grid.Row="1" x:Name="dgManufacturers" Style="{StaticResource DGrStyle}" AutoGenerateColumns="False" IsReadOnly="True" HorizontalAlignment="Center" >
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Название" Binding="{Binding organizationName}" />
                 <DataGridTextColumn Header="Адрес" Binding="{Binding physicalAdress}" />

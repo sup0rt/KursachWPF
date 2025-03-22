@@ -21,13 +21,13 @@ namespace WpfApp1
             this.Order = new HashSet<Order>();
         }
     
-        public int IDcustomer { get; set; }
-        public string lastName { get; set; }
-        public string firstName { get; set; }
-        public string middleName { get; set; }
-        public string email { get; set; }
-        public string phone { get; set; }
-        public string deliveryAddress { get; set; }
+        public int CustomerID { get; set; }
+        public string LastName { get; set; }
+        public string FirstName { get; set; }
+        public string MiddleName { get; set; }
+        public string Email { get; set; }
+        public string PhoneNumber { get; set; }
+        public string DeliveryAddress { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CustomerAccount> CustomerAccount { get; set; }

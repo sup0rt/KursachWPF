@@ -20,13 +20,13 @@ namespace WpfApp1
             this.EmployeeAccount = new HashSet<EmployeeAccount>();
         }
     
-        public int IDemployee { get; set; }
-        public string lastName { get; set; }
-        public string firstName { get; set; }
-        public string middleName { get; set; }
-        public int positionID { get; set; }
-        public int departmentID { get; set; }
-        public decimal salary { get; set; }
+        public int EmployeeID { get; set; }
+        public string LastName { get; set; }
+        public string FirstName { get; set; }
+        public string MiddleName { get; set; }
+        public Nullable<int> PositionID { get; set; }
+        public Nullable<int> DepartmentID { get; set; }
+        public decimal Salary { get; set; }
     
         public virtual Department Department { get; set; }
         public virtual Position Position { get; set; }

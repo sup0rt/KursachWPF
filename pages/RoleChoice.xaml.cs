@@ -25,10 +25,6 @@ namespace WpfApp1.pages
             InitializeComponent();
         }
 
-        private void signInButton_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
 
 
         private void employee_Click(object sender, RoutedEventArgs e)

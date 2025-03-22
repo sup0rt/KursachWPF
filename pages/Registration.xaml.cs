@@ -54,7 +54,7 @@ namespace WpfApp1.pages
             {
                 using (var db = new Entities())
                 {
-                    var customer = db.CustomerAccount.AsNoTracking().FirstOrDefault(c => c.login == loginTB.Text);
+                    var customer = db.CustomerAccount.AsNoTracking().FirstOrDefault(c => c.Username == loginTB.Text);
                     if (customer != null) { MessageBox.Show("Пользователь с такими данными уже существует"); return; }
                 }
                 bool en = true;
@@ -86,19 +86,19 @@ namespace WpfApp1.pages
                         Entities db = new Entities();
                         Customer customer = new Customer
                         {
-                            lastName = lastNameTB.Text,
-                            firstName = nameTB.Text,
-                            middleName = middlenameTB.Text,
-                            email= emailTB.Text,  
-                            phone = phoneTB.Text,   
-                            deliveryAddress = adressTB.Text,
+                            LastName = lastNameTB.Text,
+                            FirstName = nameTB.Text,
+                            MiddleName = middlenameTB.Text,
+                            Email= emailTB.Text,  
+                            PhoneNumber = phoneTB.Text,   
+                            DeliveryAddress = adressTB.Text,
                         };
                         CustomerAccount customerAccount = new CustomerAccount
                         {
                            
-                            login = loginTB.Text,
-                            passwordHash = PasswordHasher.CreateHash(passwordTB.Password, out string salt),
-                            salt = salt,
+                            Username = loginTB.Text,
+                            Password = PasswordHasher.CreateHash(passwordTB.Password, out string salt),
+                            Salt = salt,
                         };
                         db.Customer.Add(customer);
                         db.CustomerAccount.Add(customerAccount);
@@ -146,8 +146,8 @@ namespace WpfApp1.pages
                 MessageBox.Show("Введите логин и пароль");
                 return;
             }
-            var customerAccount = Entities.GetContext().CustomerAccount.AsNoTracking().FirstOrDefault(ca => ca.login == loginInTB.Text);
-            bool isValid = PasswordHasher.VerifyPassword(passwordInTB.Password, customerAccount.passwordHash, customerAccount.salt);
+            var customerAccount = Entities.GetContext().CustomerAccount.AsNoTracking().FirstOrDefault(ca => ca.Username == loginInTB.Text);
+            bool isValid = PasswordHasher.VerifyPassword(passwordInTB.Password, customerAccount.Password, customerAccount.Salt);
             if (!isValid)
             {
                 MessageBox.Show("Неверный логин или пароль");

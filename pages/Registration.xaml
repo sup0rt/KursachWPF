@@ -6,7 +6,7 @@
       xmlns:local="clr-namespace:WpfApp1.pages"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="Registration" Background="LightGray">
+      Title="Registration" Style="{StaticResource PageStyle}">
 
     <Grid>
         <Grid.RowDefinitions>
@@ -24,36 +24,36 @@
             <ColumnDefinition />
         </Grid.ColumnDefinitions>
 
-        <Label x:Name="signUPlbl" Content="Регистрация" Grid.Column="0" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center" />
+        <Label x:Name="signUPlbl"  Style="{StaticResource LblStyle}" Content="Регистрация" Grid.Column="0" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center" />
         <StackPanel Grid.Row="1" Grid.Column="0" Grid.RowSpan="6" VerticalAlignment="Center" HorizontalAlignment="Center">
-            <Label x:Name="lblname" Content="Введите имя"/>
-            <TextBox x:Name="nameTB" />
-            <Label x:Name="lblmiddlename" Content="Введите отчество"/>
-            <TextBox x:Name="middlenameTB" />
-            <Label x:Name="lblsurname" Content="Введите фамилию"/>
-            <TextBox x:Name="lastNameTB" />
-            <Label x:Name="lbllogin" Content="Придумайте логин"/>
-            <TextBox x:Name="loginTB" />
-            <Label x:Name="lblpassword" Content="Придумайте пароль"/>
-            <PasswordBox x:Name="passwordTB" MaxLength="20"/>
-            <Label x:Name="emaillbl" Content="Введите email"/>
-            <TextBox x:Name="emailTB" />
-            <Label x:Name="lblphone" Content="Введите номер телефона"/>
-            <TextBox x:Name="phoneTB" />
-            <Label x:Name="lbladress" Content="Введите адрес"/>
-            <TextBox x:Name="adressTB" />
+            <Label x:Name="lblname" Content="Введите имя" Style="{StaticResource LblStyle}"/>
+            <TextBox x:Name="nameTB" Style="{StaticResource TBoxStyle}" />
+            <Label x:Name="lblmiddlename" Content="Введите отчество" Style="{StaticResource LblStyle}"/>
+            <TextBox x:Name="middlenameTB" Style="{StaticResource TBoxStyle}" />
+            <Label x:Name="lblsurname" Content="Введите фамилию" Style="{StaticResource LblStyle}"/>
+            <TextBox x:Name="lastNameTB" Style="{StaticResource TBoxStyle}" />
+            <Label x:Name="lbllogin" Content="Придумайте логин" Style="{StaticResource LblStyle}"/>
+            <TextBox x:Name="loginTB" Style="{StaticResource TBoxStyle}" />
+            <Label x:Name="lblpassword" Content="Придумайте пароль" Style="{StaticResource LblStyle}"/>
+            <PasswordBox x:Name="passwordTB" MaxLength="20"  Style="{StaticResource PBoxStyle}"/>
+            <Label x:Name="emaillbl" Content="Введите email" Style="{StaticResource LblStyle}"/>
+            <TextBox x:Name="emailTB" Style="{StaticResource TBoxStyle}" />
+            <Label x:Name="lblphone" Content="Введите номер телефона" Style="{StaticResource LblStyle}"/>
+            <TextBox x:Name="phoneTB"  Style="{StaticResource TBoxStyle}" />
+            <Label x:Name="lbladress" Content="Введите адрес" Style="{StaticResource LblStyle}"/>
+            <TextBox x:Name="adressTB" Style="{StaticResource TBoxStyle}" />
         </StackPanel>
-        <Button x:Name="signUpButton" Content="Зарегистрироваться" Grid.Row="7" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center" HorizontalContentAlignment="Center" Click="signUpButton_Click"  />
+        <Button x:Name="signUpButton"  Style="{StaticResource CustomButtonStyle}" Content="Зарегистрироваться" Grid.Row="7" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center" HorizontalContentAlignment="Center" Click="signUpButton_Click"  />
 
 
-        <Label x:Name="signINlbl" Content="Вход" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" />
+        <Label x:Name="signINlbl"  Style="{StaticResource LblStyle}" Content="Вход" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" />
         <StackPanel Grid.Row="2" Grid.Column="1" Grid.RowSpan="3" VerticalAlignment="Center" HorizontalAlignment="Center">
-            <Label x:Name="lblloginIn" Content="Введите логин"/>
-            <TextBox x:Name="loginInTB" />
-            <Label x:Name="lblpasswordIn" Content="Введите пароль"/>
-            <PasswordBox x:Name="passwordInTB" />
+            <Label x:Name="lblloginIn" Content="Введите логин" Style="{StaticResource LblStyle}"/>
+            <TextBox x:Name="loginInTB" Style="{StaticResource TBoxStyle}" />
+            <Label x:Name="lblpasswordIn" Content="Введите пароль" Style="{StaticResource LblStyle}"/>
+            <PasswordBox x:Name="passwordInTB" Style="{StaticResource PBoxStyle}" />
         </StackPanel>
-        <Button x:Name="signInButton" Content="Войти" Grid.Row="5" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center" HorizontalContentAlignment="Center" Click="signInButton_Click"    />
+        <Button x:Name="signInButton"  Style="{StaticResource CustomButtonStyle}" Content="Войти" Grid.Row="5" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center" HorizontalContentAlignment="Center" Click="signInButton_Click"    />
 
     </Grid>
 </Page>

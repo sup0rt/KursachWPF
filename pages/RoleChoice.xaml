@@ -6,7 +6,7 @@
       xmlns:local="clr-namespace:WpfApp1.pages"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="RoleChoice" Background="LightGray">
+      Title="RoleChoice" Style="{StaticResource PageStyle}">
 
     <Grid>
 
@@ -15,8 +15,8 @@
             <ColumnDefinition />
             <ColumnDefinition />
         </Grid.ColumnDefinitions>
-        <Button x:Name="employee" Content="Войти как сотрудник" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center" HorizontalContentAlignment="Center" Click="employee_Click"  />
-        <Button x:Name="customer" Content="Войти как покупатель"  Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center" HorizontalContentAlignment="Center" Click="customer_Click" />
-        <Button x:Name="admin" Content="Войти как администратор" Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Center" HorizontalContentAlignment="Center" Click="admin_Click"   />
+        <Button x:Name="employee" Style="{StaticResource CustomButtonStyle}" Content="Войти как сотрудник" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center" HorizontalContentAlignment="Center" Click="employee_Click"  />
+        <Button x:Name="customer" Style="{StaticResource CustomButtonStyle}" Content="Войти как покупатель"  Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center" HorizontalContentAlignment="Center" Click="customer_Click" />
+        <Button x:Name="admin" Style="{StaticResource CustomButtonStyle}" Content="Войти как администратор" Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Center" HorizontalContentAlignment="Center" Click="admin_Click"   />
     </Grid>
 </Page>

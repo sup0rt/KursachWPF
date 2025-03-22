@@ -6,7 +6,7 @@
       xmlns:local="clr-namespace:WpfApp1.pages"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="AuthPageEmployee" Background="LightGray">
+      Title="AuthPageEmployee" Style="{StaticResource PageStyle}">
 
     <Grid>
         <Grid.RowDefinitions>
@@ -16,11 +16,11 @@
         </Grid.RowDefinitions>
 
         <StackPanel Grid.Row="1"  VerticalAlignment="Center" HorizontalAlignment="Center">
-            <Label x:Name="lblloginIn" Content="Введите логин"/>
-            <TextBox x:Name="loginInTB" />
-            <Label x:Name="lblpasswordIn" Content="Введите пароль"/>
-            <PasswordBox x:Name="passwordInTB" />
+            <Label x:Name="lblloginIn" Content="Введите логин"  Style="{StaticResource LblStyle}"/>
+            <TextBox x:Name="loginInTB"  Style="{StaticResource TBoxStyle}"/>
+            <Label x:Name="lblpasswordIn" Content="Введите пароль"  Style="{StaticResource LblStyle}"/>
+            <PasswordBox x:Name="passwordInTB" Style="{StaticResource PBoxStyle}" />
         </StackPanel>
-        <Button x:Name="signInButton" Content="Войти" Grid.Row="2" VerticalAlignment="Top" HorizontalAlignment="Center" HorizontalContentAlignment="Center" Click="signInButton_Click"    />
+        <Button x:Name="signInButton"  Style="{StaticResource CustomButtonStyle}" Content="Войти" Grid.Row="2" VerticalAlignment="Top" HorizontalAlignment="Center" HorizontalContentAlignment="Center" Click="signInButton_Click"    />
     </Grid>
 </Page>

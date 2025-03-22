@@ -19,7 +19,6 @@ namespace WpfApp1
             : base("name=Entities")
         {
         }
-
         private static Entities _context;
         public static Entities GetContext()
         {
@@ -43,11 +42,12 @@ namespace WpfApp1
         public virtual DbSet<EmployeeAccount> EmployeeAccount { get; set; }
         public virtual DbSet<Manufacturer> Manufacturer { get; set; }
         public virtual DbSet<Order> Order { get; set; }
-        public virtual DbSet<OrderComposition> OrderComposition { get; set; }
+        public virtual DbSet<OrderDetail> OrderDetail { get; set; }
         public virtual DbSet<OrderStatus> OrderStatus { get; set; }
+        public virtual DbSet<Part> Part { get; set; }
         public virtual DbSet<Position> Position { get; set; }
-        public virtual DbSet<SparePart> SparePart { get; set; }
         public virtual DbSet<Supplier> Supplier { get; set; }
+        public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
         public virtual DbSet<Warehouse> Warehouse { get; set; }
         public virtual DbSet<WarehouseTransaction> WarehouseTransaction { get; set; }
     }

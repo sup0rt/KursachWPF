@@ -6,13 +6,13 @@
       xmlns:local="clr-namespace:WpfApp1.pages"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="AdminPanel" Background="LightGray">
+      Title="AdminPanel" Style="{StaticResource PageStyle}">
 
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition />
             <ColumnDefinition />
         </Grid.ColumnDefinitions>
-        <Button x:Name="employee" Content="Добавить сотрудника" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center" HorizontalContentAlignment="Center" Click="employee_Click"  />
+        <Button x:Name="employee" Style="{StaticResource CustomButtonStyle}" Content="Добавить сотрудника" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center" HorizontalContentAlignment="Center" Click="employee_Click"  />
     </Grid>
 </Page>

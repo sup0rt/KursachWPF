@@ -12,15 +12,15 @@ namespace WpfApp1
     using System;
     using System.Collections.Generic;
     
-    public partial class OrderComposition
+    public partial class OrderDetail
     {
-        public int IDorderComposition { get; set; }
-        public int orderID { get; set; }
-        public int sparePartID { get; set; }
-        public int quantity { get; set; }
-        public decimal price { get; set; }
+        public int OrderDetailID { get; set; }
+        public Nullable<int> OrderID { get; set; }
+        public Nullable<int> PartID { get; set; }
+        public int Quantity { get; set; }
+        public decimal Price { get; set; }
     
         public virtual Order Order { get; set; }
-        public virtual SparePart SparePart { get; set; }
+        public virtual Part Part { get; set; }
     }
 }

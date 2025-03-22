@@ -6,8 +6,8 @@
       xmlns:local="clr-namespace:WpfApp1.pages"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="AddEmployee" Background="LightGray">
-
+      Title="AddEmployee" Style="{StaticResource PageStyle}">
+    
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition />
@@ -21,23 +21,23 @@
         </Grid.RowDefinitions>
 
         <StackPanel Grid.Row="1" Grid.Column="0" Grid.RowSpan="6" VerticalAlignment="Center" HorizontalAlignment="Center">
-            <Label x:Name="lblname" Content="Введите имя"/>
-            <TextBox x:Name="nameTB" />
-            <Label x:Name="lblmiddlename" Content="Введите отчество"/>
-            <TextBox x:Name="middlenameTB" />
-            <Label x:Name="lblsurname" Content="Введите фамилию"/>
-            <TextBox x:Name="lastNameTB" />
-            <Label x:Name="lbllogin" Content="Введите логин"/>
-            <TextBox x:Name="loginTB" />
-            <Label x:Name="lblpassword" Content="Ведите пароль"/>
-            <PasswordBox x:Name="passwordTB" MaxLength="20"/>
-            <Label x:Name="lblposition" Content="Выберите должность"/>
+            <Label x:Name="lblname" Content="Введите имя" Style="{StaticResource LblStyle}"/>
+            <TextBox x:Name="nameTB" Style="{StaticResource TBoxStyle}" />
+            <Label x:Name="lblmiddlename" Content="Введите отчество" Style="{StaticResource LblStyle}"/>
+            <TextBox x:Name="middlenameTB" Style="{StaticResource TBoxStyle}" />
+            <Label x:Name="lblsurname" Content="Введите фамилию" Style="{StaticResource LblStyle}"/>
+            <TextBox x:Name="lastNameTB" Style="{StaticResource TBoxStyle}" />
+            <Label x:Name="lbllogin" Content="Введите логин" Style="{StaticResource LblStyle}"/>
+            <TextBox x:Name="loginTB" Style="{StaticResource TBoxStyle}" />
+            <Label x:Name="lblpassword" Content="Ведите пароль" Style="{StaticResource LblStyle}"/>
+            <PasswordBox x:Name="passwordTB" MaxLength="20" Style="{StaticResource PBoxStyle}"/>
+            <Label x:Name="lblposition" Content="Выберите должность" Style="{StaticResource LblStyle}"/>
             <ComboBox x:Name="positionCmB" DisplayMemberPath="name" SelectedValuePath="name"  />
-            <Label x:Name="lblDept" Content="Выберите отдел"/>
+            <Label x:Name="lblDept" Content="Выберите отдел" Style="{StaticResource LblStyle}"/>
             <ComboBox x:Name="departmentsCmB" DisplayMemberPath="name" SelectedValuePath="name" />
-            <Label x:Name="lblSalary" Content="Введите заработную плату"/>
-            <TextBox x:Name="salaryTB" />
+            <Label x:Name="lblSalary" Content="Введите заработную плату" Style="{StaticResource LblStyle}"/>
+            <TextBox x:Name="salaryTB" Style="{StaticResource TBoxStyle}" />
         </StackPanel>
-        <Button x:Name="addEmployee" Content="Добавить" Grid.Row="7" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center" HorizontalContentAlignment="Center" Click="addEmployee_Click"  />
+        <Button x:Name="addEmployee" Style="{StaticResource CustomButtonStyle}" Content="Добавить" Grid.Row="7" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center" HorizontalContentAlignment="Center" Click="addEmployee_Click"  />
     </Grid>
 </Page>

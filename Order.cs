@@ -17,17 +17,17 @@ namespace WpfApp1
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Order()
         {
-            this.OrderComposition = new HashSet<OrderComposition>();
+            this.OrderDetail = new HashSet<OrderDetail>();
         }
     
-        public int IDorder { get; set; }
-        public int customerID { get; set; }
-        public System.DateTime creationDate { get; set; }
-        public int statusID { get; set; }
+        public int OrderID { get; set; }
+        public Nullable<int> CustomerID { get; set; }
+        public System.DateTime OrderDateTime { get; set; }
+        public Nullable<int> OrderStatusID { get; set; }
     
         public virtual Customer Customer { get; set; }
         public virtual OrderStatus OrderStatus { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<OrderComposition> OrderComposition { get; set; }
+        public virtual ICollection<OrderDetail> OrderDetail { get; set; }
     }
 }

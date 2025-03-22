@@ -14,11 +14,11 @@ namespace WpfApp1
     
     public partial class EmployeeAccount
     {
-        public int IDemployeeAccount { get; set; }
-        public int employeeID { get; set; }
-        public string login { get; set; }
-        public string passwordHash { get; set; }
-        public string salt { get; set; }
+        public int EmployeeAccountID { get; set; }
+        public Nullable<int> EmployeeID { get; set; }
+        public string Username { get; set; }
+        public string Password { get; set; }
+        public string Salt { get; set; }
     
         public virtual Employee Employee { get; set; }
     }

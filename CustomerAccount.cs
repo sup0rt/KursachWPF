@@ -14,11 +14,11 @@ namespace WpfApp1
     
     public partial class CustomerAccount
     {
-        public int IDcustomerAccount { get; set; }
-        public int customerID { get; set; }
-        public string login { get; set; }
-        public string passwordHash { get; set; }
-        public string salt { get; set; }
+        public int CustomerAccountID { get; set; }
+        public Nullable<int> CustomerID { get; set; }
+        public string Username { get; set; }
+        public string Password { get; set; }
+        public string Salt { get; set; }
     
         public virtual Customer Customer { get; set; }
     }

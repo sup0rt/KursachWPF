@@ -17,16 +17,16 @@ namespace WpfApp1
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Manufacturer()
         {
-            this.SparePart = new HashSet<SparePart>();
+            this.Part = new HashSet<Part>();
         }
     
-        public int IDmanufacturer { get; set; }
-        public string organizationName { get; set; }
-        public string physicalAddress { get; set; }
-        public string email { get; set; }
-        public string phone { get; set; }
+        public int ManufacturerID { get; set; }
+        public string OrganizationName { get; set; }
+        public string PhysicalAddress { get; set; }
+        public string Email { get; set; }
+        public string PhoneNumber { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<SparePart> SparePart { get; set; }
+        public virtual ICollection<Part> Part { get; set; }
     }
 }

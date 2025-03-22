@@ -12,13 +12,12 @@ namespace WpfApp1
     using System;
     using System.Collections.Generic;
     
-    public partial class WarehouseTransaction
+    public partial class sysdiagrams
     {
-        public int TransactionID { get; set; }
-        public Nullable<int> PartID { get; set; }
-        public int Quantity { get; set; }
-        public System.DateTime TransactionDateTime { get; set; }
-    
-        public virtual Part Part { get; set; }
+        public string name { get; set; }
+        public int principal_id { get; set; }
+        public int diagram_id { get; set; }
+        public Nullable<int> version { get; set; }
+        public byte[] definition { get; set; }
     }
 }

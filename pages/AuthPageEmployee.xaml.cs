@@ -32,8 +32,8 @@ namespace WpfApp1.pages
                 MessageBox.Show("Введите логин и пароль");
                 return;
             }
-            var employeeAccount = Entities.GetContext().EmployeeAccount.AsNoTracking().FirstOrDefault(ea => ea.login == loginInTB.Text);
-            bool isValid = PasswordHasher.VerifyPassword(passwordInTB.Password, employeeAccount.passwordHash, employeeAccount.salt);
+            var employeeAccount = Entities.GetContext().EmployeeAccount.AsNoTracking().FirstOrDefault(ea => ea.Username == loginInTB.Text);
+            bool isValid = PasswordHasher.VerifyPassword(passwordInTB.Password, employeeAccount.Password, employeeAccount.Salt);
             if (!isValid)
             {
                 MessageBox.Show("Неверный логин или пароль");

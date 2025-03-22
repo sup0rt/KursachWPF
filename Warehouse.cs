@@ -14,9 +14,9 @@ namespace WpfApp1
     
     public partial class Warehouse
     {
-        public int sparePartID { get; set; }
-        public int stockQuantity { get; set; }
+        public int PartID { get; set; }
+        public int Quantity { get; set; }
     
-        public virtual SparePart SparePart { get; set; }
+        public virtual Part Part { get; set; }
     }
 }

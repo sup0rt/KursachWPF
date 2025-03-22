@@ -17,13 +17,13 @@ namespace WpfApp1
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Category()
         {
-            this.SparePart = new HashSet<SparePart>();
+            this.Part = new HashSet<Part>();
         }
     
-        public int IDcategory { get; set; }
-        public string name { get; set; }
+        public int CategoryID { get; set; }
+        public string CategoryName { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<SparePart> SparePart { get; set; }
+        public virtual ICollection<Part> Part { get; set; }
     }
 }

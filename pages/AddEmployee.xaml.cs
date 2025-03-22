@@ -35,7 +35,7 @@ namespace WpfApp1.pages
             {
                 using (var db = new Entities())
                 {
-                    var customer = db.CustomerAccount.AsNoTracking().FirstOrDefault(c => c.login == loginTB.Text);
+                    var customer = db.CustomerAccount.AsNoTracking().FirstOrDefault(c => c.Username == loginTB.Text);
                     if (customer != null) { MessageBox.Show("Пользователь с такими данными уже существует"); return; }
                 }
                 bool en = true;
@@ -62,23 +62,23 @@ namespace WpfApp1.pages
                     try
                     {
                         Entities db = new Entities();
-                        var position = db.Position.AsNoTracking().FirstOrDefault(p => p.name == positionCmB.SelectedValue.ToString());
-                        var department = db.Department.AsNoTracking().FirstOrDefault(d => d.name == departmentsCmB.SelectedValue.ToString());
+                        var position = db.Position.AsNoTracking().FirstOrDefault(p => p.PositionName == positionCmB.SelectedValue.ToString());
+                        var department = db.Department.AsNoTracking().FirstOrDefault(d => d.DepartmentName == departmentsCmB.SelectedValue.ToString());
                         Employee employee = new Employee
                         {
-                            lastName = lastNameTB.Text,
-                            firstName = nameTB.Text,
-                            middleName = middlenameTB.Text,
-                            positionID = position.IDposition,
-                            departmentID = department.IDdepartment,
-                            salary = Convert.ToDecimal(salaryTB.Text),
+                            LastName = lastNameTB.Text,
+                            FirstName = nameTB.Text,
+                            MiddleName = middlenameTB.Text,
+                            PositionID = position.PositionID,
+                            DepartmentID = department.DepartmentID,
+                            Salary = Convert.ToDecimal(salaryTB.Text),
                         };
                         EmployeeAccount employeeAccount = new EmployeeAccount
                         {
 
-                            login = loginTB.Text,
-                            passwordHash = PasswordHasher.CreateHash(passwordTB.Password, out string salt),
-                            salt = salt,
+                            Username = loginTB.Text,
+                            Password = PasswordHasher.CreateHash(passwordTB.Password, out string salt),
+                            Salt = salt,
                         };
                         db.Employee.Add(employee);
                         db.EmployeeAccount.Add(employeeAccount);
@@ -105,6 +105,7 @@ namespace WpfApp1.pages
                     }
                 }
             }
+
             else
             {
                 MessageBox.Show("Введите логин");
