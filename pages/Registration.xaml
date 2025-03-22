@@ -8,6 +8,7 @@
       d:DesignHeight="450" d:DesignWidth="800"
       Title="Registration" Style="{StaticResource PageStyle}">
 
+    
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition />
