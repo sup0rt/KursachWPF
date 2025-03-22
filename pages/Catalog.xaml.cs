@@ -23,7 +23,7 @@ namespace WpfApp1.pages
         public Catalog()
         {
             InitializeComponent();
-            var currentPart = Entities.GetContext().SparePart.ToList();
+            var currentPart = Entities.GetContext().Part.ToList();
             lvParts.ItemsSource = currentPart;
         }
     }
