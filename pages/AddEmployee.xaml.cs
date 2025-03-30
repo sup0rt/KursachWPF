@@ -28,6 +28,7 @@ namespace WpfApp1.pages
             InitializeComponent();
             departmentsCmB.ItemsSource = Entities.GetContext().Department.ToList();
             positionCmB.ItemsSource = Entities.GetContext().Position.ToList();
+            
             _employee = selectedEmployee ?? new Employee();
             DataContext = _employee;
         }
@@ -45,24 +46,24 @@ namespace WpfApp1.pages
                 }
                 bool en = true;
                 bool number = false;
-                for (int i = 0; i < _account.Password.Length; i++)
+                for (int i = 0; i < passwordTB.Password.Length; i++)
                 {
-                    if (_account.Password[i] >= 'А' && _account.Password[i] <= 'Я') en = false;
-                    if (_account.Password[i] >= '0' && _account.Password[i] <= '9') number = true;
+                    if (passwordTB.Password[i] >= 'А' && passwordTB.Password[i] <= 'Я') en = false;
+                    if (passwordTB.Password[i] >= '0' && passwordTB.Password[i] <= '9') number = true;
                 }
 
                 StringBuilder errors = new StringBuilder();
 
-                if (_account.Password.Length < 6) errors.AppendLine("Пароль дольжен быть больше 6 символов");
+                if (passwordTB.Password.Length < 6) errors.AppendLine("Пароль дольжен быть больше 6 символов");
                 if (!en) errors.AppendLine("Пароль должен быть на английском языке");
                 if (!number) errors.AppendLine("В пароле должна быть минимум 1 цифра");
                 if (string.IsNullOrEmpty(_employee.FirstName)) errors.AppendLine("Введите имя сотрудника");
                 if (string.IsNullOrEmpty(_employee.MiddleName)) errors.AppendLine("Введите отчество сотрудника");
                 if (string.IsNullOrEmpty(_employee.LastName)) errors.AppendLine("Введите фамилию сотрудника");
-                if (string.IsNullOrEmpty(_account.Username)) errors.AppendLine("Введите логин сотрудника");
-                if (string.IsNullOrEmpty(_account.Password)) errors.AppendLine("Введите пароль сотрудника");
-                if (_employee.DepartmentID == null) errors.AppendLine("Выберите отдел сотрудника");
-                if (_employee.PositionID == null) errors.AppendLine("Выберите должность сотрудника");
+                if (string.IsNullOrEmpty(loginTB.Text)) errors.AppendLine("Введите логин сотрудника");
+                if (string.IsNullOrEmpty(passwordTB.Password)) errors.AppendLine("Введите пароль сотрудника");
+                if (_employee.DepartmentID == 0) errors.AppendLine("Выберите отдел сотрудника");
+                if (_employee.PositionID == 0) errors.AppendLine("Выберите должность сотрудника");
                 if (_employee.Salary <= 0) errors.AppendLine("Введите зарплату");
 
 

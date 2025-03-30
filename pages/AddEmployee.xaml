@@ -22,21 +22,21 @@
 
         <StackPanel Grid.Row="1" Grid.Column="0" Grid.RowSpan="6" VerticalAlignment="Center" HorizontalAlignment="Center">
             <Label x:Name="lblname" Content="Введите имя" Style="{StaticResource LblStyle}"/>
-            <TextBox x:Name="nameTB" Style="{StaticResource TBoxStyle}" />
+            <TextBox x:Name="nameTB" Text="{Binding FirstName, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Style="{StaticResource TBoxStyle}" />
             <Label x:Name="lblmiddlename" Content="Введите отчество" Style="{StaticResource LblStyle}"/>
-            <TextBox x:Name="middlenameTB" Style="{StaticResource TBoxStyle}" />
+            <TextBox x:Name="middlenameTB" Text="{Binding MiddleName, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Style="{StaticResource TBoxStyle}" />
             <Label x:Name="lblsurname" Content="Введите фамилию" Style="{StaticResource LblStyle}"/>
-            <TextBox x:Name="lastNameTB" Style="{StaticResource TBoxStyle}" />
+            <TextBox x:Name="lastNameTB" Text="{Binding LastName, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Style="{StaticResource TBoxStyle}" />
             <Label x:Name="lbllogin" Content="Введите логин" Style="{StaticResource LblStyle}"/>
-            <TextBox x:Name="loginTB" Style="{StaticResource TBoxStyle}" />
+            <TextBox x:Name="loginTB"  Style="{StaticResource TBoxStyle}" />
             <Label x:Name="lblpassword" Content="Ведите пароль" Style="{StaticResource LblStyle}"/>
-            <PasswordBox x:Name="passwordTB" MaxLength="20" Style="{StaticResource PBoxStyle}"/>
+            <PasswordBox x:Name="passwordTB"  MaxLength="20" Style="{StaticResource PBoxStyle}"/>
             <Label x:Name="lblposition" Content="Выберите должность" Style="{StaticResource LblStyle}"/>
             <ComboBox x:Name="positionCmB" DisplayMemberPath="PositionName" SelectedValuePath="PositionID" SelectedItem="{Binding PositionID}" />
             <Label x:Name="lblDept" Content="Выберите отдел" Style="{StaticResource LblStyle}"/>
             <ComboBox x:Name="departmentsCmB" DisplayMemberPath="DepartmentName" SelectedValuePath="DepartmentID" SelectedItem="{Binding DepartmentID}" />
-            <Label x:Name="lblSalary" Content="Введите заработную плату" Style="{StaticResource LblStyle}"/>
-            <TextBox x:Name="salaryTB" Style="{StaticResource TBoxStyle}" />
+            <Label x:Name="lblSalary"  Content="Введите заработную плату" Style="{StaticResource LblStyle}"/>
+            <TextBox x:Name="salaryTB" Text="{Binding Salary, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Style="{StaticResource TBoxStyle}" />
         </StackPanel>
         <Button x:Name="addEmployee" Style="{StaticResource CustomButtonStyle}" Content="Добавить" Grid.Row="7" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center" HorizontalContentAlignment="Center" Click="addEmployee_Click"  />
     </Grid>

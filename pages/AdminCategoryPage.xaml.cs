@@ -23,7 +23,7 @@ namespace WpfApp1.pages
         public AdminCategoryPage()
         {
             InitializeComponent();
-            dgSuppliers.ItemsSource = Entities.GetContext().Supplier.ToList();
+            dgSuppliers.ItemsSource = Entities.GetContext().Category.ToList();
         }
 
         private void addCategory_Click(object sender, RoutedEventArgs e)

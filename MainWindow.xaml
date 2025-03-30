@@ -8,6 +8,6 @@
         Title="MainWindow" Height="550" Width="800">
     
     <Grid>
-        <Frame Source="pages/RoleChoice.xaml"/>
+        <Frame Source="pages/RoleChoice.xaml" NavigationUIVisibility="Hidden" />
     </Grid>
 </Window>
