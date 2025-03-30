@@ -25,9 +25,29 @@ namespace WpfApp1.pages
             InitializeComponent();
         }
 
-        private void employee_Click(object sender, RoutedEventArgs e)
+        private void employeeBTN_Click(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate(new AddEmployee());
+            NavigationService.Navigate(new AdminEmployeePage());
+        }
+
+        private void categoryBTN_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new AdminCategoryPage());
+        }
+
+        private void manufacturerBTN_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new AdminManufacturerPage());
+        }
+
+        private void supplierBTN_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new AdminSupplierPage());
+        }
+
+        private void partBTN_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new AdminCategoryPage());
         }
     }
 }

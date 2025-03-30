@@ -32,9 +32,9 @@
             <Label x:Name="lblpassword" Content="Ведите пароль" Style="{StaticResource LblStyle}"/>
             <PasswordBox x:Name="passwordTB" MaxLength="20" Style="{StaticResource PBoxStyle}"/>
             <Label x:Name="lblposition" Content="Выберите должность" Style="{StaticResource LblStyle}"/>
-            <ComboBox x:Name="positionCmB" DisplayMemberPath="name" SelectedValuePath="name"  />
+            <ComboBox x:Name="positionCmB" DisplayMemberPath="PositionName" SelectedValuePath="PositionID" SelectedItem="{Binding PositionID}" />
             <Label x:Name="lblDept" Content="Выберите отдел" Style="{StaticResource LblStyle}"/>
-            <ComboBox x:Name="departmentsCmB" DisplayMemberPath="name" SelectedValuePath="name" />
+            <ComboBox x:Name="departmentsCmB" DisplayMemberPath="DepartmentName" SelectedValuePath="DepartmentID" SelectedItem="{Binding DepartmentID}" />
             <Label x:Name="lblSalary" Content="Введите заработную плату" Style="{StaticResource LblStyle}"/>
             <TextBox x:Name="salaryTB" Style="{StaticResource TBoxStyle}" />
         </StackPanel>

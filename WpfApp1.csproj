@@ -109,11 +109,38 @@
     <Compile Include="OrderStatus.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="pages\AddCategoryPage.xaml.cs">
+      <DependentUpon>AddCategoryPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="pages\AddDealerPage.xaml.cs">
+      <DependentUpon>AddDealerPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="pages\AddEmployee.xaml.cs">
       <DependentUpon>AddEmployee.xaml</DependentUpon>
     </Compile>
+    <Compile Include="pages\AddManufacturerPage.xaml.cs">
+      <DependentUpon>AddManufacturerPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="pages\AddSparePartPage.xaml.cs">
+      <DependentUpon>AddSparePartPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="pages\AdminCategoryPage.xaml.cs">
+      <DependentUpon>AdminCategoryPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="pages\AdminEmployeePage.xaml.cs">
+      <DependentUpon>AdminEmployeePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="pages\AdminManufacturerPage.xaml.cs">
+      <DependentUpon>AdminManufacturerPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="pages\AdminPanel.xaml.cs">
       <DependentUpon>AdminPanel.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="pages\AdminPartPage.xaml.cs">
+      <DependentUpon>AdminPartPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="pages\AdminSupplierPage.xaml.cs">
+      <DependentUpon>AdminSupplierPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="pages\AuthPage.xaml.cs">
       <DependentUpon>AuthPage.xaml</DependentUpon>
@@ -173,11 +200,47 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="pages\AddCategoryPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="pages\AddDealerPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="pages\AddEmployee.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="pages\AddManufacturerPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="pages\AddSparePartPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="pages\AdminCategoryPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="pages\AdminEmployeePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="pages\AdminManufacturerPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="pages\AdminPanel.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="pages\AdminPartPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="pages\AdminSupplierPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

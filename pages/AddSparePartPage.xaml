@@ -1,0 +1,34 @@
+﻿<Page x:Class="WpfApp1.pages.AddSparePartPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:WpfApp1.pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="AddSparePartPage" Style="{StaticResource PageStyle}">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+
+        <StackPanel Grid.Row="0" Grid.Column="0" Grid.RowSpan="6" VerticalAlignment="Center" HorizontalAlignment="Center">
+            <Label x:Name="lblname" Content="Введите название запчасти" Style="{StaticResource LblStyle}"/>
+            <TextBox x:Name="nameTB" Text="{Binding OrganizationName, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Style="{StaticResource TBoxStyle}" />
+            <Label x:Name="lblcategory" Content="Выберите категорию" Style="{StaticResource LblStyle}"/>
+            <ComboBox x:Name="categoryCmB" DisplayMemberPath="CategoryName" SelectedItem="{Binding CategoryID}" SelectedValuePath="CategoryID" />
+            <Label x:Name="lblmanufacturer" Content="Выберите производителя" Style="{StaticResource LblStyle}"/>
+            <ComboBox x:Name="manufacturerCmB" DisplayMemberPath="OrganizationName" SelectedItem="{Binding ManufacturerID}"  SelectedValuePath="ManufacturerID" />
+            <Label x:Name="lblsupplier" Content="Выберите поставщика" Style="{StaticResource LblStyle}"/>
+            <ComboBox x:Name="supplierCmB" DisplayMemberPath="OrganizationName" SelectedItem="{Binding SupplierID}"  SelectedValuePath="SupplierID" />
+            <Label x:Name="lblprice" Content="Введите цену" Style="{StaticResource LblStyle}"/>
+            <TextBox x:Name="priceTB" Text="{Binding PhoneNumber, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Style="{StaticResource TBoxStyle}" />
+        </StackPanel>
+        <Button x:Name="SaveBtn" Content="Сохранить" Grid.Column="1" Grid.Row="3" Style="{StaticResource CustomButtonStyle}" HorizontalAlignment="Center" VerticalAlignment="Center" Click="SaveBtn_Click" />
+
+    </Grid>
+</Page>

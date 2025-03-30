@@ -196,6 +196,9 @@
         </Setter>
     </Style>
 
+   
+
+
     <Style x:Key="LblStyle" TargetType="Label">
         <Setter Property="Foreground" Value="#2C3E50"/>
         <Setter Property="Background" Value="Transparent"/>

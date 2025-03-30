@@ -1,0 +1,35 @@
+﻿<Page x:Class="WpfApp1.pages.AdminManufacturerPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:WpfApp1.pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="AdminManufacturerPage" Style="{StaticResource PageStyle}"  IsVisibleChanged="Page_IsVisibleChanged">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Button x:Name="addManufacturer" Style="{StaticResource CustomButtonStyle}" Content="Добавить производителя" Grid.Column="1" Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Center" HorizontalContentAlignment="Center" Click="addManufacturer_Click"     />
+        <Button x:Name="editManufacturer" Style="{StaticResource CustomButtonStyle}" Content="Редактировать производителя" Grid.Column="1" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center" HorizontalContentAlignment="Center" Click="editManufacturer_Click"  />
+        <Button x:Name="deleteManufacturer" Style="{StaticResource CustomButtonStyle}" Content="Удалить производителя" Grid.Column="1" Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Center" HorizontalContentAlignment="Center" Click="deleteManufacturer_Click"    />
+
+
+        <DataGrid Grid.Column="0" Grid.Row="0" Grid.RowSpan="2" x:Name="dgSuppliers"  Style="{StaticResource DGrStyle}" AutoGenerateColumns="False" IsReadOnly="True" HorizontalAlignment="Center" >
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Название" Binding="{Binding OrganizationName}" />
+                <DataGridTextColumn Header="Адрес" Binding="{Binding PhysicalAdress}" />
+                <DataGridTextColumn Header="Email" Binding="{Binding Email}" />
+                <DataGridTextColumn Header="Номер телефона" Binding="{Binding PhoneNumber}" />
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</Page>

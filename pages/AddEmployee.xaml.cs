@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data.Entity.Validation;
 using System.Linq;
+using System.Security.Principal;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
@@ -22,86 +23,77 @@ namespace WpfApp1.pages
     /// </summary>
     public partial class AddEmployee : Page
     {
-        public AddEmployee()
+        public AddEmployee(Employee selectedEmployee)
         {
             InitializeComponent();
             departmentsCmB.ItemsSource = Entities.GetContext().Department.ToList();
             positionCmB.ItemsSource = Entities.GetContext().Position.ToList();
+            _employee = selectedEmployee ?? new Employee();
+            DataContext = _employee;
         }
-
+        private Employee _employee = new Employee();
+        private EmployeeAccount _account = new EmployeeAccount();
         private void addEmployee_Click(object sender, RoutedEventArgs e)
         {
             if (loginTB.Text.Length > 0)
             {
+
                 using (var db = new Entities())
                 {
-                    var customer = db.CustomerAccount.AsNoTracking().FirstOrDefault(c => c.Username == loginTB.Text);
-                    if (customer != null) { MessageBox.Show("Пользователь с такими данными уже существует"); return; }
+                    var employee = db.EmployeeAccount.AsNoTracking().FirstOrDefault(em => em.Username == loginTB.Text);
+                    if (employee != null) { MessageBox.Show("Пользователь с такими данными уже существует"); return; }
                 }
                 bool en = true;
                 bool number = false;
-                for (int i = 0; i < passwordTB.Password.Length; i++)
+                for (int i = 0; i < _account.Password.Length; i++)
                 {
-                    if (passwordTB.Password[i] >= 'А' && passwordTB.Password[i] <= 'Я') en = false;
-                    if (passwordTB.Password[i] >= '0' && passwordTB.Password[i] <= '9') number = true;
+                    if (_account.Password[i] >= 'А' && _account.Password[i] <= 'Я') en = false;
+                    if (_account.Password[i] >= '0' && _account.Password[i] <= '9') number = true;
                 }
 
                 StringBuilder errors = new StringBuilder();
 
-                if (passwordTB.Password.Length < 6) errors.AppendLine("Пароль дольжен быть больше 6 символов");
+                if (_account.Password.Length < 6) errors.AppendLine("Пароль дольжен быть больше 6 символов");
                 if (!en) errors.AppendLine("Пароль должен быть на английском языке");
                 if (!number) errors.AppendLine("В пароле должна быть минимум 1 цифра");
+                if (string.IsNullOrEmpty(_employee.FirstName)) errors.AppendLine("Введите имя сотрудника");
+                if (string.IsNullOrEmpty(_employee.MiddleName)) errors.AppendLine("Введите отчество сотрудника");
+                if (string.IsNullOrEmpty(_employee.LastName)) errors.AppendLine("Введите фамилию сотрудника");
+                if (string.IsNullOrEmpty(_account.Username)) errors.AppendLine("Введите логин сотрудника");
+                if (string.IsNullOrEmpty(_account.Password)) errors.AppendLine("Введите пароль сотрудника");
+                if (_employee.DepartmentID == null) errors.AppendLine("Выберите отдел сотрудника");
+                if (_employee.PositionID == null) errors.AppendLine("Выберите должность сотрудника");
+                if (_employee.Salary <= 0) errors.AppendLine("Введите зарплату");
+
 
                 if (errors.Length > 0)
                 {
                     MessageBox.Show(errors.ToString());
                     return;
                 }
-                else
-                {
-                    try
-                    {
-                        Entities db = new Entities();
-                        var position = db.Position.AsNoTracking().FirstOrDefault(p => p.PositionName == positionCmB.SelectedValue.ToString());
-                        var department = db.Department.AsNoTracking().FirstOrDefault(d => d.DepartmentName == departmentsCmB.SelectedValue.ToString());
-                        Employee employee = new Employee
-                        {
-                            LastName = lastNameTB.Text,
-                            FirstName = nameTB.Text,
-                            MiddleName = middlenameTB.Text,
-                            PositionID = position.PositionID,
-                            DepartmentID = department.DepartmentID,
-                            Salary = Convert.ToDecimal(salaryTB.Text),
-                        };
-                        EmployeeAccount employeeAccount = new EmployeeAccount
-                        {
 
-                            Username = loginTB.Text,
-                            Password = PasswordHasher.CreateHash(passwordTB.Password, out string salt),
-                            Salt = salt,
-                        };
-                        db.Employee.Add(employee);
-                        db.EmployeeAccount.Add(employeeAccount);
-                        db.SaveChanges();
-                        MessageBox.Show("Сотрудник добавлен", "Успешно", MessageBoxButton.OK, MessageBoxImage.Information);
-                        NavigationService.GoBack();
-                    }
-                    catch (DbEntityValidationException ex)
+                try
+                {
+                    var context = Entities.GetContext();
+                    if (_employee.EmployeeID == 0)
                     {
-                        StringBuilder validationErrors = new StringBuilder();
-                        foreach (var validationResult in ex.EntityValidationErrors)
-                        {
-                            validationErrors.AppendLine($"Entity: {validationResult.Entry.Entity.GetType().Name}");
-                            foreach (var error in validationResult.ValidationErrors)
-                            {
-                                validationErrors.AppendLine($"  Property: {error.PropertyName}, Error: {error.ErrorMessage}");
-                            }
-                        }
-                        MessageBox.Show($"Ошибка валидации:\n{validationErrors}", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                        context.Employee.Add(_employee);
+                        context.EmployeeAccount.Add(_account);
                     }
-                    catch (Exception ex)
+                    else
                     {
-                        MessageBox.Show($"Ошибка при регистрации: {ex.Message}", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                        context.Entry(_employee).State = System.Data.Entity.EntityState.Modified;
+                        context.Entry(_account).State = System.Data.Entity.EntityState.Modified;
+                    }
+
+                    context.SaveChanges();
+                    MessageBox.Show("Запчасть добавлена", "Успех", MessageBoxButton.OK, MessageBoxImage.Information);
+                    NavigationService.GoBack();
+                }
+                catch (Exception ex)
+                {
+                    {
+                        MessageBox.Show("Ошибка: {ex.ToString()}", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
                     }
                 }
             }
