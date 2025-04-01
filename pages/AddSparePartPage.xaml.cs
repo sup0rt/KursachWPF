@@ -36,8 +36,8 @@ namespace WpfApp1.pages
             StringBuilder errors = new StringBuilder();
             if (string.IsNullOrEmpty(_part.PartName)) errors.AppendLine("Введите название запчасти");
             if (_part.Category == null) errors.AppendLine("Выберите категорию запчасти");
-            if (_part.Manufacturer == null) errors.AppendLine("Выберите производителя запчасти");
-            if (_part.Supplier == null) errors.AppendLine("Выберите поставщика номер запчасти");
+            if (_part.ManufacturerID == null) errors.AppendLine("Выберите производителя запчасти");
+            if (_part.SupplierID == null) errors.AppendLine("Выберите поставщика номер запчасти");
             if (_part.Price <= 0) errors.AppendLine("Введите цену запчасти");
 
 
