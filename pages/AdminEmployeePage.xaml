@@ -12,18 +12,31 @@
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
             <ColumnDefinition/>
+            <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition/>
             <RowDefinition/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <Button x:Name="addEmployee" Style="{StaticResource CustomButtonStyle}" Content="Добавить сотрудника" Grid.Column="1" Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Center" HorizontalContentAlignment="Center" Click="addEmployee_Click"    />
-        <Button x:Name="editEmployee" Style="{StaticResource CustomButtonStyle}" Content="Редактировать сотрудника" Grid.Column="1" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center" HorizontalContentAlignment="Center" Click="editEmployee_Click"    />
-        <Button x:Name="deleteEmployee" Style="{StaticResource CustomButtonStyle}" Content="Удалить сотрудника" Grid.Column="1" Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Center" HorizontalContentAlignment="Center" Click="deleteEmployee_Click"    />
+
+        <StackPanel Orientation="Vertical" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <Label Content="Введите имя:" Style="{StaticResource LblStyle}"/>
+            <TextBox x:Name="SelectedName" MinWidth="150" Style="{StaticResource TBoxStyle}" TextChanged="SelectedName_TextChanged" />
+        </StackPanel>
+        <StackPanel Orientation="Vertical" Grid.Row="0" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" >
+            <Label Content="Выберите должность:" Style="{StaticResource LblStyle}"/>
+            <ComboBox x:Name="SortPosition" SelectedItem="{Binding Position}" DisplayMemberPath="PositionName" MinWidth="120" SelectionChanged="SortPosition_SelectionChanged" />
+            <Label Content="Выберите отдел:" Style="{StaticResource LblStyle}"/>
+            <ComboBox x:Name="SortDepartment" SelectedItem="{Binding Department}" DisplayMemberPath="DepartmentName" MinWidth="120" SelectionChanged="SortDepartment_SelectionChanged" />
+        </StackPanel>
+        <Button x:Name="btnClearFilter" Content="Очистить" Grid.Column="2" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center" Style="{StaticResource CustomButtonStyle}" Click="btnClearFilter_Click"  />
+
+        <Button x:Name="addEmployee" Style="{StaticResource CustomButtonStyle}" Content="Добавить сотрудника" Grid.Column="2" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center" HorizontalContentAlignment="Center" Click="addEmployee_Click"    />
+        <Button x:Name="deleteEmployee" Style="{StaticResource CustomButtonStyle}" Content="Удалить сотрудника" Grid.Column="2" Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Center" HorizontalContentAlignment="Center" Click="deleteEmployee_Click"    />
 
 
-        <DataGrid Grid.Column="0" Grid.Row="0" Grid.RowSpan="2" x:Name="dgSuppliers"  Style="{StaticResource DGrStyle}" AutoGenerateColumns="False" IsReadOnly="True" HorizontalAlignment="Center" >
+        <DataGrid Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" x:Name="dgSuppliers"  Style="{StaticResource DGrStyle}" AutoGenerateColumns="False" IsReadOnly="True" HorizontalAlignment="Center" >
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Имя" Binding="{Binding FirstName}" />
                 <DataGridTextColumn Header="Отчество" Binding="{Binding LastName}" />
@@ -31,7 +44,16 @@
                 <DataGridTextColumn Header="Отдел" Binding="{Binding Department.DepartmentName}" />
                 <DataGridTextColumn Header="Должность" Binding="{Binding Position.PositionName}" />
                 <DataGridTextColumn Header="Зарплата" Binding="{Binding Salary}" />
+                <DataGridTemplateColumn>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button x:Name="editEmployee" Style="{StaticResource CustomButtonStyle}" Content="Редактировать сотрудника" Grid.Column="1" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center" HorizontalContentAlignment="Center" Click="editEmployee_Click"    />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
             </DataGrid.Columns>
+            
         </DataGrid>
+
     </Grid>
 </Page>

@@ -14,8 +14,27 @@
             <RowDefinition/>
             <RowDefinition/>
         </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
 
-        <ListView x:Name="lvParts" ScrollViewer.HorizontalScrollBarVisibility="Disabled" HorizontalContentAlignment="Center" >
+        <StackPanel Orientation="Vertical" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <Label Content="Введите название:" Style="{StaticResource LblStyle}"/>
+            <TextBox x:Name="SelectedName" MinWidth="150" Style="{StaticResource TBoxStyle}" TextChanged="SelectedName_TextChanged" />
+        </StackPanel>
+        <StackPanel Orientation="Vertical" Grid.Row="0" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" >
+            <Label Content="Выберите категорию:" Style="{StaticResource LblStyle}"/>
+            <ComboBox x:Name="SortCategory" SelectedItem="{Binding Category}" DisplayMemberPath="CategoryName" MinWidth="120" SelectionChanged="SortCategory_SelectionChanged"  />
+            <Label Content="Выберите производителя:" Style="{StaticResource LblStyle}"/>
+            <ComboBox x:Name="SortManufacturer" SelectedItem="{Binding Manufacturer}" DisplayMemberPath="OrganizationName" MinWidth="120" SelectionChanged="SortManufacturer_SelectionChanged" />
+            
+        </StackPanel>
+        <Button x:Name="btnClearFilter" Content="Очистить" Grid.Column="2" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center" Style="{StaticResource CustomButtonStyle}" Click="btnClearFilter_Click" />
+
+
+        <ListView x:Name="lvParts" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" ScrollViewer.HorizontalScrollBarVisibility="Disabled" HorizontalContentAlignment="Center" >
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <Grid>

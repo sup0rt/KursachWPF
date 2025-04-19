@@ -26,5 +26,44 @@ namespace WpfApp1.pages
             var currentPart = Entities.GetContext().Part.ToList();
             lvParts.ItemsSource = currentPart;
         }
+
+        private void UpdateParts()
+        {
+            var currentParts = Entities.GetContext().Part.ToList();
+            currentParts = currentParts.Where(x => x.PartName.ToLower().Contains(SelectedName.Text.ToLower())).ToList();
+            if (SortCategory.SelectedIndex == 0)
+            {
+                currentParts = currentParts.Where(x => x.Category.CategoryName.ToLower().Contains(SortCategory.Text.ToLower())).ToList();
+            }
+            if (SortManufacturer.SelectedIndex == 0)
+            {
+                currentParts = currentParts.Where(x => x.Manufacturer.OrganizationName.ToLower().Contains(SortManufacturer.Text.ToLower())).ToList();
+            }
+            lvParts.ItemsSource = currentParts;
+        }
+
+        private void SelectedName_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            UpdateParts();
+        }
+
+        private void SortCategory_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            UpdateParts();
+        }
+
+        private void SortManufacturer_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            UpdateParts();
+        }
+
+
+        private void btnClearFilter_Click(object sender, RoutedEventArgs e)
+        {
+            SelectedName.Clear();
+            SortManufacturer.SelectedItem = null;
+            SortCategory.SelectedItem = null;
+            lvParts.ItemsSource = Entities.GetContext().Part.ToList();
+        }
     }
 }

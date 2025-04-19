@@ -23,18 +23,20 @@
 
         <StackPanel Orientation="Vertical" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center">
             <Label Content="Введите название:" Style="{StaticResource LblStyle}"/>
-            <TextBox x:Name="SelectedName" MinWidth="150" Style="{StaticResource TBoxStyle}" TextChanged="SelectedName_TextChanged"/>
+            <TextBox x:Name="SelectedName" MinWidth="150" Style="{StaticResource TBoxStyle}" TextChanged="SelectedName_TextChanged_1"/>
         </StackPanel>
         <StackPanel Orientation="Vertical" Grid.Row="0" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" >
-            <ComboBox x:Name="SortCategory" SelectedItem="{Binding Category}" DisplayMemberPath="CategoryName" MinWidth="120" SelectionChanged="SortCategory_SelectionChanged"/>
+            <Label Content="Выберите категорию:" Style="{StaticResource LblStyle}"/>
+            <ComboBox x:Name="SortCategory" SelectedItem="{Binding Category}" DisplayMemberPath="CategoryName" MinWidth="120" SelectionChanged="SortCategory_SelectionChanged" />
+            <Label Content="Выберите производителя:" Style="{StaticResource LblStyle}"/>
             <ComboBox x:Name="SortManufacturer" SelectedItem="{Binding Manufacturer}" DisplayMemberPath="OrganizationName" MinWidth="120" SelectionChanged="SortManufacturer_SelectionChanged"/>
-            <ComboBox x:Name="SortSupplier" SelectedItem="{Binding Supplier}" DisplayMemberPath="OrganizationName" MinWidth="120" SelectionChanged="SortSupplier_SelectionChanged" />
+            <Label Content="Выберите поставщика:" Style="{StaticResource LblStyle}"/>
+            <ComboBox x:Name="SortSupplier" SelectedItem="{Binding Supplier}" DisplayMemberPath="OrganizationName" MinWidth="120" SelectionChanged="SortSupplier_SelectionChanged"  />
         </StackPanel>
-        <Button x:Name="btnClearFilter" Content="Очистить" Grid.Column="2" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center" Style="{StaticResource CustomButtonStyle}" Click="btnClearFilter_Click" />
+        <Button x:Name="btnClearFilter" Content="Очистить" Grid.Column="2" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center" Style="{StaticResource CustomButtonStyle}" Click="btnClearFilter_Click_1"/>
 
 
         <Button x:Name="addSparePart" Style="{StaticResource CustomButtonStyle}" Content="Добавить запчасть" Grid.Column="3" Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Center" HorizontalContentAlignment="Center" Click="addSparePart_Click"   />
-        <Button x:Name="editSparePart" Style="{StaticResource CustomButtonStyle}" Content="Редактировать запчасть" Grid.Column="3" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center" HorizontalContentAlignment="Center" Click="editSparePart_Click"   />
         <Button x:Name="deleteSparePart" Style="{StaticResource CustomButtonStyle}" Content="Удалить запчасть" Grid.Column="3" Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Center" HorizontalContentAlignment="Center" Click="deleteSparePart_Click"    />
         
 
@@ -66,6 +68,8 @@
                         <TextBlock VerticalAlignment="Center" TextAlignment="Center" Grid.Column="2" Text="{Binding Manufacturer.organizationName}" />
                         <TextBlock VerticalAlignment="Center" TextAlignment="Center" Grid.Column="3" Text="{Binding price}" />
                         <TextBlock VerticalAlignment="Center" TextAlignment="Center" Grid.Column="4" Text="{Binding Warehouse.stockQuantity}" />
+                        <!--<Button x:Name="editSparePart" Style="{StaticResource CustomButtonStyle}" Content="Редактировать запчасть" VerticalAlignment="Center" HorizontalAlignment="Center" HorizontalContentAlignment="Center" Click="editSparePart_Click"   />-->
+
                     </Grid>
                 </DataTemplate>
             </ListView.ItemTemplate>

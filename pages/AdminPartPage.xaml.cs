@@ -74,28 +74,22 @@ namespace WpfApp1.pages
             currentParts=currentParts.Where(x=>x.PartName.ToLower().Contains(SelectedName.Text.ToLower())).ToList();
             if(SortCategory.SelectedIndex == 0)
             {
-                lvParts.ItemsSource = currentParts.Where(x => x.Category.CategoryName.ToLower().Contains(SortCategory.Text.ToLower())).ToList();
+                currentParts = currentParts.Where(x => x.Category.CategoryName.ToLower().Contains(SortCategory.Text.ToLower())).ToList();
             }
             if (SortManufacturer.SelectedIndex == 0)
             {
-                lvParts.ItemsSource = currentParts.Where(x => x.Manufacturer.OrganizationName.ToLower().Contains(SortManufacturer.Text.ToLower())).ToList();
+                currentParts = currentParts.Where(x => x.Manufacturer.OrganizationName.ToLower().Contains(SortManufacturer.Text.ToLower())).ToList();
             }
             if (SortSupplier.SelectedIndex == 0)
             {
-                lvParts.ItemsSource = currentParts.Where(x => x.Supplier.OrganizationName.ToLower().Contains(SortSupplier.Text.ToLower())).ToList();
+                currentParts = currentParts.Where(x => x.Supplier.OrganizationName.ToLower().Contains(SortSupplier.Text.ToLower())).ToList();
             }
+            lvParts.ItemsSource = currentParts;
         }
 
-        private void btnClearFilter_Click(object sender, RoutedEventArgs e)
-        {
-            SelectedName.Clear();
-            SortSupplier.SelectedItem = null;
-            SortManufacturer.SelectedItem = null;
-            SortCategory.SelectedItem = null;
-            lvParts.ItemsSource = Entities.GetContext().Part.ToList();
-        }
+        
 
-        private void SelectedName_TextChanged(object sender, TextChangedEventArgs e)
+        private void SelectedName_TextChanged_1(object sender, TextChangedEventArgs e)
         {
             UpdateParts();
         }
@@ -113,6 +107,15 @@ namespace WpfApp1.pages
         private void SortSupplier_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             UpdateParts();
+        }
+
+        private void btnClearFilter_Click_1(object sender, RoutedEventArgs e)
+        {
+            SelectedName.Clear();
+            SortSupplier.SelectedItem = null;
+            SortManufacturer.SelectedItem = null;
+            SortCategory.SelectedItem = null;
+            lvParts.ItemsSource = Entities.GetContext().Part.ToList();
         }
     }
 }

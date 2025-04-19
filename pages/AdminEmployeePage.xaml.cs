@@ -24,6 +24,8 @@ namespace WpfApp1.pages
         {
             InitializeComponent();
             dgSuppliers.ItemsSource = Entities.GetContext().Employee.ToList();
+            SortDepartment.ItemsSource = Entities.GetContext().Department.ToList();
+            SortPosition.ItemsSource = Entities.GetContext().Position.ToList();
         }
 
         private void addEmployee_Click(object sender, RoutedEventArgs e)
@@ -63,6 +65,54 @@ namespace WpfApp1.pages
                     MessageBox.Show(ex.Message);
                 }
             }
+        }
+
+        private void UpdateEmployee()
+        {
+            var currentParts = Entities.GetContext().Employee.ToList();
+            currentParts = currentParts.Where(
+
+            x=>(x.FirstName + " " + x.MiddleName + " " + x.LastName).ToLower().Contains(SelectedName.Text.ToLower()) ||
+            (x.LastName + " " + x.FirstName + " " + x.MiddleName).ToLower().Contains(SelectedName.Text.ToLower()) || 
+            x.LastName.ToLower().Contains(SelectedName.Text.ToLower()) ||
+            x.MiddleName.ToLower().Contains(SelectedName.Text.ToLower()) || 
+            x.FirstName.ToLower().Contains(SelectedName.Text.ToLower())
+
+
+            ).ToList();
+            if(SortDepartment.SelectedIndex == 0)
+            {
+                currentParts = currentParts.Where(x => x.Department.DepartmentName.ToLower().Contains(SortDepartment.Text.ToLower())).ToList();
+            }
+            if (SortPosition.SelectedIndex == 0)
+            {
+                currentParts = currentParts.Where(x => x.Position.PositionName.ToLower().Contains(SortPosition.Text.ToLower())).ToList();
+            }
+
+            dgSuppliers.ItemsSource = currentParts;
+        }
+
+        private void SelectedName_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            UpdateEmployee();
+        }
+
+        private void SortPosition_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            UpdateEmployee();
+        }
+
+        private void SortDepartment_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            UpdateEmployee();
+        }
+
+        private void btnClearFilter_Click(object sender, RoutedEventArgs e)
+        {
+            SelectedName.Clear();
+            SortPosition.SelectedItem = null;
+            SortDepartment.SelectedItem = null;
+            dgSuppliers.ItemsSource = Entities.GetContext().Employee.ToList();
         }
     }
 }

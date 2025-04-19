@@ -63,5 +63,23 @@ namespace WpfApp1.pages
                 }
             }
         }
+
+        private void UpdateSupplier()
+        {
+            var currentParts = Entities.GetContext().Supplier.ToList();
+            currentParts = currentParts.Where(x => x.OrganizationName.ToLower().Contains(SelectedName.Text.ToLower())).ToList();
+            dgSuppliers.ItemsSource = currentParts;
+        }
+
+        private void SelectedName_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            UpdateSupplier();
+        }
+
+        private void btnClearFilter_Click(object sender, RoutedEventArgs e)
+        {
+            SelectedName.Clear();
+            dgSuppliers.ItemsSource = Entities.GetContext().Supplier.ToList();
+        }
     }
 }
