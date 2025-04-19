@@ -14,10 +14,19 @@ namespace WpfApp1
     
     public partial class Supplier
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Supplier()
+        {
+            this.Part = new HashSet<Part>();
+        }
+    
         public int SupplierID { get; set; }
         public string OrganizationName { get; set; }
         public string PhysicalAddress { get; set; }
         public string Email { get; set; }
         public string PhoneNumber { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Part> Part { get; set; }
     }
 }

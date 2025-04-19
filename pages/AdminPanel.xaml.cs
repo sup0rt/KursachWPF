@@ -47,7 +47,7 @@ namespace WpfApp1.pages
 
         private void partBTN_Click(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate(new AdminCategoryPage());
+            NavigationService.Navigate(new AdminPartPage());
         }
     }
 }

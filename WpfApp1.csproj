@@ -179,6 +179,9 @@
     <Compile Include="Supplier.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="sysdiagrams.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
     <Compile Include="Warehouse.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
