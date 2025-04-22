@@ -25,5 +25,10 @@ namespace WpfApp1.pages
             InitializeComponent();
             dgOrders.ItemsSource=Entities.GetContext().Order.ToList();
         }
+
+        private void goBackbtn_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.GoBack();
+        }
     }
 }

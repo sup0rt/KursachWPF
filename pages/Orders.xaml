@@ -14,7 +14,8 @@
             <RowDefinition/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-
+        
+        <Button x:Name="goBackbtn" Content="Назад" HorizontalAlignment="Right" VerticalAlignment="Top" Style="{StaticResource CustomButtonStyle}" Click="goBackbtn_Click" />
         <DataGrid Grid.Row="1" x:Name="dgOrders" Style="{StaticResource DGrStyle}" AutoGenerateColumns="False" IsReadOnly="True" HorizontalAlignment="Center" >
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Номер" Binding="{Binding IDorder}" />

@@ -81,5 +81,10 @@ namespace WpfApp1.pages
             SelectedName.Clear();
             dgSuppliers.ItemsSource = Entities.GetContext().Category.ToList();
         }
+
+        private void goBackbtn_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.GoBack();
+        }
     }
 }

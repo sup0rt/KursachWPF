@@ -21,6 +21,8 @@
             <RowDefinition/>
         </Grid.RowDefinitions>
 
+        <Button x:Name="goBackbtn" Content="Назад" HorizontalAlignment="Right" VerticalAlignment="Top" Grid.Column="3" Grid.Row="0" Style="{StaticResource CustomButtonStyle}" Click="goBackbtn_Click" />
+        
         <StackPanel Orientation="Vertical" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center">
             <Label Content="Введите название:" Style="{StaticResource LblStyle}"/>
             <TextBox x:Name="SelectedName" MinWidth="150" Style="{StaticResource TBoxStyle}" TextChanged="SelectedName_TextChanged_1"/>
@@ -36,7 +38,7 @@
         <Button x:Name="btnClearFilter" Content="Очистить" Grid.Column="2" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center" Style="{StaticResource CustomButtonStyle}" Click="btnClearFilter_Click_1"/>
 
 
-        <Button x:Name="addSparePart" Style="{StaticResource CustomButtonStyle}" Content="Добавить запчасть" Grid.Column="3" Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Center" HorizontalContentAlignment="Center" Click="addSparePart_Click"   />
+        <Button x:Name="addSparePart" Style="{StaticResource CustomButtonStyle}" Content="Добавить запчасть" Grid.Column="3" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center" HorizontalContentAlignment="Center" Click="addSparePart_Click"   />
         <Button x:Name="deleteSparePart" Style="{StaticResource CustomButtonStyle}" Content="Удалить запчасть" Grid.Column="3" Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Center" HorizontalContentAlignment="Center" Click="deleteSparePart_Click"    />
         
 
@@ -45,6 +47,8 @@
                 <DataTemplate>
                     <Grid>
                         <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
                             <ColumnDefinition/>
                             <ColumnDefinition/>
                             <ColumnDefinition/>
@@ -64,10 +68,12 @@
                     </Image.Source>
                 </Image>-->
 
-                        <TextBlock VerticalAlignment="Center" TextAlignment="Center" Grid.Column="1" Text="{Binding name}" />
-                        <TextBlock VerticalAlignment="Center" TextAlignment="Center" Grid.Column="2" Text="{Binding Manufacturer.organizationName}" />
-                        <TextBlock VerticalAlignment="Center" TextAlignment="Center" Grid.Column="3" Text="{Binding price}" />
-                        <TextBlock VerticalAlignment="Center" TextAlignment="Center" Grid.Column="4" Text="{Binding Warehouse.stockQuantity}" />
+                        <TextBox VerticalAlignment="Center" TextAlignment="Center" Grid.Column="0" Text="{Binding PartName}" />
+                        <TextBox VerticalAlignment="Center" TextAlignment="Center" Grid.Column="1" Text="{Binding Category.CategoryName}" />
+                        <TextBox VerticalAlignment="Center" TextAlignment="Center" Grid.Column="2" Text="{Binding Manufacturer.OrganizationName}" />
+                        <TextBox VerticalAlignment="Center" TextAlignment="Center" Grid.Column="3" Text="{Binding Supplier.OrganizationName}" />
+                        <TextBox VerticalAlignment="Center" TextAlignment="Center" Grid.Column="4" Text="{Binding Price}" />
+                        <TextBox VerticalAlignment="Center" TextAlignment="Center" Grid.Column="5" Text="{Binding WarehouseStockQuantity}" />
                         <!--<Button x:Name="editSparePart" Style="{StaticResource CustomButtonStyle}" Content="Редактировать запчасть" VerticalAlignment="Center" HorizontalAlignment="Center" HorizontalContentAlignment="Center" Click="editSparePart_Click"   />-->
 
                     </Grid>

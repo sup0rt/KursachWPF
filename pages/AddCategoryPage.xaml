@@ -22,6 +22,6 @@
         <Label Content="Наименование категории" Grid.Column="1" Grid.Row="0" Style="{StaticResource LblStyle}"/>
         <TextBox x:Name="CatNameTB" Text="{Binding CategoryName, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Grid.Column="1" Grid.Row="1" MaxWidth="230" Style="{StaticResource TBoxStyle}"/>
         <Button x:Name="SaveBtn" Content="Сохранить" Grid.Column="1" Grid.Row="2" Style="{StaticResource CustomButtonStyle}" HorizontalAlignment="Center" VerticalAlignment="Center" Click="SaveBtn_Click"/>
-
+        <Button x:Name="goBackbtn" Content="Назад" HorizontalAlignment="Right" VerticalAlignment="Top" Grid.Column="1" Grid.Row="0" Style="{StaticResource CustomButtonStyle}" Click="goBackbtn_Click" />
     </Grid>
 </Page>

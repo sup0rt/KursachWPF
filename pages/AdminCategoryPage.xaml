@@ -19,6 +19,8 @@
             <RowDefinition/>
         </Grid.RowDefinitions>
 
+        <Button x:Name="goBackbtn" Content="Назад" HorizontalAlignment="Right" VerticalAlignment="Top" Grid.Column="1" Grid.Row="0" Style="{StaticResource CustomButtonStyle}" Click="goBackbtn_Click" />
+        
         <StackPanel Orientation="Vertical" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center">
             <Label Content="Введите название:" Style="{StaticResource LblStyle}"/>
             <TextBox x:Name="SelectedName" MinWidth="150" Style="{StaticResource TBoxStyle}" TextChanged="SelectedName_TextChanged"/>

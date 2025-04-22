@@ -22,5 +22,7 @@
                 <DataGridTextColumn Header="Количество" Binding="{Binding stockQuantity}" />
             </DataGrid.Columns>
         </DataGrid>
+
+        <Button x:Name="goBackbtn" Content="Назад" HorizontalAlignment="Right" VerticalAlignment="Top" Style="{StaticResource CustomButtonStyle}" Click="goBackbtn_Click" />
     </Grid>
 </Page>

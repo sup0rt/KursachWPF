@@ -86,5 +86,10 @@ namespace WpfApp1.pages
                 }
             }
         }
+
+        private void goBackbtn_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.GoBack();
+        }
     }
 }

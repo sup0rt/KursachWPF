@@ -21,6 +21,8 @@
             <RowDefinition/>
 
         </Grid.RowDefinitions>
+
+        <Button x:Name="goBackbtn" Content="Назад" HorizontalAlignment="Right" VerticalAlignment="Top" Grid.Column="1" Grid.Row="0" Style="{StaticResource CustomButtonStyle}" Click="goBackbtn_Click" />
         <Button x:Name="employeeBTN" Style="{StaticResource CustomButtonStyle}" Content="Редактировать таблицу сотрудников" Grid.Column="0" Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Center" HorizontalContentAlignment="Center" Click="employeeBTN_Click"    />
         <Button x:Name="categoryBTN" Style="{StaticResource CustomButtonStyle}" Content="Редактировать таблицу категорий" Grid.Column="0" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center" HorizontalContentAlignment="Center" Click="categoryBTN_Click"    />
         <Button x:Name="manufacturerBTN" Style="{StaticResource CustomButtonStyle}" Content="Редактировать таблицу производителей" Grid.Column="0" Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Center" HorizontalContentAlignment="Center" Click="manufacturerBTN_Click"    />

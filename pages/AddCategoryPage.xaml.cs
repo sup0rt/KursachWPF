@@ -58,9 +58,14 @@ namespace WpfApp1.pages
             catch (Exception ex)
             {
                 {
-                    MessageBox.Show("Ошибка: {ex.ToString()}", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show("Ошибка: " + ex.ToString(), "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             }
+        }
+
+        private void goBackbtn_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.GoBack();
         }
     }
 }

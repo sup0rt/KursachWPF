@@ -117,5 +117,10 @@ namespace WpfApp1.pages
             SortCategory.SelectedItem = null;
             lvParts.ItemsSource = Entities.GetContext().Part.ToList();
         }
+
+        private void goBackbtn_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.GoBack();
+        }
     }
 }

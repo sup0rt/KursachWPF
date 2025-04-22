@@ -28,7 +28,6 @@ namespace WpfApp1
             }
             return _context;
         }
-    
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             throw new UnintentionalCodeFirstException();
@@ -50,5 +49,7 @@ namespace WpfApp1
         public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
         public virtual DbSet<Warehouse> Warehouse { get; set; }
         public virtual DbSet<WarehouseTransaction> WarehouseTransaction { get; set; }
+        public virtual DbSet<Admin> Admin { get; set; }
+        public virtual DbSet<AdminAccount> AdminAccount { get; set; }
     }
 }

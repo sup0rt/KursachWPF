@@ -16,9 +16,11 @@
             <RowDefinition />
         </Grid.RowDefinitions>
 
+        <Button x:Name="goBackbtn" Content="Назад" HorizontalAlignment="Right" VerticalAlignment="Top" Grid.Row="0" Style="{StaticResource CustomButtonStyle}" Click="goBackbtn_Click" />
+
         <StackPanel Grid.Row="0" Grid.Column="0" Grid.RowSpan="6" VerticalAlignment="Center" HorizontalAlignment="Center">
             <Label x:Name="lblname" Content="Введите название запчасти" Style="{StaticResource LblStyle}"/>
-            <TextBox x:Name="nameTB" Text="{Binding OrganizationName}" Style="{StaticResource TBoxStyle}" />
+            <TextBox x:Name="nameTB" Text="{Binding PartName}" Style="{StaticResource TBoxStyle}" />
             <Label x:Name="lblcategory" Content="Выберите категорию" Style="{StaticResource LblStyle}"/>
             <ComboBox x:Name="categoryCmB" DisplayMemberPath="CategoryName" SelectedItem="{Binding Category}" SelectedValuePath="CategoryID" />
             <Label x:Name="lblmanufacturer" Content="Выберите производителя" Style="{StaticResource LblStyle}"/>
@@ -26,7 +28,9 @@
             <Label x:Name="lblsupplier" Content="Выберите поставщика" Style="{StaticResource LblStyle}"/>
             <ComboBox x:Name="supplierCmB" DisplayMemberPath="OrganizationName" SelectedItem="{Binding Supplier}"  SelectedValuePath="SupplierID" />
             <Label x:Name="lblprice" Content="Введите цену" Style="{StaticResource LblStyle}"/>
-            <TextBox x:Name="priceTB" Text="{Binding PhoneNumber}" Style="{StaticResource TBoxStyle}" />
+            <TextBox x:Name="priceTB" Text="{Binding Price}" Style="{StaticResource TBoxStyle}" />
+            <Label x:Name="lblstock" Content="Введите количество" Style="{StaticResource LblStyle}"/>
+            <TextBox x:Name="stockTB" Text="{Binding WareHouse.Quantity}" Style="{StaticResource TBoxStyle}" />
         </StackPanel>
         <Button x:Name="SaveBtn" Content="Сохранить" Grid.Column="1" Grid.Row="3" Style="{StaticResource CustomButtonStyle}" HorizontalAlignment="Center" VerticalAlignment="Center" Click="SaveBtn_Click" />
 

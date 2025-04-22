@@ -34,6 +34,9 @@
         <AssociationConnector Association="kursachModel.FK__Warehouse__PartI__5EBF139D" ManuallyRouted="false" />
         <AssociationConnector Association="kursachModel.FK__Warehouse__PartI__619B8048" ManuallyRouted="false" />
         <AssociationConnector Association="kursachModel.fk2" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="kursachModel.Admin" Width="1.5" PointX="10.375" PointY="6" />
+        <EntityTypeShape EntityType="kursachModel.AdminAccount" Width="1.5" PointX="12.625" PointY="6" />
+        <AssociationConnector Association="kursachModel.FK__AdminAcco__Admin__73BA3083" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

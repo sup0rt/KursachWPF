@@ -4,7 +4,6 @@ using System.Data.Entity.Validation;
 using System.Linq;
 using System.Security.Principal;
 using System.Text;
-using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -19,33 +18,30 @@ using System.Windows.Shapes;
 namespace WpfApp1.pages
 {
     /// <summary>
-    /// Логика взаимодействия для AddEmployee.xaml
+    /// Логика взаимодействия для AddAdmin.xaml
     /// </summary>
-    public partial class AddEmployee : Page
+    public partial class AddAdmin : Page
     {
-        public AddEmployee(Employee selectedEmployee)
+        public AddAdmin()
         {
             InitializeComponent();
-            departmentsCmB.ItemsSource = Entities.GetContext().Department.ToList();
-            positionCmB.ItemsSource = Entities.GetContext().Position.ToList();
-            
-            _employee = selectedEmployee ?? new Employee();
-            DataContext = _employee;
         }
-        private Employee _employee = new Employee();
-        private EmployeeAccount _account = new EmployeeAccount();
+
+        private void goBackbtn_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.GoBack();
+        }
+        private Admin _admin = new Admin();
+        private AdminAccount _account = new AdminAccount();
         private void addEmployee_Click(object sender, RoutedEventArgs e)
         {
             StringBuilder errors = new StringBuilder();
 
-            if (string.IsNullOrEmpty(_employee.FirstName)) errors.AppendLine("Введите имя сотрудника");
-            if (string.IsNullOrEmpty(_employee.MiddleName)) errors.AppendLine("Введите отчество сотрудника");
-            if (string.IsNullOrEmpty(_employee.LastName)) errors.AppendLine("Введите фамилию сотрудника");
+            if (string.IsNullOrEmpty(_admin.FirstName)) errors.AppendLine("Введите имя сотрудника");
+            if (string.IsNullOrEmpty(_admin.MiddleName)) errors.AppendLine("Введите отчество сотрудника");
+            if (string.IsNullOrEmpty(_admin.LastName)) errors.AppendLine("Введите фамилию сотрудника");
             if (string.IsNullOrEmpty(loginTB.Text)) errors.AppendLine("Введите логин сотрудника");
             if (string.IsNullOrEmpty(passwordTB.Password)) errors.AppendLine("Введите пароль сотрудника");
-            if (_employee.Department == null) errors.AppendLine("Выберите отдел сотрудника");
-            if (_employee.Position == null) errors.AppendLine("Выберите должность сотрудника");
-            if (_employee.Salary <= 0) errors.AppendLine("Введите зарплату");
 
             if (passwordTB.Password.Length > 0)
             {
@@ -66,7 +62,7 @@ namespace WpfApp1.pages
             {
                 using (var db = new Entities())
                 {
-                    var employee = db.EmployeeAccount.AsNoTracking().FirstOrDefault(em => em.Username == loginTB.Text);
+                    var employee = db.AdminAccount.AsNoTracking().FirstOrDefault(em => em.Username == loginTB.Text);
                     if (employee != null) errors.AppendLine("Пользователь с таким логином уже существует");
                 }
             }
@@ -85,18 +81,18 @@ namespace WpfApp1.pages
                 _account.Password = PasswordHasher.CreateHash(passwordTB.Password, out string salt);
                 _account.Salt = salt;
 
-                if (_employee.EmployeeID == 0)
+                if (_admin.AdminID == 0)
                 {
-                    context.Employee.Add(_employee);
-                    context.SaveChanges(); 
+                    context.Admin.Add(_admin);
+                    context.SaveChanges();
 
-                    _account.EmployeeID = _employee.EmployeeID;
-                    context.EmployeeAccount.Add(_account);
+                    _admin.AdminID = _admin.AdminID;
+                    context.AdminAccount.Add(_account);
                 }
                 else
                 {
-                    _account.EmployeeID = _employee.EmployeeID;
-                    context.Entry(_employee).State = System.Data.Entity.EntityState.Modified;
+                    _account.AdminID = _admin.AdminID;
+                    context.Entry(_admin).State = System.Data.Entity.EntityState.Modified;
                     context.Entry(_account).State = System.Data.Entity.EntityState.Modified;
                 }
 
@@ -117,11 +113,6 @@ namespace WpfApp1.pages
             {
                 MessageBox.Show("Ошибка: " + ex.Message, "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
             }
-        }
-
-        private void goBackbtn_Click(object sender, RoutedEventArgs e)
-        {
-            NavigationService.GoBack();
         }
     }
 }

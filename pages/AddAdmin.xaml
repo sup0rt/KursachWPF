@@ -1,4 +1,4 @@
-﻿<Page x:Class="WpfApp1.pages.AddEmployee"
+﻿<Page x:Class="WpfApp1.pages.AddAdmin"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -6,8 +6,8 @@
       xmlns:local="clr-namespace:WpfApp1.pages"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="AddEmployee" Style="{StaticResource PageStyle}">
-    
+      Title="AddAdmin" Style="{StaticResource PageStyle}" >
+
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition />
@@ -15,14 +15,11 @@
             <RowDefinition />
             <RowDefinition />
             <RowDefinition />
-            <RowDefinition />
-            <RowDefinition />
-            <RowDefinition />
         </Grid.RowDefinitions>
 
-        <Button x:Name="goBackbtn" Content="Назад" HorizontalAlignment="Right" VerticalAlignment="Top" Grid.Row="0" Style="{StaticResource CustomButtonStyle}" Click="goBackbtn_Click" />
+        <Button x:Name="goBackbtn" Content="Назад" HorizontalAlignment="Right" VerticalAlignment="Top" Grid.Row="0" Style="{StaticResource CustomButtonStyle}" Click="goBackbtn_Click"  />
 
-        <StackPanel Grid.Row="1" Grid.Column="0" Grid.RowSpan="6" VerticalAlignment="Center" HorizontalAlignment="Center">
+        <StackPanel Grid.Row="1" Grid.RowSpan="3" VerticalAlignment="Center" HorizontalAlignment="Center">
             <Label x:Name="lblname" Content="Введите имя" Style="{StaticResource LblStyle}"/>
             <TextBox x:Name="nameTB" Text="{Binding FirstName, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Style="{StaticResource TBoxStyle}" />
             <Label x:Name="lblmiddlename" Content="Введите отчество" Style="{StaticResource LblStyle}"/>
@@ -33,13 +30,7 @@
             <TextBox x:Name="loginTB"  Style="{StaticResource TBoxStyle}" />
             <Label x:Name="lblpassword" Content="Ведите пароль" Style="{StaticResource LblStyle}"/>
             <PasswordBox x:Name="passwordTB"  MaxLength="20" Style="{StaticResource PBoxStyle}"/>
-            <Label x:Name="lblposition" Content="Выберите должность" Style="{StaticResource LblStyle}"/>
-            <ComboBox x:Name="positionCmB" DisplayMemberPath="PositionName" SelectedValuePath="PositionID" SelectedItem="{Binding Position}" />
-            <Label x:Name="lblDept" Content="Выберите отдел" Style="{StaticResource LblStyle}"/>
-            <ComboBox x:Name="departmentsCmB" DisplayMemberPath="DepartmentName" SelectedValuePath="DepartmentID" SelectedItem="{Binding Department}" />
-            <Label x:Name="lblSalary"  Content="Введите заработную плату" Style="{StaticResource LblStyle}"/>
-            <TextBox x:Name="salaryTB" Text="{Binding Salary, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Style="{StaticResource TBoxStyle}" />
         </StackPanel>
-        <Button x:Name="addEmployee" Style="{StaticResource CustomButtonStyle}" Content="Добавить" Grid.Row="7" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center" HorizontalContentAlignment="Center" Click="addEmployee_Click"  />
+        <Button x:Name="addEmployee" Style="{StaticResource CustomButtonStyle}" Content="Добавить" Grid.Row="6" VerticalAlignment="Center" HorizontalAlignment="Center" HorizontalContentAlignment="Center" Click="addEmployee_Click"  />
     </Grid>
 </Page>

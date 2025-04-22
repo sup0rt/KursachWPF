@@ -39,7 +39,12 @@ namespace WpfApp1.pages
 
         private void admin_Click(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate(new AdminPanel());
+            NavigationService.Navigate(new AdministratorLogin());
+        }
+
+        private void goBackbtn_Click(object sender, RoutedEventArgs e)
+        {
+            Application.Current.Shutdown();
         }
     }
 }

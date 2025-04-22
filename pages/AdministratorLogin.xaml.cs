@@ -16,24 +16,29 @@ using System.Windows.Shapes;
 namespace WpfApp1.pages
 {
     /// <summary>
-    /// Логика взаимодействия для AuthPageEmployee.xaml
+    /// Логика взаимодействия для AdministratorLogin.xaml
     /// </summary>
-    public partial class AuthPageEmployee : Page
+    public partial class AdministratorLogin : Page
     {
-        public AuthPageEmployee()
+        public AdministratorLogin()
         {
             InitializeComponent();
         }
 
+        private void goBackbtn_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.GoBack();
+        }
+
         private void signInButton_Click(object sender, RoutedEventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(loginInTB.Text) | string.IsNullOrEmpty(passwordInTB.Password))
+            if (string.IsNullOrWhiteSpace(loginTB.Text) | string.IsNullOrEmpty(passwordTB.Password))
             {
                 MessageBox.Show("Введите логин и пароль");
                 return;
             }
-            var employeeAccount = Entities.GetContext().EmployeeAccount.AsNoTracking().FirstOrDefault(ea => ea.Username == loginInTB.Text);
-            bool isValid = PasswordHasher.VerifyPassword(passwordInTB.Password, employeeAccount.Password, employeeAccount.Salt);
+            var adminAccount = Entities.GetContext().AdminAccount.AsNoTracking().FirstOrDefault(aa => aa.Username == loginTB.Text);
+            bool isValid = PasswordHasher.VerifyPassword(passwordTB.Password, adminAccount.Password, adminAccount.Salt);
             if (!isValid)
             {
                 MessageBox.Show("Неверный логин или пароль");
@@ -41,15 +46,11 @@ namespace WpfApp1.pages
             }
             else
             {
-                loginInTB.Clear();
-                passwordInTB.Clear();
-                NavigationService.Navigate(new WarehouseDetails());
+                loginTB.Clear();
+                passwordTB.Clear();
+                codeTB.Clear();
+                NavigationService.Navigate(new AdminPanel());
             }
-        }
-
-        private void goBackbtn_Click(object sender, RoutedEventArgs e)
-        {
-            NavigationService.GoBack();
         }
     }
 }

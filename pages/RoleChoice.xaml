@@ -18,5 +18,6 @@
         <Button x:Name="employee" Style="{StaticResource CustomButtonStyle}" Content="Войти как сотрудник" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center" HorizontalContentAlignment="Center" Click="employee_Click"  />
         <Button x:Name="customer" Style="{StaticResource CustomButtonStyle}" Content="Войти как покупатель"  Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center" HorizontalContentAlignment="Center" Click="customer_Click" />
         <Button x:Name="admin" Style="{StaticResource CustomButtonStyle}" Content="Войти как администратор" Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Center" HorizontalContentAlignment="Center" Click="admin_Click"   />
+        <Button x:Name="goBackbtn" Content="Выйти" HorizontalAlignment="Right" VerticalAlignment="Top" Grid.Column="2" Style="{StaticResource CustomButtonStyle}" Click="goBackbtn_Click" />
     </Grid>
 </Page>

@@ -114,5 +114,10 @@ namespace WpfApp1.pages
             SortDepartment.SelectedItem = null;
             dgSuppliers.ItemsSource = Entities.GetContext().Employee.ToList();
         }
+
+        private void goBackbtn_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.GoBack();
+        }
     }
 }
