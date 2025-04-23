@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using System.Data.Entity.Validation;
 using System.Linq;
+using System.Net.Mail;
 using System.Security.Principal;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -26,6 +28,23 @@ namespace WpfApp1.pages
         {
             InitializeComponent();
         }
+        public static bool isValidMail(string email)
+        {
+            if (string.IsNullOrEmpty(email))
+            {
+                return false;
+            }
+
+            try
+            {
+                MailAddress address = new MailAddress(email);
+                return address.Address == email;
+            }
+            catch (FormatException)
+            {
+                return false;
+            }
+        }
 
         private void goBackbtn_Click(object sender, RoutedEventArgs e)
         {
@@ -36,12 +55,15 @@ namespace WpfApp1.pages
         private void addEmployee_Click(object sender, RoutedEventArgs e)
         {
             StringBuilder errors = new StringBuilder();
+            var regex = new Regex(@"^((\+7))\d{10}$");
 
-            if (string.IsNullOrEmpty(_admin.FirstName)) errors.AppendLine("Введите имя сотрудника");
-            if (string.IsNullOrEmpty(_admin.MiddleName)) errors.AppendLine("Введите отчество сотрудника");
-            if (string.IsNullOrEmpty(_admin.LastName)) errors.AppendLine("Введите фамилию сотрудника");
-            if (string.IsNullOrEmpty(loginTB.Text)) errors.AppendLine("Введите логин сотрудника");
-            if (string.IsNullOrEmpty(passwordTB.Password)) errors.AppendLine("Введите пароль сотрудника");
+            if (string.IsNullOrEmpty(nameTB.Text)) errors.AppendLine("Введите имя администратора");
+            if (string.IsNullOrEmpty(middlenameTB.Text)) errors.AppendLine("Введите отчество администратора");
+            if (string.IsNullOrEmpty(lastNameTB.Text)) errors.AppendLine("Введите фамилию администратора");
+            if (string.IsNullOrEmpty(loginTB.Text)) errors.AppendLine("Введите логин администратора");
+            if (string.IsNullOrEmpty(passwordTB.Password)) errors.AppendLine("Введите пароль администратора");
+            if (!regex.IsMatch(phoneTB.Text)) errors.AppendLine("Укажите номер телефона в формате +7хххххххххх");
+            if (!isValidMail(emailTB.Text)) errors.AppendLine("Введите корректный email");
 
             if (passwordTB.Password.Length > 0)
             {
@@ -63,7 +85,7 @@ namespace WpfApp1.pages
                 using (var db = new Entities())
                 {
                     var employee = db.AdminAccount.AsNoTracking().FirstOrDefault(em => em.Username == loginTB.Text);
-                    if (employee != null) errors.AppendLine("Пользователь с таким логином уже существует");
+                    if (employee != null) errors.AppendLine("Администратор с таким логином уже существует");
                 }
             }
 
@@ -77,6 +99,13 @@ namespace WpfApp1.pages
             {
                 var context = Entities.GetContext();
 
+                _admin.FirstName = nameTB.Text;
+                _admin.LastName = lastNameTB.Text;
+                _admin.MiddleName = middlenameTB.Text;
+                _admin.Email = emailTB.Text;
+                _admin.PhoneNumber = phoneTB.Text;
+
+                _account.AdminID = _admin.AdminID;
                 _account.Username = loginTB.Text;
                 _account.Password = PasswordHasher.CreateHash(passwordTB.Password, out string salt);
                 _account.Salt = salt;
@@ -97,7 +126,7 @@ namespace WpfApp1.pages
                 }
 
                 context.SaveChanges();
-                MessageBox.Show("Сотрудник успешно добавлен", "Успех", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show("Администратор успешно добавлен", "Успех", MessageBoxButton.OK, MessageBoxImage.Information);
                 NavigationService.GoBack();
             }
             catch (DbEntityValidationException ex)

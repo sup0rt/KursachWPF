@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="Хранилище kursachModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="Хранилище Model" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Admin">
           <Key>
             <PropertyRef Name="AdminID" />
@@ -130,6 +130,7 @@
           <Property Name="ManufacturerID" Type="int" />
           <Property Name="SupplierID" Type="int" />
           <Property Name="Price" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="PhotoOfSparepart" Type="nvarchar" MaxLength="100" />
         </EntityType>
         <EntityType Name="Position">
           <Key>
@@ -160,9 +161,10 @@
         </EntityType>
         <EntityType Name="Warehouse">
           <Key>
-            <PropertyRef Name="PartID" />
+            <PropertyRef Name="ID" />
           </Key>
-          <Property Name="PartID" Type="int" Nullable="false" />
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PartID" Type="int" />
           <Property Name="Quantity" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="WarehouseTransaction">
@@ -306,18 +308,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Warehouse__PartI__5EBF139D">
-          <End Role="Part" Type="Self.Part" Multiplicity="1" />
-          <End Role="Warehouse" Type="Self.Warehouse" Multiplicity="0..1" />
-          <ReferentialConstraint>
-            <Principal Role="Part">
-              <PropertyRef Name="PartID" />
-            </Principal>
-            <Dependent Role="Warehouse">
-              <PropertyRef Name="PartID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK__Warehouse__PartI__619B8048">
           <End Role="Part" Type="Self.Part" Multiplicity="0..1" />
           <End Role="WarehouseTransaction" Type="Self.WarehouseTransaction" Multiplicity="*" />
@@ -326,6 +316,18 @@
               <PropertyRef Name="PartID" />
             </Principal>
             <Dependent Role="WarehouseTransaction">
+              <PropertyRef Name="PartID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Warehouse__PartI__76969D2E">
+          <End Role="Part" Type="Self.Part" Multiplicity="0..1" />
+          <End Role="Warehouse" Type="Self.Warehouse" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Part">
+              <PropertyRef Name="PartID" />
+            </Principal>
+            <Dependent Role="Warehouse">
               <PropertyRef Name="PartID" />
             </Dependent>
           </ReferentialConstraint>
@@ -342,7 +344,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="Хранилище kursachModelContainer">
+        <EntityContainer Name="Хранилище ModelContainer">
           <EntitySet Name="Admin" EntityType="Self.Admin" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AdminAccount" EntityType="Self.AdminAccount" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Category" EntityType="Self.Category" Schema="dbo" store:Type="Tables" />
@@ -405,23 +407,47 @@
             <End Role="Category" EntitySet="Category" />
             <End Role="Part" EntitySet="Part" />
           </AssociationSet>
-          <AssociationSet Name="FK__Warehouse__PartI__5EBF139D" Association="Self.FK__Warehouse__PartI__5EBF139D">
-            <End Role="Part" EntitySet="Part" />
-            <End Role="Warehouse" EntitySet="Warehouse" />
-          </AssociationSet>
           <AssociationSet Name="FK__Warehouse__PartI__619B8048" Association="Self.FK__Warehouse__PartI__619B8048">
             <End Role="Part" EntitySet="Part" />
             <End Role="WarehouseTransaction" EntitySet="WarehouseTransaction" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Warehouse__PartI__76969D2E" Association="Self.FK__Warehouse__PartI__76969D2E">
+            <End Role="Part" EntitySet="Part" />
+            <End Role="Warehouse" EntitySet="Warehouse" />
           </AssociationSet>
           <AssociationSet Name="fk2" Association="Self.fk2">
             <End Role="Supplier" EntitySet="Supplier" />
             <End Role="Part" EntitySet="Part" />
           </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="kursachModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <Schema Namespace="Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Admin">
+          <Key>
+            <PropertyRef Name="AdminID" />
+          </Key>
+          <Property Name="AdminID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="MiddleName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AdminAccount" Relationship="Self.FK__AdminAcco__Admin__73BA3083" FromRole="Admin" ToRole="AdminAccount" />
+        </EntityType>
+        <EntityType Name="AdminAccount">
+          <Key>
+            <PropertyRef Name="AdminAccountID" />
+          </Key>
+          <Property Name="AdminAccountID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AdminID" Type="Int32" />
+          <Property Name="Username" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Salt" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Admin" Relationship="Self.FK__AdminAcco__Admin__73BA3083" FromRole="AdminAccount" ToRole="Admin" />
+        </EntityType>
         <EntityType Name="Category">
           <Key>
             <PropertyRef Name="CategoryID" />
@@ -542,11 +568,12 @@
           <Property Name="ManufacturerID" Type="Int32" />
           <Property Name="SupplierID" Type="Int32" />
           <Property Name="Price" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="PhotoOfSparepart" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Category" Relationship="Self.FK__Part__CategoryID__5629CD9C" FromRole="Part" ToRole="Category" />
           <NavigationProperty Name="Manufacturer" Relationship="Self.fk" FromRole="Part" ToRole="Manufacturer" />
           <NavigationProperty Name="OrderDetail" Relationship="Self.FK__OrderDeta__PartI__59FA5E80" FromRole="Part" ToRole="OrderDetail" />
-          <NavigationProperty Name="Warehouse" Relationship="Self.FK__Warehouse__PartI__5EBF139D" FromRole="Part" ToRole="Warehouse" />
           <NavigationProperty Name="WarehouseTransaction" Relationship="Self.FK__Warehouse__PartI__619B8048" FromRole="Part" ToRole="WarehouseTransaction" />
+          <NavigationProperty Name="Warehouse" Relationship="Self.FK__Warehouse__PartI__76969D2E" FromRole="Part" ToRole="Warehouse" />
           <NavigationProperty Name="Supplier" Relationship="Self.fk2" FromRole="Part" ToRole="Supplier" />
         </EntityType>
         <EntityType Name="Position">
@@ -580,11 +607,12 @@
         </EntityType>
         <EntityType Name="Warehouse">
           <Key>
-            <PropertyRef Name="PartID" />
+            <PropertyRef Name="ID" />
           </Key>
-          <Property Name="PartID" Type="Int32" Nullable="false" />
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PartID" Type="Int32" />
           <Property Name="Quantity" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Part" Relationship="Self.FK__Warehouse__PartI__5EBF139D" FromRole="Warehouse" ToRole="Part" />
+          <NavigationProperty Name="Part" Relationship="Self.FK__Warehouse__PartI__76969D2E" FromRole="Warehouse" ToRole="Part" />
         </EntityType>
         <EntityType Name="WarehouseTransaction">
           <Key>
@@ -596,6 +624,18 @@
           <Property Name="TransactionDateTime" Type="DateTime" Nullable="false" Precision="3" />
           <NavigationProperty Name="Part" Relationship="Self.FK__Warehouse__PartI__619B8048" FromRole="WarehouseTransaction" ToRole="Part" />
         </EntityType>
+        <Association Name="FK__AdminAcco__Admin__73BA3083">
+          <End Role="Admin" Type="Self.Admin" Multiplicity="0..1" />
+          <End Role="AdminAccount" Type="Self.AdminAccount" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Admin">
+              <PropertyRef Name="AdminID" />
+            </Principal>
+            <Dependent Role="AdminAccount">
+              <PropertyRef Name="AdminID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK__Part__CategoryID__5629CD9C">
           <End Role="Category" Type="Self.Category" Multiplicity="0..1" />
           <End Role="Part" Type="Self.Part" Multiplicity="*" />
@@ -716,18 +756,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Warehouse__PartI__5EBF139D">
-          <End Role="Part" Type="Self.Part" Multiplicity="1" />
-          <End Role="Warehouse" Type="Self.Warehouse" Multiplicity="0..1" />
-          <ReferentialConstraint>
-            <Principal Role="Part">
-              <PropertyRef Name="PartID" />
-            </Principal>
-            <Dependent Role="Warehouse">
-              <PropertyRef Name="PartID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK__Warehouse__PartI__619B8048">
           <End Role="Part" Type="Self.Part" Multiplicity="0..1" />
           <End Role="WarehouseTransaction" Type="Self.WarehouseTransaction" Multiplicity="*" />
@@ -736,6 +764,18 @@
               <PropertyRef Name="PartID" />
             </Principal>
             <Dependent Role="WarehouseTransaction">
+              <PropertyRef Name="PartID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Warehouse__PartI__76969D2E">
+          <End Role="Part" Type="Self.Part" Multiplicity="0..1" />
+          <End Role="Warehouse" Type="Self.Warehouse" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Part">
+              <PropertyRef Name="PartID" />
+            </Principal>
+            <Dependent Role="Warehouse">
               <PropertyRef Name="PartID" />
             </Dependent>
           </ReferentialConstraint>
@@ -753,6 +793,8 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Admin" EntityType="Self.Admin" />
+          <EntitySet Name="AdminAccount" EntityType="Self.AdminAccount" />
           <EntitySet Name="Category" EntityType="Self.Category" />
           <EntitySet Name="Customer" EntityType="Self.Customer" />
           <EntitySet Name="CustomerAccount" EntityType="Self.CustomerAccount" />
@@ -769,6 +811,10 @@
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
           <EntitySet Name="Warehouse" EntityType="Self.Warehouse" />
           <EntitySet Name="WarehouseTransaction" EntityType="Self.WarehouseTransaction" />
+          <AssociationSet Name="FK__AdminAcco__Admin__73BA3083" Association="Self.FK__AdminAcco__Admin__73BA3083">
+            <End Role="Admin" EntitySet="Admin" />
+            <End Role="AdminAccount" EntitySet="AdminAccount" />
+          </AssociationSet>
           <AssociationSet Name="FK__Part__CategoryID__5629CD9C" Association="Self.FK__Part__CategoryID__5629CD9C">
             <End Role="Category" EntitySet="Category" />
             <End Role="Part" EntitySet="Part" />
@@ -809,68 +855,50 @@
             <End Role="Part" EntitySet="Part" />
             <End Role="OrderDetail" EntitySet="OrderDetail" />
           </AssociationSet>
-          <AssociationSet Name="FK__Warehouse__PartI__5EBF139D" Association="Self.FK__Warehouse__PartI__5EBF139D">
-            <End Role="Part" EntitySet="Part" />
-            <End Role="Warehouse" EntitySet="Warehouse" />
-          </AssociationSet>
           <AssociationSet Name="FK__Warehouse__PartI__619B8048" Association="Self.FK__Warehouse__PartI__619B8048">
             <End Role="Part" EntitySet="Part" />
             <End Role="WarehouseTransaction" EntitySet="WarehouseTransaction" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Warehouse__PartI__76969D2E" Association="Self.FK__Warehouse__PartI__76969D2E">
+            <End Role="Part" EntitySet="Part" />
+            <End Role="Warehouse" EntitySet="Warehouse" />
           </AssociationSet>
           <AssociationSet Name="fk2" Association="Self.fk2">
             <End Role="Supplier" EntitySet="Supplier" />
             <End Role="Part" EntitySet="Part" />
           </AssociationSet>
-          <EntitySet Name="Admin" EntityType="kursachModel.Admin" />
-          <EntitySet Name="AdminAccount" EntityType="kursachModel.AdminAccount" />
-          <AssociationSet Name="FK__AdminAcco__Admin__73BA3083" Association="kursachModel.FK__AdminAcco__Admin__73BA3083">
-            <End Role="Admin" EntitySet="Admin" />
-            <End Role="AdminAccount" EntitySet="AdminAccount" />
-          </AssociationSet>
         </EntityContainer>
-        <EntityType Name="Admin">
-          <Key>
-            <PropertyRef Name="AdminID" />
-          </Key>
-          <Property Name="AdminID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="MiddleName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Email" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
-          <Property Name="PhoneNumber" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="AdminAccount" Relationship="kursachModel.FK__AdminAcco__Admin__73BA3083" FromRole="Admin" ToRole="AdminAccount" />
-        </EntityType>
-        <EntityType Name="AdminAccount">
-          <Key>
-            <PropertyRef Name="AdminAccountID" />
-          </Key>
-          <Property Name="AdminAccountID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="AdminID" Type="Int32" />
-          <Property Name="Username" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Password" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="Salt" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Admin" Relationship="kursachModel.FK__AdminAcco__Admin__73BA3083" FromRole="AdminAccount" ToRole="Admin" />
-        </EntityType>
-        <Association Name="FK__AdminAcco__Admin__73BA3083">
-          <End Type="kursachModel.Admin" Role="Admin" Multiplicity="0..1" />
-          <End Type="kursachModel.AdminAccount" Role="AdminAccount" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Admin">
-              <PropertyRef Name="AdminID" />
-            </Principal>
-            <Dependent Role="AdminAccount">
-              <PropertyRef Name="AdminID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="Хранилище kursachModelContainer" CdmEntityContainer="Entities">
+        <EntityContainerMapping StorageEntityContainer="Хранилище ModelContainer" CdmEntityContainer="Entities">
+          <EntitySetMapping Name="Admin">
+            <EntityTypeMapping TypeName="Model.Admin">
+              <MappingFragment StoreEntitySet="Admin">
+                <ScalarProperty Name="AdminID" ColumnName="AdminID" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="MiddleName" ColumnName="MiddleName" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AdminAccount">
+            <EntityTypeMapping TypeName="Model.AdminAccount">
+              <MappingFragment StoreEntitySet="AdminAccount">
+                <ScalarProperty Name="AdminAccountID" ColumnName="AdminAccountID" />
+                <ScalarProperty Name="AdminID" ColumnName="AdminID" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Salt" ColumnName="Salt" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Category">
-            <EntityTypeMapping TypeName="kursachModel.Category">
+            <EntityTypeMapping TypeName="Model.Category">
               <MappingFragment StoreEntitySet="Category">
                 <ScalarProperty Name="CategoryID" ColumnName="CategoryID" />
                 <ScalarProperty Name="CategoryName" ColumnName="CategoryName" />
@@ -878,7 +906,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Customer">
-            <EntityTypeMapping TypeName="kursachModel.Customer">
+            <EntityTypeMapping TypeName="Model.Customer">
               <MappingFragment StoreEntitySet="Customer">
                 <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
                 <ScalarProperty Name="LastName" ColumnName="LastName" />
@@ -891,7 +919,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="CustomerAccount">
-            <EntityTypeMapping TypeName="kursachModel.CustomerAccount">
+            <EntityTypeMapping TypeName="Model.CustomerAccount">
               <MappingFragment StoreEntitySet="CustomerAccount">
                 <ScalarProperty Name="CustomerAccountID" ColumnName="CustomerAccountID" />
                 <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
@@ -902,7 +930,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Department">
-            <EntityTypeMapping TypeName="kursachModel.Department">
+            <EntityTypeMapping TypeName="Model.Department">
               <MappingFragment StoreEntitySet="Department">
                 <ScalarProperty Name="DepartmentID" ColumnName="DepartmentID" />
                 <ScalarProperty Name="DepartmentName" ColumnName="DepartmentName" />
@@ -910,7 +938,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Employee">
-            <EntityTypeMapping TypeName="kursachModel.Employee">
+            <EntityTypeMapping TypeName="Model.Employee">
               <MappingFragment StoreEntitySet="Employee">
                 <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
                 <ScalarProperty Name="LastName" ColumnName="LastName" />
@@ -923,7 +951,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="EmployeeAccount">
-            <EntityTypeMapping TypeName="kursachModel.EmployeeAccount">
+            <EntityTypeMapping TypeName="Model.EmployeeAccount">
               <MappingFragment StoreEntitySet="EmployeeAccount">
                 <ScalarProperty Name="EmployeeAccountID" ColumnName="EmployeeAccountID" />
                 <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
@@ -934,7 +962,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Manufacturer">
-            <EntityTypeMapping TypeName="kursachModel.Manufacturer">
+            <EntityTypeMapping TypeName="Model.Manufacturer">
               <MappingFragment StoreEntitySet="Manufacturer">
                 <ScalarProperty Name="ManufacturerID" ColumnName="ManufacturerID" />
                 <ScalarProperty Name="OrganizationName" ColumnName="OrganizationName" />
@@ -945,7 +973,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Order">
-            <EntityTypeMapping TypeName="kursachModel.Order">
+            <EntityTypeMapping TypeName="Model.Order">
               <MappingFragment StoreEntitySet="Order">
                 <ScalarProperty Name="OrderID" ColumnName="OrderID" />
                 <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
@@ -955,7 +983,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="OrderDetail">
-            <EntityTypeMapping TypeName="kursachModel.OrderDetail">
+            <EntityTypeMapping TypeName="Model.OrderDetail">
               <MappingFragment StoreEntitySet="OrderDetail">
                 <ScalarProperty Name="OrderDetailID" ColumnName="OrderDetailID" />
                 <ScalarProperty Name="OrderID" ColumnName="OrderID" />
@@ -966,7 +994,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="OrderStatus">
-            <EntityTypeMapping TypeName="kursachModel.OrderStatus">
+            <EntityTypeMapping TypeName="Model.OrderStatus">
               <MappingFragment StoreEntitySet="OrderStatus">
                 <ScalarProperty Name="OrderStatusID" ColumnName="OrderStatusID" />
                 <ScalarProperty Name="StatusName" ColumnName="StatusName" />
@@ -974,7 +1002,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Part">
-            <EntityTypeMapping TypeName="kursachModel.Part">
+            <EntityTypeMapping TypeName="Model.Part">
               <MappingFragment StoreEntitySet="Part">
                 <ScalarProperty Name="PartID" ColumnName="PartID" />
                 <ScalarProperty Name="PartName" ColumnName="PartName" />
@@ -982,11 +1010,12 @@
                 <ScalarProperty Name="ManufacturerID" ColumnName="ManufacturerID" />
                 <ScalarProperty Name="SupplierID" ColumnName="SupplierID" />
                 <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="PhotoOfSparepart" ColumnName="PhotoOfSparepart" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Position">
-            <EntityTypeMapping TypeName="kursachModel.Position">
+            <EntityTypeMapping TypeName="Model.Position">
               <MappingFragment StoreEntitySet="Position">
                 <ScalarProperty Name="PositionID" ColumnName="PositionID" />
                 <ScalarProperty Name="PositionName" ColumnName="PositionName" />
@@ -994,7 +1023,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Supplier">
-            <EntityTypeMapping TypeName="kursachModel.Supplier">
+            <EntityTypeMapping TypeName="Model.Supplier">
               <MappingFragment StoreEntitySet="Supplier">
                 <ScalarProperty Name="SupplierID" ColumnName="SupplierID" />
                 <ScalarProperty Name="OrganizationName" ColumnName="OrganizationName" />
@@ -1005,7 +1034,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="sysdiagrams">
-            <EntityTypeMapping TypeName="kursachModel.sysdiagrams">
+            <EntityTypeMapping TypeName="Model.sysdiagrams">
               <MappingFragment StoreEntitySet="sysdiagrams">
                 <ScalarProperty Name="name" ColumnName="name" />
                 <ScalarProperty Name="principal_id" ColumnName="principal_id" />
@@ -1016,43 +1045,21 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Warehouse">
-            <EntityTypeMapping TypeName="kursachModel.Warehouse">
+            <EntityTypeMapping TypeName="Model.Warehouse">
               <MappingFragment StoreEntitySet="Warehouse">
+                <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="PartID" ColumnName="PartID" />
                 <ScalarProperty Name="Quantity" ColumnName="Quantity" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="WarehouseTransaction">
-            <EntityTypeMapping TypeName="kursachModel.WarehouseTransaction">
+            <EntityTypeMapping TypeName="Model.WarehouseTransaction">
               <MappingFragment StoreEntitySet="WarehouseTransaction">
                 <ScalarProperty Name="TransactionID" ColumnName="TransactionID" />
                 <ScalarProperty Name="PartID" ColumnName="PartID" />
                 <ScalarProperty Name="Quantity" ColumnName="Quantity" />
                 <ScalarProperty Name="TransactionDateTime" ColumnName="TransactionDateTime" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Admin">
-            <EntityTypeMapping TypeName="kursachModel.Admin">
-              <MappingFragment StoreEntitySet="Admin">
-                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
-                <ScalarProperty Name="Email" ColumnName="Email" />
-                <ScalarProperty Name="MiddleName" ColumnName="MiddleName" />
-                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
-                <ScalarProperty Name="LastName" ColumnName="LastName" />
-                <ScalarProperty Name="AdminID" ColumnName="AdminID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="AdminAccount">
-            <EntityTypeMapping TypeName="kursachModel.AdminAccount">
-              <MappingFragment StoreEntitySet="AdminAccount">
-                <ScalarProperty Name="Salt" ColumnName="Salt" />
-                <ScalarProperty Name="Password" ColumnName="Password" />
-                <ScalarProperty Name="Username" ColumnName="Username" />
-                <ScalarProperty Name="AdminID" ColumnName="AdminID" />
-                <ScalarProperty Name="AdminAccountID" ColumnName="AdminAccountID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

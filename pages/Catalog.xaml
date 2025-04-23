@@ -36,7 +36,7 @@
         <Button x:Name="btnClearFilter" Content="Очистить" Grid.Column="2" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center" Style="{StaticResource CustomButtonStyle}" Click="btnClearFilter_Click" />
 
 
-        <ListView x:Name="lvParts" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" ScrollViewer.HorizontalScrollBarVisibility="Disabled" HorizontalContentAlignment="Center" >
+        <ListView x:Name="lvParts" Grid.Row="1" Grid.Column="0" Grid.RowSpan="2" Grid.ColumnSpan="2" ScrollViewer.HorizontalScrollBarVisibility="Disabled" HorizontalContentAlignment="Center" >
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <Grid>
@@ -46,9 +46,12 @@
                             <ColumnDefinition/>
                             <ColumnDefinition/>
                             <ColumnDefinition/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
                         </Grid.ColumnDefinitions>
 
-                        <!--<Image Width="450" Grid.Row="1" Stretch="UniformToFill" HorizontalAlignment="Center" >
+                        <Image Height="200" Width="100" Grid.Column="0" Stretch="UniformToFill" HorizontalAlignment="Center" >
                             <Image.Source>
                                 <Binding Path="PhotoOfSparepart">
                                     <Binding.TargetNullValue>
@@ -58,12 +61,14 @@
                                     </Binding.TargetNullValue>
                                 </Binding>
                             </Image.Source>
-                        </Image>-->
-
-                        <TextBlock VerticalAlignment="Center" TextAlignment="Center" Grid.Column="1" Text="{Binding name}" />
-                        <TextBlock VerticalAlignment="Center" TextAlignment="Center" Grid.Column="2" Text="{Binding Manufacturer.organizationName}" />
-                        <TextBlock VerticalAlignment="Center" TextAlignment="Center" Grid.Column="3" Text="{Binding price}" />
-                        <TextBlock VerticalAlignment="Center" TextAlignment="Center" Grid.Column="4" Text="{Binding Warehouse.stockQuantity}" />
+                        </Image>
+                        <TextBox IsReadOnly="True" Style="{StaticResource TBoxStyle}" VerticalAlignment="Center" TextAlignment="Center" Grid.Column="1" Text="{Binding PartName}" />
+                        <TextBox IsReadOnly="True" Style="{StaticResource TBoxStyle}" VerticalAlignment="Center" TextAlignment="Center" Grid.Column="2" Text="{Binding Category.CategoryName}" />
+                        <TextBox IsReadOnly="True" Style="{StaticResource TBoxStyle}" VerticalAlignment="Center" TextAlignment="Center" Grid.Column="3" Text="{Binding Manufacturer.OrganizationName}" />
+                        <TextBox IsReadOnly="True" Style="{StaticResource TBoxStyle}" VerticalAlignment="Center" TextAlignment="Center" Grid.Column="4" Text="{Binding Supplier.OrganizationName}" />
+                        <TextBox IsReadOnly="True" Style="{StaticResource TBoxStyle}" VerticalAlignment="Center" TextAlignment="Center" Grid.Column="5" Text="{Binding Price}" />
+                        <TextBox IsReadOnly="True" Style="{StaticResource TBoxStyle}" VerticalAlignment="Center" TextAlignment="Center" Grid.Column="6" Text="{Binding Warehouse.Quantity}" />
+                        <Button x:Name="addToOrder" Grid.Column="7" Style="{StaticResource CustomButtonStyle}" Content="Добавить в заказ" VerticalAlignment="Center" HorizontalAlignment="Center" HorizontalContentAlignment="Center" Click="addToOrder_Click"   />
                     </Grid>
                 </DataTemplate>
             </ListView.ItemTemplate>
@@ -73,8 +78,8 @@
                 </ItemsPanelTemplate>
             </ListView.ItemsPanel>
         </ListView>
+
         
-        
-        
+
     </Grid>
 </Page>

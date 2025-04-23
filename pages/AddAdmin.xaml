@@ -21,15 +21,19 @@
 
         <StackPanel Grid.Row="1" Grid.RowSpan="3" VerticalAlignment="Center" HorizontalAlignment="Center">
             <Label x:Name="lblname" Content="Введите имя" Style="{StaticResource LblStyle}"/>
-            <TextBox x:Name="nameTB" Text="{Binding FirstName, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Style="{StaticResource TBoxStyle}" />
+            <TextBox x:Name="nameTB" Text="{Binding FirstName}" Style="{StaticResource TBoxStyle}" />
             <Label x:Name="lblmiddlename" Content="Введите отчество" Style="{StaticResource LblStyle}"/>
-            <TextBox x:Name="middlenameTB" Text="{Binding MiddleName, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Style="{StaticResource TBoxStyle}" />
+            <TextBox x:Name="middlenameTB" Text="{Binding MiddleName}" Style="{StaticResource TBoxStyle}" />
             <Label x:Name="lblsurname" Content="Введите фамилию" Style="{StaticResource LblStyle}"/>
-            <TextBox x:Name="lastNameTB" Text="{Binding LastName, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Style="{StaticResource TBoxStyle}" />
+            <TextBox x:Name="lastNameTB" Text="{Binding LastName}" Style="{StaticResource TBoxStyle}" />
             <Label x:Name="lbllogin" Content="Введите логин" Style="{StaticResource LblStyle}"/>
             <TextBox x:Name="loginTB"  Style="{StaticResource TBoxStyle}" />
             <Label x:Name="lblpassword" Content="Ведите пароль" Style="{StaticResource LblStyle}"/>
             <PasswordBox x:Name="passwordTB"  MaxLength="20" Style="{StaticResource PBoxStyle}"/>
+            <Label x:Name="lblemail" Content="Ведите email" Style="{StaticResource LblStyle}"/>
+            <TextBox x:Name="emailTB"  Style="{StaticResource TBoxStyle}" />
+            <Label x:Name="lblphone" Content="Ведите номер телефона" Style="{StaticResource LblStyle}"/>
+            <TextBox x:Name="phoneTB"  Style="{StaticResource TBoxStyle}" />
         </StackPanel>
         <Button x:Name="addEmployee" Style="{StaticResource CustomButtonStyle}" Content="Добавить" Grid.Row="6" VerticalAlignment="Center" HorizontalAlignment="Center" HorizontalContentAlignment="Center" Click="addEmployee_Click"  />
     </Grid>

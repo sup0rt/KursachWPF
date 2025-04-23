@@ -42,7 +42,7 @@
         <Button x:Name="deleteSparePart" Style="{StaticResource CustomButtonStyle}" Content="Удалить запчасть" Grid.Column="3" Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Center" HorizontalContentAlignment="Center" Click="deleteSparePart_Click"    />
         
 
-        <ListView x:Name="lvParts" Grid.Row="1" Grid.Column="0" Grid.RowSpan="2" Grid.ColumnSpan="3" ScrollViewer.HorizontalScrollBarVisibility="Disabled" HorizontalContentAlignment="Center" >
+        <ListView x:Name="lvParts" Grid.Row="1" Grid.Column="1" Grid.RowSpan="2" Grid.ColumnSpan="2" ScrollViewer.HorizontalScrollBarVisibility="Disabled" HorizontalContentAlignment="Center" >
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <Grid>
@@ -54,28 +54,27 @@
                             <ColumnDefinition/>
                             <ColumnDefinition/>
                             <ColumnDefinition/>
+                            <ColumnDefinition/>
                         </Grid.ColumnDefinitions>
 
-                        <!--<Image Width="450" Grid.Row="1" Stretch="UniformToFill" HorizontalAlignment="Center" >
-                    <Image.Source>
-                        <Binding Path="PhotoOfSparepart">
-                            <Binding.TargetNullValue>
-                                <ImageSource>
-                                    /photos/defaultPhoto.png
-                                </ImageSource>
-                            </Binding.TargetNullValue>
-                        </Binding>
-                    </Image.Source>
-                </Image>-->
-
-                        <TextBox VerticalAlignment="Center" TextAlignment="Center" Grid.Column="0" Text="{Binding PartName}" />
-                        <TextBox VerticalAlignment="Center" TextAlignment="Center" Grid.Column="1" Text="{Binding Category.CategoryName}" />
-                        <TextBox VerticalAlignment="Center" TextAlignment="Center" Grid.Column="2" Text="{Binding Manufacturer.OrganizationName}" />
-                        <TextBox VerticalAlignment="Center" TextAlignment="Center" Grid.Column="3" Text="{Binding Supplier.OrganizationName}" />
-                        <TextBox VerticalAlignment="Center" TextAlignment="Center" Grid.Column="4" Text="{Binding Price}" />
-                        <TextBox VerticalAlignment="Center" TextAlignment="Center" Grid.Column="5" Text="{Binding WarehouseStockQuantity}" />
-                        <!--<Button x:Name="editSparePart" Style="{StaticResource CustomButtonStyle}" Content="Редактировать запчасть" VerticalAlignment="Center" HorizontalAlignment="Center" HorizontalContentAlignment="Center" Click="editSparePart_Click"   />-->
-
+                        <Image Height="200" Width="100" Grid.Column="0" Stretch="UniformToFill" HorizontalAlignment="Center" >
+                            <Image.Source>
+                                <Binding Path="PhotoOfSparepart">
+                                    <Binding.TargetNullValue>
+                                        <ImageSource>
+                                            /photos/defaultPhoto.png
+                                        </ImageSource>
+                                    </Binding.TargetNullValue>
+                                </Binding>
+                            </Image.Source>
+                        </Image>
+                        <TextBox IsReadOnly="True" Style="{StaticResource TBoxStyle}" VerticalAlignment="Center" TextAlignment="Center" Grid.Column="1" Text="{Binding PartName}" />
+                        <TextBox IsReadOnly="True" Style="{StaticResource TBoxStyle}" VerticalAlignment="Center" TextAlignment="Center" Grid.Column="2" Text="{Binding Category.CategoryName}" />
+                        <TextBox IsReadOnly="True" Style="{StaticResource TBoxStyle}" VerticalAlignment="Center" TextAlignment="Center" Grid.Column="3" Text="{Binding Manufacturer.OrganizationName}" />
+                        <TextBox IsReadOnly="True" Style="{StaticResource TBoxStyle}" VerticalAlignment="Center" TextAlignment="Center" Grid.Column="4" Text="{Binding Supplier.OrganizationName}" />
+                        <TextBox IsReadOnly="True" Style="{StaticResource TBoxStyle}" VerticalAlignment="Center" TextAlignment="Center" Grid.Column="5" Text="{Binding Price}" />
+                        <TextBox IsReadOnly="True" Style="{StaticResource TBoxStyle}" VerticalAlignment="Center" TextAlignment="Center" Grid.Column="6" Text="{Binding Warehouse.Quantity}" />
+                        <Button x:Name="editSparePart" Grid.Column="7" Style="{StaticResource CustomButtonStyle}" Content="Редактировать запчасть" VerticalAlignment="Center" HorizontalAlignment="Center" HorizontalContentAlignment="Center" Click="editSparePart_Click"   />
                     </Grid>
                 </DataTemplate>
             </ListView.ItemTemplate>

@@ -70,5 +70,10 @@ namespace WpfApp1.pages
         {
             NavigationService.GoBack();
         }
+
+        private void addToOrder_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

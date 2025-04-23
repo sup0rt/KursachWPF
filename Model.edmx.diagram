@@ -4,39 +4,39 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="44e85199ee8e491fa10e7267fd58690c" Name="Diagram1">
-        <EntityTypeShape EntityType="kursachModel.Category" Width="1.5" PointX="0.75" PointY="4.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="kursachModel.Customer" Width="1.5" PointX="0.75" PointY="10.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="kursachModel.CustomerAccount" Width="1.5" PointX="3" PointY="9" IsExpanded="true" />
-        <EntityTypeShape EntityType="kursachModel.Department" Width="1.5" PointX="7.75" PointY="2" IsExpanded="true" />
-        <EntityTypeShape EntityType="kursachModel.Employee" Width="1.5" PointX="10" PointY="1.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="kursachModel.EmployeeAccount" Width="1.5" PointX="12.25" PointY="1.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="kursachModel.Manufacturer" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="kursachModel.Order" Width="1.5" PointX="3" PointY="12.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="kursachModel.OrderDetail" Width="1.5" PointX="5.25" PointY="3.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="kursachModel.OrderStatus" Width="1.5" PointX="0.75" PointY="14.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="kursachModel.Part" Width="1.5" PointX="3" PointY="3.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="kursachModel.Position" Width="1.5" PointX="7.75" PointY="6" IsExpanded="true" />
-        <EntityTypeShape EntityType="kursachModel.Supplier" Width="1.5" PointX="0.75" PointY="7.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="kursachModel.sysdiagrams" Width="1.5" PointX="7.75" PointY="9.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="kursachModel.Warehouse" Width="1.5" PointX="5.25" PointY="6.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="kursachModel.WarehouseTransaction" Width="1.5" PointX="5.25" PointY="8.625" IsExpanded="true" />
-        <AssociationConnector Association="kursachModel.FK__Part__CategoryID__5629CD9C" ManuallyRouted="false" />
-        <AssociationConnector Association="kursachModel.FK__CustomerA__Custo__403A8C7D" ManuallyRouted="false" />
-        <AssociationConnector Association="kursachModel.FK__Order__CustomerI__52593CB8" ManuallyRouted="false" />
-        <AssociationConnector Association="kursachModel.FK__Employee__Depart__47DBAE45" ManuallyRouted="false" />
-        <AssociationConnector Association="kursachModel.FK__Employee__Positi__46E78A0C" ManuallyRouted="false" />
-        <AssociationConnector Association="kursachModel.FK__EmployeeA__Emplo__4BAC3F29" ManuallyRouted="false" />
-        <AssociationConnector Association="kursachModel.fk" ManuallyRouted="false" />
-        <AssociationConnector Association="kursachModel.FK__Order__OrderStat__534D60F1" ManuallyRouted="false" />
-        <AssociationConnector Association="kursachModel.FK__OrderDeta__Order__59063A47" ManuallyRouted="false" />
-        <AssociationConnector Association="kursachModel.FK__OrderDeta__PartI__59FA5E80" ManuallyRouted="false" />
-        <AssociationConnector Association="kursachModel.FK__Warehouse__PartI__5EBF139D" ManuallyRouted="false" />
-        <AssociationConnector Association="kursachModel.FK__Warehouse__PartI__619B8048" ManuallyRouted="false" />
-        <AssociationConnector Association="kursachModel.fk2" ManuallyRouted="false" />
-        <EntityTypeShape EntityType="kursachModel.Admin" Width="1.5" PointX="10.375" PointY="6" />
-        <EntityTypeShape EntityType="kursachModel.AdminAccount" Width="1.5" PointX="12.625" PointY="6" />
-        <AssociationConnector Association="kursachModel.FK__AdminAcco__Admin__73BA3083" />
+      <Diagram DiagramId="f9059c65bcfa4ad5b271fbfd32337e0e" Name="Diagram1">
+        <EntityTypeShape EntityType="Model.Admin" Width="1.5" PointX="7.75" PointY="9.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.AdminAccount" Width="1.5" PointX="10" PointY="9.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Category" Width="1.5" PointX="0.75" PointY="4.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Customer" Width="1.5" PointX="0.75" PointY="11.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.CustomerAccount" Width="1.5" PointX="3" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Department" Width="1.5" PointX="7.75" PointY="1.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Employee" Width="1.5" PointX="10" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.EmployeeAccount" Width="1.5" PointX="12.25" PointY="1.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Manufacturer" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Order" Width="1.5" PointX="3" PointY="12.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.OrderDetail" Width="1.5" PointX="5.25" PointY="2.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.OrderStatus" Width="1.5" PointX="0.75" PointY="14.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Part" Width="1.5" PointX="3" PointY="3.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Position" Width="1.5" PointX="7.75" PointY="5.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Supplier" Width="1.5" PointX="0.75" PointY="7.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.sysdiagrams" Width="1.5" PointX="9.75" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Warehouse" Width="1.5" PointX="5.25" PointY="6.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.WarehouseTransaction" Width="1.5" PointX="5.25" PointY="8.75" IsExpanded="true" />
+        <AssociationConnector Association="Model.FK__AdminAcco__Admin__73BA3083" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK__Part__CategoryID__5629CD9C" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK__CustomerA__Custo__403A8C7D" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK__Order__CustomerI__52593CB8" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK__Employee__Depart__47DBAE45" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK__Employee__Positi__46E78A0C" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK__EmployeeA__Emplo__4BAC3F29" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.fk" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK__Order__OrderStat__534D60F1" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK__OrderDeta__Order__59063A47" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK__OrderDeta__PartI__59FA5E80" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK__Warehouse__PartI__619B8048" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK__Warehouse__PartI__76969D2E" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.fk2" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
