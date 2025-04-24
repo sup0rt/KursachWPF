@@ -16,19 +16,29 @@ using System.Windows.Shapes;
 namespace WpfApp1.pages
 {
     /// <summary>
-    /// Логика взаимодействия для Orders.xaml
+    /// Логика взаимодействия для OrdersPage.xaml
     /// </summary>
-    public partial class Orders : Page
+    public partial class OrdersPage : Page
     {
-        public Orders()
+        public OrdersPage()
         {
             InitializeComponent();
-            dgOrders.ItemsSource=Entities.GetContext().Order.ToList();
+           
+        }
+        
+        private void createOrderBtn_Click(object sender, RoutedEventArgs e)
+        {
+
         }
 
-        private void goBackbtn_Click(object sender, RoutedEventArgs e)
+        private void editOrderBtn_Click(object sender, RoutedEventArgs e)
         {
-            NavigationService.GoBack();
+
+        }
+
+        private void deleteOrderBtn_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

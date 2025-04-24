@@ -43,16 +43,13 @@ namespace WpfApp1.pages
             {
                 loginInTB.Clear();
                 passwordInTB.Clear();
-                NavigationService.Navigate(new WarehouseDetails());
+                NavigationService.Navigate(new EmployeePanel());
             }
         }
 
         private void goBackbtn_Click(object sender, RoutedEventArgs e)
         {
-            if (MessageBox.Show($"Вы уверенны, что хотите выйти из программы?", "Внимание!", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
-            {
-                Application.Current.Shutdown();
-            }
+            NavigationService.GoBack();
         }
     }
 }

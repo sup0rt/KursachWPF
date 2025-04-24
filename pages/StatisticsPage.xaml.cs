@@ -16,19 +16,13 @@ using System.Windows.Shapes;
 namespace WpfApp1.pages
 {
     /// <summary>
-    /// Логика взаимодействия для Manufacturers.xaml
+    /// Логика взаимодействия для StatisticsPage.xaml
     /// </summary>
-    public partial class Manufacturers : Page
+    public partial class StatisticsPage : Page
     {
-        public Manufacturers()
+        public StatisticsPage()
         {
             InitializeComponent();
-            dgManufacturers.ItemsSource = Entities.GetContext().Manufacturer.ToList();
-        }
-
-        private void goBackbtn_Click(object sender, RoutedEventArgs e)
-        {
-            NavigationService.GoBack();
         }
     }
 }

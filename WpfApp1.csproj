@@ -154,29 +154,20 @@
     <Compile Include="pages\AdminSupplierPage.xaml.cs">
       <DependentUpon>AdminSupplierPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="pages\AuthPage.xaml.cs">
-      <DependentUpon>AuthPage.xaml</DependentUpon>
-    </Compile>
     <Compile Include="pages\AuthPageEmployee.xaml.cs">
       <DependentUpon>AuthPageEmployee.xaml</DependentUpon>
     </Compile>
-    <Compile Include="pages\Catalog.xaml.cs">
-      <DependentUpon>Catalog.xaml</DependentUpon>
+    <Compile Include="pages\EmployeePanel.xaml.cs">
+      <DependentUpon>EmployeePanel.xaml</DependentUpon>
     </Compile>
-    <Compile Include="pages\Dealers.xaml.cs">
-      <DependentUpon>Dealers.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="pages\Manufacturers.xaml.cs">
-      <DependentUpon>Manufacturers.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="pages\Orders.xaml.cs">
-      <DependentUpon>Orders.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="pages\Registration.xaml.cs">
-      <DependentUpon>Registration.xaml</DependentUpon>
+    <Compile Include="pages\OrdersPage.xaml.cs">
+      <DependentUpon>OrdersPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="pages\RoleChoice.xaml.cs">
       <DependentUpon>RoleChoice.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="pages\StatisticsPage.xaml.cs">
+      <DependentUpon>StatisticsPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="pages\WarehouseDetails.xaml.cs">
       <DependentUpon>WarehouseDetails.xaml</DependentUpon>
@@ -264,35 +255,23 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="pages\AuthPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="pages\AuthPageEmployee.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="pages\Catalog.xaml">
+    <Page Include="pages\EmployeePanel.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="pages\Dealers.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="pages\Manufacturers.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="pages\Orders.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="pages\Registration.xaml">
+    <Page Include="pages\OrdersPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="pages\RoleChoice.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="pages\StatisticsPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

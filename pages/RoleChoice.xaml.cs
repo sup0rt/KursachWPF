@@ -30,11 +30,7 @@ namespace WpfApp1.pages
             NavigationService.Navigate(new AuthPageEmployee());
         }
 
-        private void customer_Click(object sender, RoutedEventArgs e)
-        {
-            NavigationService.Navigate(new Registration());
-        }
-
+        
         private void admin_Click(object sender, RoutedEventArgs e)
         {
             NavigationService.Navigate(new AdministratorLogin());

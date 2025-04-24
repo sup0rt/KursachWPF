@@ -1,0 +1,46 @@
+﻿<Page x:Class="WpfApp1.pages.OrdersPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:WpfApp1.pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="OrdersPage" Style="{StaticResource PageStyle}">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <Button x:Name="createOrderBtn" Content="Создать заказ" Style="{StaticResource CustomButtonStyle}" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="0" Grid.Row="0" Click="createOrderBtn_Click" />
+        <Button x:Name="editOrderBtn" Content="Редактировать заказ" Style="{StaticResource CustomButtonStyle}" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="1" Grid.Row="0" Click="editOrderBtn_Click" />
+        <Button x:Name="deleteOrderBtn" Content="Удалить заказ" Style="{StaticResource CustomButtonStyle}" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="2" Grid.Row="0" Click="deleteOrderBtn_Click"  />
+
+
+        <DataGrid Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="3" x:Name="dgSuppliers"  Style="{StaticResource DGrStyle}" AutoGenerateColumns="False" IsReadOnly="True" HorizontalAlignment="Center" >
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Фамилия клиента" Binding="{Binding MiddleName}" />
+                <DataGridTextColumn Header="Имя клиента" Binding="{Binding FirstName}" />
+                <DataGridTextColumn Header="Отчество клиента" Binding="{Binding LastName}" />
+                <DataGridTextColumn Header="Дата создания" Binding="{Binding Department.DepartmentName}" />
+                <DataGridTextColumn Header="Статус" Binding="{Binding Position.PositionName}" />
+                <DataGridTemplateColumn>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button x:Name="editEmployee" Style="{StaticResource CustomButtonStyle}" Content="Редактировать сотрудника" Grid.Column="1" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center" HorizontalContentAlignment="Center" Click="editEmployee_Click"    />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+
+        </DataGrid>
+    </Grid>
+</Page>

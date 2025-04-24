@@ -16,19 +16,24 @@ using System.Windows.Shapes;
 namespace WpfApp1.pages
 {
     /// <summary>
-    /// Логика взаимодействия для Dealers.xaml
+    /// Логика взаимодействия для EmployeePanel.xaml
     /// </summary>
-    public partial class Dealers : Page
+    public partial class EmployeePanel : Page
     {
-        public Dealers()
+        public EmployeePanel()
         {
             InitializeComponent();
-            dgSuppliers.ItemsSource= Entities.GetContext().Supplier.ToList();
         }
 
-        private void goBackbtn_Click(object sender, RoutedEventArgs e)
+        private void ordersBtn_Click(object sender, RoutedEventArgs e)
         {
-            NavigationService.GoBack();
+            NavigationService.Navigate(new OrdersPage());
         }
+
+        private void statisticsBtn_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new StatisticsPage());
+        }
+
     }
 }
