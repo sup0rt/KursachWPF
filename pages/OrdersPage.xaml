@@ -35,7 +35,7 @@
                 <DataGridTemplateColumn>
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <Button x:Name="editEmployee" Style="{StaticResource CustomButtonStyle}" Content="Редактировать сотрудника" Grid.Column="1" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center" HorizontalContentAlignment="Center" Click="editEmployee_Click"    />
+                            <Button x:Name="editEmployee" Style="{StaticResource CustomButtonStyle}" Content="Редактировать сотрудника" Grid.Column="1" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center" HorizontalContentAlignment="Center"    />
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>

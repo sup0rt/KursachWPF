@@ -28,17 +28,32 @@ namespace WpfApp1.pages
         
         private void createOrderBtn_Click(object sender, RoutedEventArgs e)
         {
-
+            NavigationService.Navigate(new OrderCreation());
         }
 
         private void editOrderBtn_Click(object sender, RoutedEventArgs e)
         {
-
+            NavigationService.Navigate(new OrderCreation());
         }
 
         private void deleteOrderBtn_Click(object sender, RoutedEventArgs e)
         {
+            var removing = dgSuppliers.SelectedItems.Cast<Order>().ToList();
+            if (MessageBox.Show($"Вы уверенны, что хотите удалить выбранные записи?", "Внимание!", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+            {
+                try
+                {
+                    Entities.GetContext().Order.RemoveRange(removing);
+                    Entities.GetContext().SaveChanges();
+                    MessageBox.Show("Успешно удалено");
 
+                    dgSuppliers.ItemsSource = Entities.GetContext().Order.ToList();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            }
         }
     }
 }

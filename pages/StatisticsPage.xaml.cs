@@ -24,5 +24,30 @@ namespace WpfApp1.pages
         {
             InitializeComponent();
         }
+
+        private void report1Btn_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new Report1());
+        }
+
+        private void report2Btn_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new Report2());
+        }
+
+        private void report3Btn_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new Report3());
+        }
+
+        private void report4Btn_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new Report4());
+        }
+
+        private void report5Btn_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new Report5());
+        }
     }
 }
