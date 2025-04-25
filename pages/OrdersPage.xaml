@@ -23,6 +23,7 @@
         <Button x:Name="createOrderBtn" Content="Создать заказ" Style="{StaticResource CustomButtonStyle}" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="0" Grid.Row="0" Click="createOrderBtn_Click" />
         <Button x:Name="editOrderBtn" Content="Редактировать заказ" Style="{StaticResource CustomButtonStyle}" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="1" Grid.Row="0" Click="editOrderBtn_Click" />
         <Button x:Name="deleteOrderBtn" Content="Удалить заказ" Style="{StaticResource CustomButtonStyle}" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="2" Grid.Row="0" Click="deleteOrderBtn_Click"  />
+        <Button x:Name="goBackbtn" Content="Назад" HorizontalAlignment="Right" VerticalAlignment="Top" Grid.Row="0" Grid.Column="2" Style="{StaticResource CustomButtonStyle}" Click="goBackbtn_Click" />
 
 
         <DataGrid Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="3" x:Name="dgSuppliers"  Style="{StaticResource DGrStyle}" AutoGenerateColumns="False" IsReadOnly="True" HorizontalAlignment="Center" >
@@ -35,7 +36,7 @@
                 <DataGridTemplateColumn>
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <Button x:Name="editEmployee" Style="{StaticResource CustomButtonStyle}" Content="Редактировать сотрудника" Grid.Column="1" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center" HorizontalContentAlignment="Center"    />
+                            <Button x:Name="orderInfo" Style="{StaticResource CustomButtonStyle}" Content="Состав заказа" Grid.Column="1" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center" HorizontalContentAlignment="Center" Click="orderInfo_Click"    />
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>

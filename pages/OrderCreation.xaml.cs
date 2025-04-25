@@ -24,5 +24,15 @@ namespace WpfApp1.pages
         {
             InitializeComponent();
         }
+
+        private void goBackbtn_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void addOrder_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

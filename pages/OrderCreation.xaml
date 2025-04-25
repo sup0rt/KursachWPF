@@ -9,6 +9,16 @@
       Title="OrderCreation" Style="{StaticResource PageStyle}">
 
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <Button x:Name="goBackbtn" Content="Назад" HorizontalAlignment="Right" VerticalAlignment="Top" Grid.Row="0" Style="{StaticResource CustomButtonStyle}" Click="goBackbtn_Click" />
+        <ComboBox x:Name="clientCmb" Grid.Row="0" HorizontalAlignment="Center"  VerticalAlignment="Bottom"/>
+        <Calendar x:Name="creationDate" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        <ComboBox x:Name="statusCmb" Grid.Row="2" HorizontalAlignment="Center"  VerticalAlignment="Top"/>
+        <Button x:Name="addOrder" Content="Сохранить" Grid.Row="2" Style="{StaticResource CustomButtonStyle}" HorizontalAlignment="Center" VerticalAlignment="Center" Click="addOrder_Click" />
     </Grid>
 </Page>

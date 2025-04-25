@@ -16,38 +16,29 @@ using System.Windows.Shapes;
 namespace WpfApp1.pages
 {
     /// <summary>
-    /// Логика взаимодействия для OrdersPage.xaml
+    /// Логика взаимодействия для OrderInfo.xaml
     /// </summary>
-    public partial class OrdersPage : Page
+    public partial class OrderInfo : Page
     {
-        public OrdersPage()
+        public OrderInfo(Order selectdOrder)
         {
             InitializeComponent();
-           
+            _order = selectdOrder ?? new Order();
+            DataContext = _order;
         }
-        
-        private void createOrderBtn_Click(object sender, RoutedEventArgs e)
-        {
-            NavigationService.Navigate(new OrderCreation());
-        }
-
-        private void editOrderBtn_Click(object sender, RoutedEventArgs e)
-        {
-            NavigationService.Navigate(new OrderCreation());
-        }
-
+        private Order _order = new Order();
         private void deleteOrderBtn_Click(object sender, RoutedEventArgs e)
         {
-            var removing = dgSuppliers.SelectedItems.Cast<Order>().ToList();
+            var removing = dgSuppliers.SelectedItems.Cast<OrderDetail>().ToList();
             if (MessageBox.Show($"Вы уверенны, что хотите удалить выбранные записи?", "Внимание!", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
             {
                 try
                 {
-                    Entities.GetContext().Order.RemoveRange(removing);
+                    Entities.GetContext().OrderDetail.RemoveRange(removing);
                     Entities.GetContext().SaveChanges();
                     MessageBox.Show("Успешно удалено");
 
-                    dgSuppliers.ItemsSource = Entities.GetContext().Order.ToList();
+                    dgSuppliers.ItemsSource = Entities.GetContext().OrderDetail.ToList();
                 }
                 catch (Exception ex)
                 {
@@ -56,9 +47,9 @@ namespace WpfApp1.pages
             }
         }
 
-        private void orderInfo_Click(object sender, RoutedEventArgs e)
+        private void editOrderBtn_Click(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate(new OrderInfo((sender as Button).DataContext as Order));
+
         }
 
         private void goBackbtn_Click(object sender, RoutedEventArgs e)
