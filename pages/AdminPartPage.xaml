@@ -38,7 +38,8 @@
         <Button x:Name="btnClearFilter" Content="Очистить" Grid.Column="2" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center" Style="{StaticResource CustomButtonStyle}" Click="btnClearFilter_Click_1"/>
 
 
-        <Button x:Name="addSparePart" Style="{StaticResource CustomButtonStyle}" Content="Добавить запчасть" Grid.Column="3" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center" HorizontalContentAlignment="Center" Click="addSparePart_Click"   />
+        <Button x:Name="addSparePart" Style="{StaticResource CustomButtonStyle}" Content="Добавить запчасть" Grid.Column="3" Grid.Row="1" VerticalAlignment="Top" HorizontalAlignment="Center" HorizontalContentAlignment="Center" Click="addSparePart_Click"   />
+        <Button x:Name="editSparePart" Grid.Column="3" Grid.Row="1" Style="{StaticResource CustomButtonStyle}" Content="Редактировать запчасть" VerticalAlignment="Center" HorizontalAlignment="Center" HorizontalContentAlignment="Center" Click="editSparePart_Click"   />
         <Button x:Name="deleteSparePart" Style="{StaticResource CustomButtonStyle}" Content="Удалить запчасть" Grid.Column="3" Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Center" HorizontalContentAlignment="Center" Click="deleteSparePart_Click"    />
         
 
@@ -74,7 +75,6 @@
                         <TextBox IsReadOnly="True" Style="{StaticResource TBoxStyle}" VerticalAlignment="Center" TextAlignment="Center" Grid.Column="4" Text="{Binding Supplier.OrganizationName}" />
                         <TextBox IsReadOnly="True" Style="{StaticResource TBoxStyle}" VerticalAlignment="Center" TextAlignment="Center" Grid.Column="5" Text="{Binding Price}" />
                         <TextBox IsReadOnly="True" Style="{StaticResource TBoxStyle}" VerticalAlignment="Center" TextAlignment="Center" Grid.Column="6" Text="{Binding Warehouse.Quantity}" />
-                        <Button x:Name="editSparePart" Grid.Column="7" Style="{StaticResource CustomButtonStyle}" Content="Редактировать запчасть" VerticalAlignment="Center" HorizontalAlignment="Center" HorizontalContentAlignment="Center" Click="editSparePart_Click"   />
                     </Grid>
                 </DataTemplate>
             </ListView.ItemTemplate>

@@ -30,23 +30,18 @@
         <Button x:Name="btnClearFilter" Content="Очистить" Grid.Column="1" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center" Style="{StaticResource CustomButtonStyle}" Click="btnClearFilter_Click"  />
 
 
-        <Button x:Name="addManufacturer" Style="{StaticResource CustomButtonStyle}" Content="Добавить производителя" Grid.Column="2" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center" HorizontalContentAlignment="Center" Click="addManufacturer_Click"     />
+        <Button x:Name="addManufacturer" Style="{StaticResource CustomButtonStyle}" Content="Добавить производителя" Grid.Column="2" Grid.Row="1" VerticalAlignment="Top" HorizontalAlignment="Center" HorizontalContentAlignment="Center" Click="addManufacturer_Click"     />
+        <Button x:Name="editManufacturer" Style="{StaticResource CustomButtonStyle}" Content="Редактировать производителя" Grid.Column="2" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center" HorizontalContentAlignment="Center" Click="editManufacturer_Click"  />
         <Button x:Name="deleteManufacturer" Style="{StaticResource CustomButtonStyle}" Content="Удалить производителя" Grid.Column="2" Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Center" HorizontalContentAlignment="Center" Click="deleteManufacturer_Click"    />
 
 
         <DataGrid Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" x:Name="dgSuppliers"  Style="{StaticResource DGrStyle}" AutoGenerateColumns="False" IsReadOnly="True" HorizontalAlignment="Center" >
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Название" Binding="{Binding OrganizationName}" />
-                <DataGridTextColumn Header="Адрес" Binding="{Binding PhysicalAdress}" />
+                <DataGridTextColumn Header="Адрес" Binding="{Binding PhysicalAddress}" />
                 <DataGridTextColumn Header="Email" Binding="{Binding Email}" />
                 <DataGridTextColumn Header="Номер телефона" Binding="{Binding PhoneNumber}" />
-                <DataGridTemplateColumn>
-                    <DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate>
-                            <Button x:Name="editManufacturer" Style="{StaticResource CustomButtonStyle}" Content="Редактировать производителя" Grid.Column="1" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center" HorizontalContentAlignment="Center" Click="editManufacturer_Click"  />
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>
+                
             </DataGrid.Columns>
         </DataGrid>
     </Grid>

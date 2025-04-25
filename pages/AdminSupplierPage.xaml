@@ -28,7 +28,8 @@
         
         <Button x:Name="btnClearFilter" Content="Очистить" Grid.Column="2" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center" Style="{StaticResource CustomButtonStyle}" Click="btnClearFilter_Click"  />
 
-        <Button x:Name="addDealer" Style="{StaticResource CustomButtonStyle}" Content="Добавить поставщика" Grid.Column="1" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center" HorizontalContentAlignment="Center" Click="addDealer_Click"  />
+        <Button x:Name="addDealer" Style="{StaticResource CustomButtonStyle}" Content="Добавить поставщика" Grid.Column="1" Grid.Row="1" VerticalAlignment="Top" HorizontalAlignment="Center" HorizontalContentAlignment="Center" Click="addDealer_Click"  />
+        <Button x:Name="editDealer" Style="{StaticResource CustomButtonStyle}" Content="Редактировать поставщика" Grid.Column="1" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center" HorizontalContentAlignment="Center" Click="editDealer_Click"    />
         <Button x:Name="deleteDealer" Style="{StaticResource CustomButtonStyle}" Content="Удалить поставщика" Grid.Column="1" Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Center" HorizontalContentAlignment="Center" Click="deleteDealer_Click"    />
 
         <DataGrid Grid.Column="0" Grid.Row="1"  x:Name="dgSuppliers"  Style="{StaticResource DGrStyle}" AutoGenerateColumns="False" IsReadOnly="True" HorizontalAlignment="Center" >
@@ -37,13 +38,6 @@
                 <DataGridTextColumn Header="Адрес" Binding="{Binding PhysicalAdress}" />
                 <DataGridTextColumn Header="Email" Binding="{Binding Email}" />
                 <DataGridTextColumn Header="Номер телефона" Binding="{Binding PhoneNumber}" />
-                <DataGridTemplateColumn>
-                    <DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate>
-                            <Button x:Name="editDealer" Style="{StaticResource CustomButtonStyle}" Content="Редактировать поставщика" Grid.Column="1" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center" HorizontalContentAlignment="Center" Click="editDealer_Click"    />
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>
             </DataGrid.Columns>
             
         </DataGrid>

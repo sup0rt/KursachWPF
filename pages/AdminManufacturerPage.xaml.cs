@@ -33,7 +33,7 @@ namespace WpfApp1.pages
 
         private void editManufacturer_Click(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate(new AddManufacturerPage((sender as Button).DataContext as Manufacturer));
+            NavigationService.Navigate(new AddManufacturerPage(dgSuppliers.SelectedItem as Manufacturer));
         }
         private void Page_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
         {

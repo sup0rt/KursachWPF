@@ -33,7 +33,7 @@ namespace WpfApp1.pages
 
         private void editCategory_Click(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate(new AddCategoryPage((sender as Button).DataContext as Category));
+            NavigationService.Navigate(new AddCategoryPage(dgSuppliers.SelectedItem as Category));
         }
         private void Page_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
         {

@@ -33,7 +33,7 @@ namespace WpfApp1.pages
 
         private void editDealer_Click(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate(new AddDealerPage((sender as Button).DataContext as Supplier));
+            NavigationService.Navigate(new AddDealerPage(dgSuppliers.SelectedItem as Supplier));
         }
         private void Page_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
         {

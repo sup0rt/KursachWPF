@@ -27,7 +27,7 @@ namespace WpfApp1.pages
 
         private void goBackbtn_Click(object sender, RoutedEventArgs e)
         {
-
+            NavigationService.GoBack();
         }
 
         private void addOrder_Click(object sender, RoutedEventArgs e)

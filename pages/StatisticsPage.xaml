@@ -14,6 +14,8 @@
             <RowDefinition/>
         </Grid.RowDefinitions>
 
+        <Button x:Name="goBackbtn" Content="Назад" HorizontalAlignment="Right" VerticalAlignment="Top" Grid.Row="0" Grid.Column="2" Style="{StaticResource CustomButtonStyle}" Click="goBackbtn_Click"  />
+
         <StackPanel Orientation="Horizontal" Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Center">
             <Button x:Name="report1Btn" Content="report1" Style="{StaticResource CustomButtonStyle}" Click="report1Btn_Click"/>
             <Button x:Name="report2Btn" Content="report2" Style="{StaticResource CustomButtonStyle}" Click="report2Btn_Click"/>

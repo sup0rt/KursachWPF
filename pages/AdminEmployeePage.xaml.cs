@@ -35,7 +35,7 @@ namespace WpfApp1.pages
 
         private void editEmployee_Click(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate(new AddEmployee((sender as Button).DataContext as Employee));
+            NavigationService.Navigate(new AddEmployee(dgSuppliers.SelectedItem as Employee));
         }
 
         private void Page_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)

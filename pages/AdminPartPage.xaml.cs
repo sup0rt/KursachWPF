@@ -37,7 +37,7 @@ namespace WpfApp1.pages
 
         private void editSparePart_Click(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate(new AddSparePartPage((sender as Button).DataContext as Part));
+            NavigationService.Navigate(new AddSparePartPage(lvParts.SelectedItem as Part));
         }
         private void Page_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
         {

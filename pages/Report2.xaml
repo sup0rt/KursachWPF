@@ -6,9 +6,10 @@
       xmlns:local="clr-namespace:WpfApp1.pages"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="Report2">
+      Title="Report2" Style="{StaticResource PageStyle}">
 
     <Grid>
-        
+        <Button x:Name="goBackbtn" Content="Назад" HorizontalAlignment="Right" VerticalAlignment="Top" Grid.Row="0" Grid.Column="2" Style="{StaticResource CustomButtonStyle}" Click="goBackbtn_Click" />
+
     </Grid>
 </Page>
