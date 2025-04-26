@@ -12,13 +12,19 @@
         <Grid.RowDefinitions>
             <RowDefinition/>
             <RowDefinition/>
-            <RowDefinition/>
         </Grid.RowDefinitions>
 
         <Button x:Name="goBackbtn" Content="Назад" HorizontalAlignment="Right" VerticalAlignment="Top" Grid.Row="0" Style="{StaticResource CustomButtonStyle}" Click="goBackbtn_Click" />
-        <ComboBox x:Name="clientCmb" Grid.Row="0" HorizontalAlignment="Center"  VerticalAlignment="Bottom"/>
-        <Calendar x:Name="creationDate" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-        <ComboBox x:Name="statusCmb" Grid.Row="2" HorizontalAlignment="Center"  VerticalAlignment="Top"/>
+        <DataGrid Grid.Row="0" x:Name="dgSuppliers"  Style="{StaticResource DGrStyle}" AutoGenerateColumns="False" IsReadOnly="True" HorizontalAlignment="Center" >
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Имя" Binding="{Binding FirstName}" />
+                <DataGridTextColumn Header="Отчество" Binding="{Binding LastName}" />
+                <DataGridTextColumn Header="Фамилия" Binding="{Binding MiddleName}" />
+
+            </DataGrid.Columns>
+
+        </DataGrid>
+        <ComboBox x:Name="statusCmb" DisplayMemberPath="StatusName" SelectedValuePath="OrderStatusID" SelectedItem="{Binding OrderStatus}" Grid.Row="2" HorizontalAlignment="Center"  VerticalAlignment="Top"/>
         <Button x:Name="addOrder" Content="Сохранить" Grid.Row="2" Style="{StaticResource CustomButtonStyle}" HorizontalAlignment="Center" VerticalAlignment="Center" Click="addOrder_Click" />
     </Grid>
 </Page>

@@ -23,17 +23,18 @@ namespace WpfApp1.pages
         public OrdersPage()
         {
             InitializeComponent();
-           
+            
+            dgSuppliers.ItemsSource = Entities.GetContext().Order.ToList();
         }
         
         private void createOrderBtn_Click(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate(new OrderCreation());
+            NavigationService.Navigate(new OrderCreation(null));
         }
 
         private void editOrderBtn_Click(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate(new OrderCreation());
+            NavigationService.Navigate(new OrderCreation(dgSuppliers.SelectedItem as Order));
         }
 
         private void deleteOrderBtn_Click(object sender, RoutedEventArgs e)

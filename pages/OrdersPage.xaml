@@ -28,11 +28,11 @@
 
         <DataGrid Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="3" x:Name="dgSuppliers"  Style="{StaticResource DGrStyle}" AutoGenerateColumns="False" IsReadOnly="True" HorizontalAlignment="Center" >
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Фамилия клиента" Binding="{Binding MiddleName}" />
-                <DataGridTextColumn Header="Имя клиента" Binding="{Binding FirstName}" />
-                <DataGridTextColumn Header="Отчество клиента" Binding="{Binding LastName}" />
-                <DataGridTextColumn Header="Дата создания" Binding="{Binding Department.DepartmentName}" />
-                <DataGridTextColumn Header="Статус" Binding="{Binding Position.PositionName}" />
+                <DataGridTextColumn Header="Фамилия клиента" Binding="{Binding Customer.MiddleName}" />
+                <DataGridTextColumn Header="Имя клиента" Binding="{Binding Customer.FirstName}" />
+                <DataGridTextColumn Header="Отчество клиента" Binding="{Binding Customer.LastName}" />
+                <DataGridTextColumn Header="Дата создания" Binding="{Binding OrderDateTime}" />
+                <DataGridTextColumn Header="Статус" Binding="{Binding OrderStatus.StatusName}" />
                 <DataGridTemplateColumn>
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>

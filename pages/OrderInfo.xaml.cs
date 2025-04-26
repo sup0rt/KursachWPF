@@ -23,6 +23,8 @@ namespace WpfApp1.pages
         public OrderInfo(Order selectdOrder)
         {
             InitializeComponent();
+
+            dgSuppliers.ItemsSource = Entities.GetContext().OrderDetail.Where(od => od.OrderID == selectdOrder.OrderID).ToList();
             _order = selectdOrder ?? new Order();
             DataContext = _order;
         }
@@ -49,7 +51,7 @@ namespace WpfApp1.pages
 
         private void editOrderBtn_Click(object sender, RoutedEventArgs e)
         {
-
+            NavigationService.Navigate(new OrderInfoCreation(_order));
         }
 
         private void goBackbtn_Click(object sender, RoutedEventArgs e)

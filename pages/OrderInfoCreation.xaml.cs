@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity.Validation;
+using System.Data.SqlTypes;
 using System.Linq;
-using System.Security.Principal;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -18,35 +18,30 @@ using System.Windows.Shapes;
 namespace WpfApp1.pages
 {
     /// <summary>
-    /// Логика взаимодействия для OrderCreation.xaml
+    /// Логика взаимодействия для OrderInfoCreation.xaml
     /// </summary>
-    public partial class OrderCreation : Page
+    public partial class OrderInfoCreation : Page
     {
-        public OrderCreation(Order selectedOrder)
+        public OrderInfoCreation(Order thisOrder)
         {
             InitializeComponent();
 
-            dgSuppliers.ItemsSource = Entities.GetContext().Customer.ToList();
-            statusCmb.ItemsSource = Entities.GetContext().OrderStatus.ToList();
-
-            _order = selectedOrder ?? new Order();
+            _order = thisOrder ?? new Order();
             DataContext = _order;
+
+            partCmB.ItemsSource = Entities.GetContext().Part.ToList();
         }
         private Order _order = new Order();
-        private void goBackbtn_Click(object sender, RoutedEventArgs e)
-        {
-            NavigationService.GoBack();
-        }
-        
-        private void addOrder_Click(object sender, RoutedEventArgs e)
+        private OrderDetail _orderDetail = new OrderDetail();
+
+        private void addPartsBtn_Click(object sender, RoutedEventArgs e)
         {
             StringBuilder errors = new StringBuilder();
 
-            if (dgSuppliers.SelectedItem == null) errors.AppendLine("Выберите клиента");
-            if (dgSuppliers.SelectedItems.Count > 1) errors.AppendLine("Выберите только одного клиента");
-            if (_order.OrderStatus == null) errors.AppendLine("Выберите статус");
+            if (partCmB.SelectedItem == null) errors.AppendLine("Выберите запчасть");
+            if (string.IsNullOrEmpty(quantity.Text)) errors.AppendLine("Выберите статус");
+            if (!int.TryParse(quantity.Text, out int enteredQuantity) || enteredQuantity <= 0)errors.AppendLine("Введите корректное количество");
 
-           
 
             if (errors.Length > 0)
             {
@@ -56,23 +51,24 @@ namespace WpfApp1.pages
 
             try
             {
-                _order.OrderDateTime = DateTime.Now;
-                _order.CustomerID = ((Customer)dgSuppliers.SelectedItem).CustomerID;
+                _orderDetail.OrderID = _order.OrderID;
+                _orderDetail.PartID = ((Part)partCmB.SelectedItem).PartID;
+                _orderDetail.Quantity = Convert.ToInt32(quantity.Text);
                 var context = Entities.GetContext();
 
-                if (_order.OrderID == 0)
+                if (_orderDetail.OrderDetailID == 0)
                 {
-                    context.Order.Add(_order);
-                    context.SaveChanges();
+                    context.OrderDetail.Add(_orderDetail);
                 }
                 else
                 {
-                    context.Entry(_order).State = System.Data.Entity.EntityState.Modified;
+                    context.Entry(_orderDetail).State = System.Data.Entity.EntityState.Modified;
                 }
 
                 context.SaveChanges();
-                MessageBox.Show("Заказ успешно создан", "Успех", MessageBoxButton.OK, MessageBoxImage.Information);
-                NavigationService.Navigate(new OrderInfoCreation(_order));
+                MessageBox.Show("Деталь добавлена в заказ", "Успех", MessageBoxButton.OK, MessageBoxImage.Information);
+                quantity.Clear();
+                partCmB.SelectedItem = null;
             }
             catch (DbEntityValidationException ex)
             {
@@ -87,6 +83,11 @@ namespace WpfApp1.pages
             {
                 MessageBox.Show("Ошибка: " + ex.Message, "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
             }
+        }
+
+        private void saveInfoBtn_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new OrdersPage());
         }
     }
 }
