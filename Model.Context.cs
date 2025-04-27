@@ -12,8 +12,6 @@ namespace WpfApp1
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
-    using System.Data.Entity.Core.Objects;
-    using System.Linq;
     
     public partial class Entities : DbContext
     {
@@ -49,28 +47,10 @@ namespace WpfApp1
         public virtual DbSet<OrderStatus> OrderStatus { get; set; }
         public virtual DbSet<Part> Part { get; set; }
         public virtual DbSet<Position> Position { get; set; }
+        public virtual DbSet<Shipment> Shipment { get; set; }
         public virtual DbSet<Supplier> Supplier { get; set; }
         public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
         public virtual DbSet<Warehouse> Warehouse { get; set; }
         public virtual DbSet<WarehouseTransaction> WarehouseTransaction { get; set; }
-        public virtual DbSet<Shipment> Shipment { get; set; }
-    
-        public virtual ObjectResult<Nullable<decimal>> CalculateOrderTotal(Nullable<int> orderID)
-        {
-            var orderIDParameter = orderID.HasValue ?
-                new ObjectParameter("OrderID", orderID) :
-                new ObjectParameter("OrderID", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<decimal>>("CalculateOrderTotal", orderIDParameter);
-        }
-    
-        public virtual int GetPartInventory(Nullable<int> partID)
-        {
-            var partIDParameter = partID.HasValue ?
-                new ObjectParameter("PartID", partID) :
-                new ObjectParameter("PartID", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("GetPartInventory", partIDParameter);
-        }
     }
 }

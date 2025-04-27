@@ -18,7 +18,11 @@ namespace WpfApp1
         public Nullable<int> PartID { get; set; }
         public int Quantity { get; set; }
         public System.DateTime TransactionDateTime { get; set; }
+        public Nullable<int> ShipmentID { get; set; }
+        public Nullable<int> OrderID { get; set; }
     
+        public virtual Order Order { get; set; }
         public virtual Part Part { get; set; }
+        public virtual Shipment Shipment { get; set; }
     }
 }

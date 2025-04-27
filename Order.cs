@@ -18,6 +18,7 @@ namespace WpfApp1
         public Order()
         {
             this.OrderDetail = new HashSet<OrderDetail>();
+            this.WarehouseTransaction = new HashSet<WarehouseTransaction>();
         }
     
         public int OrderID { get; set; }
@@ -29,5 +30,7 @@ namespace WpfApp1
         public virtual OrderStatus OrderStatus { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<OrderDetail> OrderDetail { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<WarehouseTransaction> WarehouseTransaction { get; set; }
     }
 }

@@ -14,6 +14,12 @@ namespace WpfApp1
     
     public partial class Shipment
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Shipment()
+        {
+            this.WarehouseTransaction = new HashSet<WarehouseTransaction>();
+        }
+    
         public int ShipmentID { get; set; }
         public Nullable<int> SupplierID { get; set; }
         public Nullable<int> PartID { get; set; }
@@ -22,5 +28,7 @@ namespace WpfApp1
     
         public virtual Part Part { get; set; }
         public virtual Supplier Supplier { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<WarehouseTransaction> WarehouseTransaction { get; set; }
     }
 }
