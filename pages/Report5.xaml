@@ -4,12 +4,46 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:WpfApp1.pages"
+      xmlns:charts="clr-namespace:System.Windows.Forms.DataVisualization.Charting;assembly=System.Windows.Forms.DataVisualization"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="Report5" Style="{StaticResource PageStyle}">
 
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+        <StackPanel Grid.Row="0" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Top">
+            <Label x:Name="diagramLbl" Content="Тип диаграммы" Style="{StaticResource LblStyle}" />
+            <ComboBox x:Name="diagramCmb" SelectionChanged="diagramCmb_SelectionChanged"  />
+        </StackPanel>
+        <StackPanel Grid.Row="0" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Top">
+            <Label Content="Начало периода" Style="{StaticResource LblStyle}" />
+            <DatePicker x:Name="start" />
+            <Label  Content="Конец периода" Style="{StaticResource LblStyle}" />
+            <DatePicker x:Name="end" />
+        </StackPanel>
         <Button x:Name="goBackbtn" Content="Назад" HorizontalAlignment="Right" VerticalAlignment="Top" Grid.Row="0" Grid.Column="2" Style="{StaticResource CustomButtonStyle}" Click="goBackbtn_Click" />
+
+        <WindowsFormsHost HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" >
+            <charts:Chart x:Name="PartsQuantity">
+                <charts:Chart.Legends>
+                    <charts:Legend>
+
+                    </charts:Legend>
+                </charts:Chart.Legends>
+            </charts:Chart>
+
+        </WindowsFormsHost>
+
+        <Button x:Name="wordBtn" Content="Отобразить в Word" Grid.Row="1" Grid.Column="0" Style="{StaticResource CustomButtonStyle}" HorizontalAlignment="Center" VerticalAlignment="Center" Click="wordBtn_Click" />
+        <Button x:Name="excelBtn" Content="Отобразить в Excel" Grid.Row="1" Grid.Column="1" Style="{StaticResource CustomButtonStyle}" HorizontalAlignment="Center" VerticalAlignment="Center" Click="excelBtn_Click" />
 
     </Grid>
 </Page>

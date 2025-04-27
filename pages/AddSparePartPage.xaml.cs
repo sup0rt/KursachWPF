@@ -40,8 +40,7 @@ namespace WpfApp1.pages
             if (_part.Manufacturer == null) errors.AppendLine("Выберите производителя запчасти");
             if (_part.Supplier == null) errors.AppendLine("Выберите поставщика запчасти");
             if (_part.Price <= 0) errors.AppendLine("Введите цену запчасти");
-            if (Convert.ToInt32(stockTB.Text) <= 0 ) errors.AppendLine("Введите количество запчасти");
-
+            if (Convert.ToInt32(stockTB.Text) < 1) errors.AppendLine("Введите количество запчасти");
 
             if (errors.Length > 0)
             {
@@ -52,16 +51,17 @@ namespace WpfApp1.pages
             try
             {
                 _warehouse.PartID = _part.PartID;
-                _warehouse.Quantity = Convert.ToInt32(stockTB.Text);
                 if (_part.PartID == 0)
                 {
                     Entities.GetContext().Part.Add(_part);
-                    Entities.GetContext().Warehouse.Add(_warehouse);
+                    for(int i = 0; i < Convert.ToInt32(stockTB.Text); i++)
+                    {
+                        Entities.GetContext().Warehouse.Add(_warehouse);
+                    }
                 }
                 else
                 {
                     Entities.GetContext().Entry(_part).State = System.Data.Entity.EntityState.Modified;
-                    Entities.GetContext().Entry(_warehouse).State = System.Data.Entity.EntityState.Modified;
                 }
 
                 Entities.GetContext().SaveChanges();

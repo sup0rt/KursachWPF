@@ -15,6 +15,11 @@ using System.Windows.Shapes;
 using System.Data.SqlClient;
 using System.Data;
 using System.Xml.Linq;
+using System.Windows.Forms.DataVisualization.Charting;
+using Word = Microsoft.Office.Interop.Word;
+using Excel = Microsoft.Office.Interop.Excel;
+using System.Data.Entity.Spatial;
+using System.IO;
 
 namespace WpfApp1.pages
 {
@@ -23,9 +28,35 @@ namespace WpfApp1.pages
     /// </summary>
     public partial class Report1 : Page
     {
+        public string GetNewFileName(string filePath, string fileName, string ext)
+        {
+            string fullPath = System.IO.Path.Combine(filePath, $"{fileName}№{1}{ext}");
+            int counter = 1;
+
+            while(File.Exists(fullPath))
+            {
+                fullPath = System.IO.Path.Combine(filePath, $"{fileName}№{counter}{ext}");
+                counter++;
+            }
+
+            return fullPath;
+        }
+
+        
+
+        
         public Report1()
         {
             InitializeComponent();
+
+            PartsQuantity.ChartAreas.Add(new ChartArea("Main"));
+            var currentSeries = new Series("Запчасти")
+            {
+                IsValueShownAsLabel = true,
+            };
+            PartsQuantity.Series.Add(currentSeries);
+
+            diagramCmb.ItemsSource = Enum.GetValues(typeof(SeriesChartType));
         }
 
         private void goBackbtn_Click(object sender, RoutedEventArgs e)
@@ -33,6 +64,135 @@ namespace WpfApp1.pages
             NavigationService.GoBack();
         }
 
-        
+        private void wordBtn_Click(object sender, RoutedEventArgs e)
+        {
+            var parts = Entities.GetContext().Part.ToList();
+            var warehouseItems = Entities.GetContext().Warehouse.ToList();
+
+            var application = new Word.Application();
+            Word.Document document = application.Documents.Add();
+
+            Word.Paragraph titleParagraph = document.Paragraphs.Add();
+            Word.Range titleRange = titleParagraph.Range;
+            titleRange.Text = $"Отчет по количеству запчастей на складе на {DateTime.Now.ToString("dd-MM-yyyy")}";
+            titleRange.ParagraphFormat.Alignment = Word.WdParagraphAlignment.wdAlignParagraphCenter;
+            titleRange.Font.Name = "Times New Roman";
+            titleRange.Font.Size = 16;
+            titleRange.Font.Bold = 1;
+            titleRange.InsertParagraphAfter();
+
+            Word.Paragraph totalParagraph = document.Paragraphs.Add();
+            Word.Range totalRange = totalParagraph.Range;
+            totalRange.Text = $"Всего запчастей: {parts.Count.ToString()}";
+            titleRange.ParagraphFormat.Alignment = Word.WdParagraphAlignment.wdAlignParagraphLeft;
+            totalRange.Font.Name = "Times New Roman";
+            totalRange.Font.Size = 14;
+            totalRange.Font.Bold = 1;
+            totalRange.InsertParagraphAfter();
+
+            Word.Paragraph tableParagraph = document.Paragraphs.Add();
+            Word.Range tableRange = tableParagraph.Range;
+            Word.Table partsTable = document.Tables.Add(tableRange, parts.Count + 1, 2);
+
+            partsTable.Borders.InsideLineStyle = partsTable.Borders.OutsideLineStyle = Word.WdLineStyle.wdLineStyleSingle;
+            partsTable.Range.Cells.VerticalAlignment = Word.WdCellVerticalAlignment.wdCellAlignVerticalCenter;
+
+            partsTable.Cell(1, 1).Range.Text = "Запчасть";
+            partsTable.Cell(1, 2).Range.Text = "Остаток на складе";
+
+            Word.Range headerRange = partsTable.Rows[1].Range;
+            headerRange.Font.Bold = 1;
+            headerRange.Font.Name = "Times New Roman";
+            headerRange.Font.Size = 14;
+            headerRange.ParagraphFormat.Alignment=Word.WdParagraphAlignment.wdAlignParagraphCenter;
+
+            for(int i = 0; i < parts.Count; i++)
+            {
+                var part = parts[i];
+                int count = warehouseItems.Count(wi => wi.PartID == part.PartID);
+
+                partsTable.Cell(i + 2, 1).Range.Text=part.PartName;
+                partsTable.Cell(i + 2, 1).Range.Font.Name = "Times New Roman";
+                partsTable.Cell(i + 2, 1).Range.Font.Size = 12;
+
+                partsTable.Cell(i + 2, 2).Range.Text = count.ToString();
+                partsTable.Cell(i + 2, 2).Range.Font.Name = "Times New Roman";
+                partsTable.Cell(i + 2, 2).Range.Font.Size = 12;
+            }
+
+            string desktop = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
+            string filePath = GetNewFileName(desktop, $"PartsStock{DateTime.Now.ToString("dd-MM-yyyy")}", ".docx");
+            document.SaveAs2(filePath);
+            document.Close();
+            application.Quit();
+
+            MessageBox.Show($"Отчет сохранен в: {filePath}");
+        }
+
+        private void excelBtn_Click(object sender, RoutedEventArgs e)
+        {
+            var parts = Entities.GetContext().Part.OrderBy(x => x.PartName).ToList();
+            var warehouseItems = Entities.GetContext().Warehouse.ToList();
+
+            var application = new Excel.Application();
+            Excel.Workbook workbook = application.Workbooks.Add();
+            Excel.Worksheet worksheet = workbook.Worksheets[1];
+
+            worksheet.Cells[1, 1] = $"Отчет по остатку запчастей на складе на {DateTime.Now.ToString("dd-MM-yyyy")}";
+            Excel.Range headerRange = worksheet.Range["A1:G1"];
+            headerRange.Merge();
+            headerRange.Font.Bold = true;
+            headerRange.Font.Size = 14;
+            headerRange.HorizontalAlignment = Excel.XlHAlign.xlHAlignCenter;
+
+            int total = warehouseItems.Count;
+            worksheet.Cells[2, 1] = $"Всего запчастей: {total}";
+            worksheet.Range["A2"].Font.Bold = true;
+
+            worksheet.Cells[4, 1] = "Запчасть";
+            worksheet.Cells[4, 2] = "Остаток на складе";
+            Excel.Range tableHeader = worksheet.Range["A4:B4"];
+            tableHeader.Font.Bold = true;
+
+            for(int i = 0; i < parts.Count; i++)
+            {
+                var part = parts[i];
+                int count = warehouseItems.Count(wi => wi.PartID == part.PartID);
+
+                worksheet.Cells[i + 5, 1] = part.PartName;
+                worksheet.Cells[i + 5, 2] = count;
+
+            }
+
+            Excel.Range dataRange = worksheet.Range[$"A4:B{4+parts.Count}"];
+            dataRange.Borders.LineStyle = Excel.XlLineStyle.xlContinuous;
+            dataRange.Borders.Weight = Excel.XlBorderWeight.xlThin;
+            dataRange.Columns.AutoFit();
+
+            string desktop = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
+            string filePath = GetNewFileName(desktop, $"PartsStock{DateTime.Now.ToString("dd-MM-yyyy")}", ".xlsx");
+
+            workbook.SaveAs(filePath);
+            workbook.Close();
+            application.Quit();
+
+            MessageBox.Show($"Отчет сохранен в {filePath}");
+        }
+
+        private void diagramCmb_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (diagramCmb.SelectedItem is SeriesChartType currentType)
+            {
+                Series currentSeries = PartsQuantity.Series.FirstOrDefault();
+                currentSeries.ChartType = currentType;
+                currentSeries.Points.Clear();
+
+                var partsList = Entities.GetContext().Part.ToList();
+                foreach (var part in partsList)
+                {
+                    currentSeries.Points.AddXY(part.PartName, Entities.GetContext().Warehouse.ToList().Where(w => w.PartID == part.PartID).Count());
+                }
+            }
+        }
     }
 }

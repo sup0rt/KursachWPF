@@ -16,7 +16,6 @@ namespace WpfApp1
     {
         public int ID { get; set; }
         public Nullable<int> PartID { get; set; }
-        public int Quantity { get; set; }
     
         public virtual Part Part { get; set; }
     }

@@ -12,14 +12,15 @@ namespace WpfApp1
     using System;
     using System.Collections.Generic;
     
-    public partial class CustomerAccount
+    public partial class Shipment
     {
-        public int CustomerAccountID { get; set; }
-        public Nullable<int> CustomerID { get; set; }
-        public string Username { get; set; }
-        public string Password { get; set; }
-        public string Salt { get; set; }
+        public int ShipmentID { get; set; }
+        public Nullable<int> SupplierID { get; set; }
+        public Nullable<int> PartID { get; set; }
+        public Nullable<int> Quantity { get; set; }
+        public Nullable<System.DateTime> ShipmentDate { get; set; }
     
-        public virtual Customer Customer { get; set; }
+        public virtual Part Part { get; set; }
+        public virtual Supplier Supplier { get; set; }
     }
 }

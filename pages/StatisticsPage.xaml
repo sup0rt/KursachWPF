@@ -16,14 +16,13 @@
 
         <Button x:Name="goBackbtn" Content="Назад" HorizontalAlignment="Right" VerticalAlignment="Top" Grid.Row="0" Grid.Column="2" Style="{StaticResource CustomButtonStyle}" Click="goBackbtn_Click"  />
 
-        <StackPanel Orientation="Horizontal" Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Center">
-            <Button x:Name="report1Btn" Content="report1" Style="{StaticResource CustomButtonStyle}" Click="report1Btn_Click"/>
-            <Button x:Name="report2Btn" Content="report2" Style="{StaticResource CustomButtonStyle}" Click="report2Btn_Click"/>
-            <Button x:Name="report3Btn" Content="report3" Style="{StaticResource CustomButtonStyle}" Click="report3Btn_Click"/>
+        <StackPanel Orientation="Vertical" Grid.Row="0" Grid.RowSpan="2" VerticalAlignment="Center" HorizontalAlignment="Center">
+            <Button x:Name="report1Btn" Content="Остаток запчастей на складе" Style="{StaticResource CustomButtonStyle}" Click="report1Btn_Click"/>
+            <Button x:Name="report2Btn" Content="Самые востребованные запчасти" Style="{StaticResource CustomButtonStyle}" Click="report2Btn_Click"/>
+            <Button x:Name="report3Btn" Content="Количество заказов" Style="{StaticResource CustomButtonStyle}" Click="report3Btn_Click"/>
+            <Button x:Name="report4Btn" Content="Денежная сумма заказов" Style="{StaticResource CustomButtonStyle}" Click="report4Btn_Click"/>
+            <Button x:Name="report5Btn" Content="Объем поставок" Style="{StaticResource CustomButtonStyle}" Click="report5Btn_Click"/>
         </StackPanel>
-        <StackPanel Orientation="Horizontal" Grid.Row="1" VerticalAlignment="Top" HorizontalAlignment="Center">
-            <Button x:Name="report4Btn" Content="report4" Style="{StaticResource CustomButtonStyle}" Click="report4Btn_Click"/>
-            <Button x:Name="report5Btn" Content="report5" Style="{StaticResource CustomButtonStyle}" Click="report5Btn_Click"/>
-        </StackPanel>
+       
     </Grid>
 </Page>

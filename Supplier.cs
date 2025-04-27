@@ -18,6 +18,7 @@ namespace WpfApp1
         public Supplier()
         {
             this.Part = new HashSet<Part>();
+            this.Shipment = new HashSet<Shipment>();
         }
     
         public int SupplierID { get; set; }
@@ -28,5 +29,7 @@ namespace WpfApp1
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Part> Part { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Shipment> Shipment { get; set; }
     }
 }
