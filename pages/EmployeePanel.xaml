@@ -12,11 +12,14 @@
         <Grid.RowDefinitions>
             <RowDefinition/>
             <RowDefinition/>
+            <RowDefinition/>
         </Grid.RowDefinitions>
 
-        <Button x:Name="goBackbtn" Content="Выйти" HorizontalAlignment="Right" VerticalAlignment="Top" Grid.Column="2" Style="{StaticResource CustomButtonStyle}" Click="goBackbtn_Click" />
+        
+        <Button x:Name="goBackbtn" Content="Выйти" HorizontalAlignment="Right" VerticalAlignment="Top" Style="{StaticResource CustomButtonStyle}" Click="goBackbtn_Click" />
         <Button x:Name="ordersBtn" Content="Заказы" Style="{StaticResource CustomButtonStyle}" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center" Click="ordersBtn_Click"/>
-        <Button x:Name="statisticsBtn" Content="Отчетность" Style="{StaticResource CustomButtonStyle}" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" Click="statisticsBtn_Click"/>
+        <Button x:Name="shipmentsBtn" Content="Поставки" Style="{StaticResource CustomButtonStyle}" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" Click="shipmentsBtn_Click" />
+        <Button x:Name="statisticsBtn" Content="Отчетность" Style="{StaticResource CustomButtonStyle}" Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center" Click="statisticsBtn_Click"/>
 
     </Grid>
 </Page>

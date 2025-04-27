@@ -201,6 +201,12 @@
     <Compile Include="pages\RoleChoice.xaml.cs">
       <DependentUpon>RoleChoice.xaml</DependentUpon>
     </Compile>
+    <Compile Include="pages\ShipmentCreation.xaml.cs">
+      <DependentUpon>ShipmentCreation.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="pages\ShipmentManagement.xaml.cs">
+      <DependentUpon>ShipmentManagement.xaml</DependentUpon>
+    </Compile>
     <Compile Include="pages\StatisticsPage.xaml.cs">
       <DependentUpon>StatisticsPage.xaml</DependentUpon>
     </Compile>
@@ -338,6 +344,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="pages\RoleChoice.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="pages\ShipmentCreation.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="pages\ShipmentManagement.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

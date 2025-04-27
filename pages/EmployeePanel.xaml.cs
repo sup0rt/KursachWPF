@@ -42,5 +42,10 @@ namespace WpfApp1.pages
                 Application.Current.Shutdown();
             }
         }
+
+        private void shipmentsBtn_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new ShipmentManagement());
+        }
     }
 }
