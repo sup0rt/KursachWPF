@@ -74,7 +74,6 @@
                         <TextBox IsReadOnly="True" Style="{StaticResource TBoxStyle}" VerticalAlignment="Center" TextAlignment="Center" Grid.Column="3" Text="{Binding Manufacturer.OrganizationName}" />
                         <TextBox IsReadOnly="True" Style="{StaticResource TBoxStyle}" VerticalAlignment="Center" TextAlignment="Center" Grid.Column="4" Text="{Binding Supplier.OrganizationName}" />
                         <TextBox IsReadOnly="True" Style="{StaticResource TBoxStyle}" VerticalAlignment="Center" TextAlignment="Center" Grid.Column="5" Text="{Binding Price}" />
-                        <TextBox IsReadOnly="True" Style="{StaticResource TBoxStyle}" VerticalAlignment="Center" TextAlignment="Center" Grid.Column="6" Text="{Binding Warehouse.Quantity}" />
                     </Grid>
                 </DataTemplate>
             </ListView.ItemTemplate>

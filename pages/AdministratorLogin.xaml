@@ -13,8 +13,6 @@
         <Button x:Name="goBackbtn" Content="Назад" HorizontalAlignment="Right" VerticalAlignment="Top" Style="{StaticResource CustomButtonStyle}" Click="goBackbtn_Click" />
 
         <StackPanel  VerticalAlignment="Center" HorizontalAlignment="Center" MinHeight="180">
-            <Label x:Name="signINlbl"  Style="{StaticResource LblStyle}" Content="Вход" HorizontalAlignment="Center" VerticalAlignment="Top" />
-
             <Label x:Name="lbllogIn" Content="Введите логин" Style="{StaticResource LblStyle}"/>
             <TextBox x:Name="loginTB" Style="{StaticResource TBoxStyle}" />
             <Label x:Name="lblpassword" Content="Введите пароль" Style="{StaticResource LblStyle}"/>

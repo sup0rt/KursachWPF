@@ -89,5 +89,10 @@ namespace WpfApp1.pages
         {
             NavigationService.Navigate(new OrdersPage());
         }
+
+        private void goBackbtn_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.GoBack();
+        }
     }
 }

@@ -35,7 +35,7 @@
         <DataGrid Grid.Column="0" Grid.Row="1"  x:Name="dgSuppliers"  Style="{StaticResource DGrStyle}" AutoGenerateColumns="False" IsReadOnly="True" HorizontalAlignment="Center" >
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Название" Binding="{Binding OrganizationName}" />
-                <DataGridTextColumn Header="Адрес" Binding="{Binding PhysicalAdress}" />
+                <DataGridTextColumn Header="Адрес" Binding="{Binding PhysicalAddress}" />
                 <DataGridTextColumn Header="Email" Binding="{Binding Email}" />
                 <DataGridTextColumn Header="Номер телефона" Binding="{Binding PhoneNumber}" />
             </DataGrid.Columns>

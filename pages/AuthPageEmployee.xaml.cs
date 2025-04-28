@@ -33,6 +33,11 @@ namespace WpfApp1.pages
                 return;
             }
             var employeeAccount = Entities.GetContext().EmployeeAccount.AsNoTracking().FirstOrDefault(ea => ea.Username == loginInTB.Text);
+            if (employeeAccount == null)
+            {
+                MessageBox.Show("Пользователь с такими данными не найден");
+                return;
+            }
             bool isValid = PasswordHasher.VerifyPassword(passwordInTB.Password, employeeAccount.Password, employeeAccount.Salt);
             if (!isValid)
             {

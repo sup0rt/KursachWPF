@@ -90,7 +90,7 @@ namespace WpfApp1.pages
             Excel.Worksheet worksheet = workbook.Worksheets[1];
 
             worksheet.Cells[1, 1] = $"Отчет о количестве заказов по датам в период с {startDate.ToString("dd-MM-yyyy")} по {endDate.ToString("dd-MM-yyyy")}";
-            Excel.Range headerRange = worksheet.Range["A1:G1"];
+            Excel.Range headerRange = worksheet.Range["A1:I1"];
             headerRange.Merge();
             headerRange.Font.Bold = true;
             headerRange.Font.Size = 14;

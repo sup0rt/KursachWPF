@@ -38,6 +38,11 @@ namespace WpfApp1.pages
                 return;
             }
             var adminAccount = Entities.GetContext().AdminAccount.AsNoTracking().FirstOrDefault(aa => aa.Username == loginTB.Text);
+            if (adminAccount == null)
+            {
+                MessageBox.Show("Пользователь с такими данными не найден");
+                return;
+            }
             bool isValid = PasswordHasher.VerifyPassword(passwordTB.Password, adminAccount.Password, adminAccount.Salt);
             if (!isValid)
             {

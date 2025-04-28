@@ -42,8 +42,8 @@
         <DataGrid Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" x:Name="dgSuppliers"  Style="{StaticResource DGrStyle}" AutoGenerateColumns="False" IsReadOnly="True" HorizontalAlignment="Center" >
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Имя" Binding="{Binding FirstName}" />
-                <DataGridTextColumn Header="Отчество" Binding="{Binding LastName}" />
-                <DataGridTextColumn Header="Фамилия" Binding="{Binding MiddleName}" />
+                <DataGridTextColumn Header="Отчество" Binding="{Binding MiddleName}" />
+                <DataGridTextColumn Header="Фамилия" Binding="{Binding LastName}" />
                 <DataGridTextColumn Header="Отдел" Binding="{Binding Department.DepartmentName}" />
                 <DataGridTextColumn Header="Должность" Binding="{Binding Position.PositionName}" />
                 <DataGridTextColumn Header="Зарплата" Binding="{Binding Salary}" />
