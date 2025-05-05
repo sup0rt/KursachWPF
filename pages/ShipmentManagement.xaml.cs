@@ -31,11 +31,11 @@ namespace WpfApp1.pages
         {
             var currentShipments = Entities.GetContext().Shipment.ToList();
 
-            if (SortSupplier.SelectedIndex == 0)
+            if (SortSupplier.SelectedItem != null)
             {
                 currentShipments = currentShipments.Where(x => x.Supplier.OrganizationName.ToLower().Contains(SortPart.Text.ToLower())).ToList();
             }
-            if (SortPart.SelectedIndex == 0)
+            if (SortPart.SelectedItem != null)
             {
                 currentShipments = currentShipments.Where(x => x.Part.PartName.ToLower().Contains(SortPart.Text.ToLower())).ToList();
             }
@@ -93,7 +93,7 @@ namespace WpfApp1.pages
 
         private void goBackbtn_Click(object sender, RoutedEventArgs e)
         {
-            NavigationService.GoBack();
+            NavigationService.Navigate(new EmployeePanel());
         }
     }
 }

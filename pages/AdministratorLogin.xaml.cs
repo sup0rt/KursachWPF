@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -24,14 +25,32 @@ namespace WpfApp1.pages
         {
             InitializeComponent();
         }
-
+        private int counter = 0;
         private void goBackbtn_Click(object sender, RoutedEventArgs e)
         {
             NavigationService.GoBack();
         }
-
-        private void signInButton_Click(object sender, RoutedEventArgs e)
+        private async Task<bool> ValidateCode(string code)
         {
+            try
+            {
+                var currentTime = DateTime.Now;
+
+                return await Entities.GetContext().AccessCode.AnyAsync(ac => ac.AccessCode1 == code && currentTime <= ac.ExpirationDate);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                return false;
+            }
+        }
+        private async void signInButton_Click(object sender, RoutedEventArgs e)
+        {
+            if(counter == 3)
+            {
+                MessageBox.Show("Превышено количество попыток ввода кода. Приложение закрывается");
+                Application.Current.Shutdown();
+            }
             if (string.IsNullOrWhiteSpace(loginTB.Text) | string.IsNullOrEmpty(passwordTB.Password))
             {
                 MessageBox.Show("Введите логин и пароль");
@@ -47,6 +66,18 @@ namespace WpfApp1.pages
             if (!isValid)
             {
                 MessageBox.Show("Неверный логин или пароль");
+                return;
+            }
+            if (string.IsNullOrEmpty(codeTB.Text))
+            {
+                MessageBox.Show("Введите код");
+                return;
+            }
+            isValid = await ValidateCode(codeTB.Text);
+            if (!isValid)
+            {
+                MessageBox.Show("Неверный код");
+                counter++;
                 return;
             }
             else

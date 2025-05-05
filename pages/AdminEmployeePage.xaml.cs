@@ -70,25 +70,24 @@ namespace WpfApp1.pages
         private void UpdateEmployee()
         {
             var currentParts = Entities.GetContext().Employee.ToList();
-            currentParts = currentParts.Where(
-
-            x=>(x.FirstName + " " + x.MiddleName + " " + x.LastName).ToLower().Contains(SelectedName.Text.ToLower()) ||
-            (x.LastName + " " + x.FirstName + " " + x.MiddleName).ToLower().Contains(SelectedName.Text.ToLower()) || 
+            if (!string.IsNullOrEmpty(SelectedName.Text))
+            {
+                currentParts = currentParts.Where(
+            x => (x.FirstName + " " + x.MiddleName + " " + x.LastName).ToLower().Contains(SelectedName.Text.ToLower()) ||
+            (x.LastName + " " + x.FirstName + " " + x.MiddleName).ToLower().Contains(SelectedName.Text.ToLower()) ||
             x.LastName.ToLower().Contains(SelectedName.Text.ToLower()) ||
-            x.MiddleName.ToLower().Contains(SelectedName.Text.ToLower()) || 
+            x.MiddleName.ToLower().Contains(SelectedName.Text.ToLower()) ||
             x.FirstName.ToLower().Contains(SelectedName.Text.ToLower())
-
-
             ).ToList();
-            if(SortDepartment.SelectedIndex == 0)
+            }
+            if (SortDepartment.SelectedItem != null)
             {
                 currentParts = currentParts.Where(x => x.Department.DepartmentName.ToLower().Contains(SortDepartment.Text.ToLower())).ToList();
             }
-            if (SortPosition.SelectedIndex == 0)
+            if (SortPosition.SelectedItem != null)
             {
                 currentParts = currentParts.Where(x => x.Position.PositionName.ToLower().Contains(SortPosition.Text.ToLower())).ToList();
             }
-
             dgSuppliers.ItemsSource = currentParts;
         }
 
@@ -97,15 +96,6 @@ namespace WpfApp1.pages
             UpdateEmployee();
         }
 
-        private void SortPosition_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            UpdateEmployee();
-        }
-
-        private void SortDepartment_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            UpdateEmployee();
-        }
 
         private void btnClearFilter_Click(object sender, RoutedEventArgs e)
         {
@@ -117,7 +107,12 @@ namespace WpfApp1.pages
 
         private void goBackbtn_Click(object sender, RoutedEventArgs e)
         {
-            NavigationService.GoBack();
+            NavigationService.Navigate(new AdminPanel());
+        }
+
+        private void btnSearchFilter_Click(object sender, RoutedEventArgs e)
+        {
+            UpdateEmployee();
         }
     }
 }

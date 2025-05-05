@@ -29,13 +29,16 @@
         </StackPanel>
         <StackPanel Orientation="Vertical" Grid.Row="0" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" >
             <Label Content="Выберите категорию:" Style="{StaticResource LblStyle}"/>
-            <ComboBox x:Name="SortCategory" SelectedItem="{Binding Category}" DisplayMemberPath="CategoryName" MinWidth="120" SelectionChanged="SortCategory_SelectionChanged" />
+            <ComboBox x:Name="SortCategory" SelectedItem="{Binding Category}" DisplayMemberPath="CategoryName" MinWidth="120"  />
             <Label Content="Выберите производителя:" Style="{StaticResource LblStyle}"/>
-            <ComboBox x:Name="SortManufacturer" SelectedItem="{Binding Manufacturer}" DisplayMemberPath="OrganizationName" MinWidth="120" SelectionChanged="SortManufacturer_SelectionChanged"/>
+            <ComboBox x:Name="SortManufacturer" SelectedValuePath="ManufacturerID" SelectedItem="{Binding Manufacturer}" DisplayMemberPath="OrganizationName" MinWidth="120" />
             <Label Content="Выберите поставщика:" Style="{StaticResource LblStyle}"/>
-            <ComboBox x:Name="SortSupplier" SelectedItem="{Binding Supplier}" DisplayMemberPath="OrganizationName" MinWidth="120" SelectionChanged="SortSupplier_SelectionChanged"  />
+            <ComboBox x:Name="SortSupplier" SelectedItem="{Binding Supplier}" DisplayMemberPath="OrganizationName" MinWidth="120"   />
         </StackPanel>
-        <Button x:Name="btnClearFilter" Content="Очистить" Grid.Column="2" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center" Style="{StaticResource CustomButtonStyle}" Click="btnClearFilter_Click_1"/>
+        <StackPanel Grid.Column="2" Grid.Row="0">
+            <Button x:Name="btnSearchFilter" Content="Искать" Margin="10"  HorizontalAlignment="Center" VerticalAlignment="Center" Style="{StaticResource CustomButtonStyle}" Click="btnSearchFilter_Click"   />
+            <Button x:Name="btnClearFilter" Content="Очистить"  HorizontalAlignment="Center" VerticalAlignment="Center" Style="{StaticResource CustomButtonStyle}" Click="btnClearFilter_Click"  />
+        </StackPanel>
 
 
         <Button x:Name="addSparePart" Style="{StaticResource CustomButtonStyle}" Content="Добавить запчасть" Grid.Column="3" Grid.Row="1" VerticalAlignment="Top" HorizontalAlignment="Center" HorizontalContentAlignment="Center" Click="addSparePart_Click"   />
@@ -47,18 +50,13 @@
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition/>
-                            <ColumnDefinition/>
-                            <ColumnDefinition/>
-                            <ColumnDefinition/>
-                            <ColumnDefinition/>
-                            <ColumnDefinition/>
-                            <ColumnDefinition/>
-                            <ColumnDefinition/>
-                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="180"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
 
-                        <Image Height="200" Width="100" Grid.Column="0" Stretch="UniformToFill" HorizontalAlignment="Center" >
+                        <Image Height="200" Width="400" Grid.Row="0" Stretch="Fill" HorizontalAlignment="Center" >
                             <Image.Source>
                                 <Binding Path="PhotoOfSparepart">
                                     <Binding.TargetNullValue>
@@ -69,11 +67,13 @@
                                 </Binding>
                             </Image.Source>
                         </Image>
-                        <TextBox IsReadOnly="True" Style="{StaticResource TBoxStyle}" VerticalAlignment="Center" TextAlignment="Center" Grid.Column="1" Text="{Binding PartName}" />
-                        <TextBox IsReadOnly="True" Style="{StaticResource TBoxStyle}" VerticalAlignment="Center" TextAlignment="Center" Grid.Column="2" Text="{Binding Category.CategoryName}" />
-                        <TextBox IsReadOnly="True" Style="{StaticResource TBoxStyle}" VerticalAlignment="Center" TextAlignment="Center" Grid.Column="3" Text="{Binding Manufacturer.OrganizationName}" />
-                        <TextBox IsReadOnly="True" Style="{StaticResource TBoxStyle}" VerticalAlignment="Center" TextAlignment="Center" Grid.Column="4" Text="{Binding Supplier.OrganizationName}" />
-                        <TextBox IsReadOnly="True" Style="{StaticResource TBoxStyle}" VerticalAlignment="Center" TextAlignment="Center" Grid.Column="5" Text="{Binding Price}" />
+                        <StackPanel Grid.Row="1" >
+                            <TextBox IsReadOnly="True" Style="{StaticResource TBoxStyle}" VerticalAlignment="Center" TextAlignment="Center"  Text="{Binding PartName}" />
+                            <TextBox IsReadOnly="True" Style="{StaticResource TBoxStyle}" VerticalAlignment="Center" TextAlignment="Center" Text="{Binding Category.CategoryName}" />
+                            <TextBox IsReadOnly="True" Style="{StaticResource TBoxStyle}" VerticalAlignment="Center" TextAlignment="Center"  Text="{Binding Manufacturer.OrganizationName}" />
+                            <TextBox IsReadOnly="True" Style="{StaticResource TBoxStyle}" VerticalAlignment="Center" TextAlignment="Center"  Text="{Binding Supplier.OrganizationName}" />
+                            <TextBox IsReadOnly="True" Style="{StaticResource TBoxStyle}" VerticalAlignment="Center" TextAlignment="Center"  Text="{Binding Price}" />
+                        </StackPanel>
                     </Grid>
                 </DataTemplate>
             </ListView.ItemTemplate>

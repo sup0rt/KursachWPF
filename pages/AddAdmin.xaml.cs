@@ -48,7 +48,7 @@ namespace WpfApp1.pages
 
         private void goBackbtn_Click(object sender, RoutedEventArgs e)
         {
-            NavigationService.GoBack();
+            NavigationService.Navigate(new AdminPanel());
         }
         private Admin _admin = new Admin();
         private AdminAccount _account = new AdminAccount();

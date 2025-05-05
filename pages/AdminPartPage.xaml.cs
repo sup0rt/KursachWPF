@@ -71,16 +71,19 @@ namespace WpfApp1.pages
         private void UpdateParts()
         {
             var currentParts = Entities.GetContext().Part.ToList();
-            currentParts=currentParts.Where(x=>x.PartName.ToLower().Contains(SelectedName.Text.ToLower())).ToList();
-            if(SortCategory.SelectedIndex == 0)
+            if (!string.IsNullOrEmpty(SelectedName.Text))
+            {
+                currentParts = currentParts.Where(x => x.PartName.ToLower().Contains(SelectedName.Text.ToLower())).ToList();
+            }
+            if(SortCategory.SelectedItem != null)
             {
                 currentParts = currentParts.Where(x => x.Category.CategoryName.ToLower().Contains(SortCategory.Text.ToLower())).ToList();
             }
-            if (SortManufacturer.SelectedIndex == 0)
+            if (SortManufacturer.SelectedItem != null)
             {
                 currentParts = currentParts.Where(x => x.Manufacturer.OrganizationName.ToLower().Contains(SortManufacturer.Text.ToLower())).ToList();
             }
-            if (SortSupplier.SelectedIndex == 0)
+            if (SortSupplier.SelectedItem != null)
             {
                 currentParts = currentParts.Where(x => x.Supplier.OrganizationName.ToLower().Contains(SortSupplier.Text.ToLower())).ToList();
             }
@@ -94,33 +97,25 @@ namespace WpfApp1.pages
             UpdateParts();
         }
 
-        private void SortCategory_SelectionChanged(object sender, SelectionChangedEventArgs e)
+
+
+        private void goBackbtn_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new AdminPanel());
+        }
+
+        private void btnSearchFilter_Click(object sender, RoutedEventArgs e)
         {
             UpdateParts();
         }
 
-        private void SortManufacturer_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            UpdateParts();
-        }
-
-        private void SortSupplier_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            UpdateParts();
-        }
-
-        private void btnClearFilter_Click_1(object sender, RoutedEventArgs e)
+        private void btnClearFilter_Click(object sender, RoutedEventArgs e)
         {
             SelectedName.Clear();
             SortSupplier.SelectedItem = null;
             SortManufacturer.SelectedItem = null;
             SortCategory.SelectedItem = null;
             lvParts.ItemsSource = Entities.GetContext().Part.ToList();
-        }
-
-        private void goBackbtn_Click(object sender, RoutedEventArgs e)
-        {
-            NavigationService.GoBack();
         }
     }
 }

@@ -12,6 +12,8 @@ namespace WpfApp1
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
+    using System.Data.Entity.Core.Objects;
+    using System.Linq;
     
     public partial class Entities : DbContext
     {
@@ -34,6 +36,7 @@ namespace WpfApp1
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<AccessCode> AccessCode { get; set; }
         public virtual DbSet<Admin> Admin { get; set; }
         public virtual DbSet<AdminAccount> AdminAccount { get; set; }
         public virtual DbSet<Category> Category { get; set; }
@@ -52,5 +55,19 @@ namespace WpfApp1
         public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
         public virtual DbSet<Warehouse> Warehouse { get; set; }
         public virtual DbSet<WarehouseTransaction> WarehouseTransaction { get; set; }
+    
+        public virtual ObjectResult<Nullable<decimal>> CalculateOrderTotal(Nullable<int> orderID)
+        {
+            var orderIDParameter = orderID.HasValue ?
+                new ObjectParameter("OrderID", orderID) :
+                new ObjectParameter("OrderID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<decimal>>("CalculateOrderTotal", orderIDParameter);
+        }
+    
+        public virtual int sp_GenerateAndSendAccessCode()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_GenerateAndSendAccessCode");
+        }
     }
 }

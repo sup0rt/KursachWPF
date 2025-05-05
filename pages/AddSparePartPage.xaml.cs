@@ -38,9 +38,8 @@ namespace WpfApp1.pages
             if (string.IsNullOrEmpty(_part.PartName)) errors.AppendLine("Введите название запчасти");
             if (_part.Category == null) errors.AppendLine("Выберите категорию запчасти");
             if (_part.Manufacturer == null) errors.AppendLine("Выберите производителя запчасти");
-            if (_part.Supplier == null) errors.AppendLine("Выберите поставщика запчасти");
             if (_part.Price <= 0) errors.AppendLine("Введите цену запчасти");
-            if (Convert.ToInt32(stockTB.Text) < 1) errors.AppendLine("Введите количество запчасти");
+            if (!int.TryParse(stockTB.Text, out int res)) errors.AppendLine("Введите корректное количество запчасти");
 
             if (errors.Length > 0)
             {
@@ -48,15 +47,35 @@ namespace WpfApp1.pages
                 return;
             }
 
+            if (!string.IsNullOrEmpty(imageTB.Text))
+            {
+                _part.PhotoOfSparepart = imageTB.Text;
+            }
+
             try
             {
                 _warehouse.PartID = _part.PartID;
                 if (_part.PartID == 0)
                 {
+                    
                     Entities.GetContext().Part.Add(_part);
+                    List<Warehouse> quantity = new List<Warehouse>();
                     for(int i = 0; i < Convert.ToInt32(stockTB.Text); i++)
                     {
-                        Entities.GetContext().Warehouse.Add(_warehouse);
+                        quantity.Add(_warehouse);
+                    }
+                    foreach (var note in quantity){
+                        try
+                        {
+                            Entities.GetContext().Warehouse.Add(note);
+                            Entities.GetContext().SaveChanges();
+                        }
+                        catch (Exception ex)
+                        {
+                            {
+                                MessageBox.Show("Ошибка: " + ex.ToString(), "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                            }
+                        }
                     }
                 }
                 else

@@ -83,7 +83,7 @@ namespace WpfApp1.pages
 
             Word.Paragraph totalParagraph = document.Paragraphs.Add();
             Word.Range totalRange = totalParagraph.Range;
-            totalRange.Text = $"Всего запчастей: {parts.Count.ToString()}";
+            totalRange.Text = $"Всего запчастей: {Entities.GetContext().Warehouse.Count().ToString()}";
             titleRange.ParagraphFormat.Alignment = Word.WdParagraphAlignment.wdAlignParagraphLeft;
             totalRange.Font.Name = "Times New Roman";
             totalRange.Font.Size = 14;

@@ -29,6 +29,8 @@
             <ComboBox x:Name="supplierCmB" DisplayMemberPath="OrganizationName" SelectedItem="{Binding Supplier}"  SelectedValuePath="SupplierID" />
             <Label x:Name="lblprice" Content="Введите цену" Style="{StaticResource LblStyle}"/>
             <TextBox x:Name="priceTB" Text="{Binding Price}" Style="{StaticResource TBoxStyle}" />
+            <Label Content="Введите ссылку на картинку" Style="{StaticResource LblStyle}"/>
+            <TextBox x:Name="imageTB"  Style="{StaticResource TBoxStyle}" />
             <Label x:Name="lblstock" Content="Введите количество" Style="{StaticResource LblStyle}"/>
             <TextBox x:Name="stockTB"  Style="{StaticResource TBoxStyle}" />
         </StackPanel>
