@@ -34,9 +34,9 @@ namespace WpfApp1.pages
         {
             try
             {
-                var currentTime = DateTime.Now;
 
-                return await Entities.GetContext().AccessCode.AnyAsync(ac => ac.AccessCode1 == code && currentTime <= ac.ExpirationDate);
+                return await Entities.GetContext().AccessCode.AnyAsync(ac => ac.AccessCode1 == code);
+                
             }
             catch (Exception ex)
             {
@@ -76,7 +76,7 @@ namespace WpfApp1.pages
             isValid = await ValidateCode(codeTB.Text);
             if (!isValid)
             {
-                MessageBox.Show("Неверный код");
+                MessageBox.Show("Неверный код"+ Entities.GetContext().AccessCode.AnyAsync(ac => ac.AccessCode1 == codeTB.Text));
                 counter++;
                 return;
             }

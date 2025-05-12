@@ -43,16 +43,6 @@ namespace WpfApp1.pages
             dgSuppliers.ItemsSource = currentShipments;
         }
 
-        private void SortSupplier_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            UpdateShipment();
-        }
-        
-        private void SortPart_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            UpdateShipment();
-        }
-
         private void btnClearFilter_Click(object sender, RoutedEventArgs e)
         {
             SortPart.SelectedItem = null;
@@ -94,6 +84,11 @@ namespace WpfApp1.pages
         private void goBackbtn_Click(object sender, RoutedEventArgs e)
         {
             NavigationService.Navigate(new EmployeePanel());
+        }
+
+        private void btnSearchFilter_Click(object sender, RoutedEventArgs e)
+        {
+            UpdateShipment();
         }
     }
 }

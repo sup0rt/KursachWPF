@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data.Entity.Validation;
 using System.Linq;
+using System.Runtime.Remoting.Contexts;
 using System.Security.Principal;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -28,13 +29,24 @@ namespace WpfApp1.pages
             InitializeComponent();
             departmentsCmB.ItemsSource = Entities.GetContext().Department.ToList();
             positionCmB.ItemsSource = Entities.GetContext().Position.ToList();
+
+            if(selectedEmployee != null)
+            {
+                loginTB.Visibility = Visibility.Collapsed;
+                loginTB.IsEnabled = false;
+                passwordTB.Visibility = Visibility.Collapsed;
+                passwordTB.IsEnabled = false;
+                lbllogin.Visibility = Visibility.Collapsed;
+                lblpassword.Visibility = Visibility.Collapsed;
+            }
             
             _employee = selectedEmployee ?? new Employee();
             DataContext = _employee;
         }
         private Employee _employee = new Employee();
         private EmployeeAccount _account = new EmployeeAccount();
-        private void addEmployee_Click(object sender, RoutedEventArgs e)
+
+        private void Add()
         {
             StringBuilder errors = new StringBuilder();
 
@@ -85,20 +97,11 @@ namespace WpfApp1.pages
                 _account.Password = PasswordHasher.CreateHash(passwordTB.Password, out string salt);
                 _account.Salt = salt;
 
-                if (_employee.EmployeeID == 0)
-                {
-                    context.Employee.Add(_employee);
-                    context.SaveChanges(); 
+                context.Employee.Add(_employee);
+                context.SaveChanges();
 
-                    _account.EmployeeID = _employee.EmployeeID;
-                    context.EmployeeAccount.Add(_account);
-                }
-                else
-                {
-                    _account.EmployeeID = _employee.EmployeeID;
-                    context.Entry(_employee).State = System.Data.Entity.EntityState.Modified;
-                    context.Entry(_account).State = System.Data.Entity.EntityState.Modified;
-                }
+                _account.EmployeeID = _employee.EmployeeID;
+                context.EmployeeAccount.Add(_account);
 
                 context.SaveChanges();
                 MessageBox.Show("Сотрудник успешно добавлен", "Успех", MessageBoxButton.OK, MessageBoxImage.Information);
@@ -116,6 +119,64 @@ namespace WpfApp1.pages
             catch (Exception ex)
             {
                 MessageBox.Show("Ошибка: " + ex.Message, "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+
+           
+        }
+
+        private void Edit()
+        {
+            StringBuilder errors = new StringBuilder();
+
+            if (string.IsNullOrEmpty(_employee.FirstName)) errors.AppendLine("Введите имя сотрудника");
+            if (string.IsNullOrEmpty(_employee.MiddleName)) errors.AppendLine("Введите отчество сотрудника");
+            if (string.IsNullOrEmpty(_employee.LastName)) errors.AppendLine("Введите фамилию сотрудника");
+            if (_employee.Department == null) errors.AppendLine("Выберите отдел сотрудника");
+            if (_employee.Position == null) errors.AppendLine("Выберите должность сотрудника");
+            if (_employee.Salary <= 0) errors.AppendLine("Введите зарплату");
+
+            
+
+            if (errors.Length > 0)
+            {
+                MessageBox.Show(errors.ToString());
+                return;
+            }
+
+            try
+            {
+                var context = Entities.GetContext();
+
+                context.Entry(_employee).State = System.Data.Entity.EntityState.Modified;
+
+                context.SaveChanges();
+                MessageBox.Show("Данные о сотруднике обновлены", "Успех", MessageBoxButton.OK, MessageBoxImage.Information);
+                NavigationService.GoBack();
+            }
+            catch (DbEntityValidationException ex)
+            {
+                var errorMessages = ex.EntityValidationErrors
+                .SelectMany(x => x.ValidationErrors)
+                .Select(x => x.ErrorMessage);
+
+                string fullErrorMessage = string.Join("\n", errorMessages);
+                MessageBox.Show("Ошибки валидации:\n" + fullErrorMessage, "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Ошибка: " + ex.Message, "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
+        private void addEmployee_Click(object sender, RoutedEventArgs e)
+        {
+            if (_employee.EmployeeID == 0)
+            {
+                Add();
+            }
+            else
+            {
+                Edit();
             }
         }
 

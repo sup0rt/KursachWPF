@@ -105,7 +105,6 @@ namespace WpfApp1.pages
                 _admin.Email = emailTB.Text;
                 _admin.PhoneNumber = phoneTB.Text;
 
-                _account.AdminID = _admin.AdminID;
                 _account.Username = loginTB.Text;
                 _account.Password = PasswordHasher.CreateHash(passwordTB.Password, out string salt);
                 _account.Salt = salt;

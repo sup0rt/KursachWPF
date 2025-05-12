@@ -389,10 +389,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Function Name="CalculateOrderTotal" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="OrderID" Type="int" Mode="In" />
-        </Function>
-        <Function Name="sp_GenerateAndSendAccessCode" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <EntityContainer Name="Хранилище ModelContainer">
           <EntitySet Name="AccessCode" EntityType="Self.AccessCode" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Admin" EntityType="Self.Admin" Schema="dbo" store:Type="Tables" />
@@ -993,10 +989,6 @@
             <End Role="Shipment" EntitySet="Shipment" />
             <End Role="WarehouseTransaction" EntitySet="WarehouseTransaction" />
           </AssociationSet>
-          <FunctionImport Name="CalculateOrderTotal" ReturnType="Collection(Decimal)">
-            <Parameter Name="OrderID" Mode="In" Type="Int32" />
-          </FunctionImport>
-          <FunctionImport Name="sp_GenerateAndSendAccessCode" />
         </EntityContainer>
       </Schema>
     </edmx:ConceptualModels>
@@ -1203,8 +1195,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <FunctionImportMapping FunctionImportName="CalculateOrderTotal" FunctionName="Хранилище Model.CalculateOrderTotal" />
-          <FunctionImportMapping FunctionImportName="sp_GenerateAndSendAccessCode" FunctionName="Хранилище Model.sp_GenerateAndSendAccessCode" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

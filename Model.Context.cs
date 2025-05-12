@@ -12,8 +12,6 @@ namespace WpfApp1
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
-    using System.Data.Entity.Core.Objects;
-    using System.Linq;
     
     public partial class Entities : DbContext
     {
@@ -55,19 +53,5 @@ namespace WpfApp1
         public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
         public virtual DbSet<Warehouse> Warehouse { get; set; }
         public virtual DbSet<WarehouseTransaction> WarehouseTransaction { get; set; }
-    
-        public virtual ObjectResult<Nullable<decimal>> CalculateOrderTotal(Nullable<int> orderID)
-        {
-            var orderIDParameter = orderID.HasValue ?
-                new ObjectParameter("OrderID", orderID) :
-                new ObjectParameter("OrderID", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<decimal>>("CalculateOrderTotal", orderIDParameter);
-        }
-    
-        public virtual int sp_GenerateAndSendAccessCode()
-        {
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_GenerateAndSendAccessCode");
-        }
     }
 }
