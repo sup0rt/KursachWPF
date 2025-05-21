@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Diagnostics;
 
 namespace WpfApp1.pages
 {
@@ -42,6 +43,11 @@ namespace WpfApp1.pages
             {
                 Application.Current.Shutdown();
             }
+        }
+
+        private void helpbtn_Click(object sender, RoutedEventArgs e)
+        {
+            Process.Start("help.chm");
         }
     }
 }
